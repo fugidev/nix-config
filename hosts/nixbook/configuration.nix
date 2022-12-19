@@ -5,8 +5,8 @@
 { config, pkgs, lib, ... }:
 let
   nixos-m1 = builtins.fetchTarball {
-    url = "https://github.com/tpwrules/nixos-m1/archive/refs/tags/release-2022-11-29.tar.gz";
-    sha256 = "1my7cilc8kqivng3mdjk5p4qmzhp2g9w1136z2kfsm8j4q04dih9";
+    url = "https://github.com/tpwrules/nixos-m1/archive/refs/tags/release-2022-12-18.tar.gz";
+    sha256 = "1vbc9lr1qwhdj4gka47pimx71yf4bciqv220mwvzbhsn6x7qmmfj";
   };
 
   m1-support = nixos-m1 + "/nix/m1-support";
@@ -25,13 +25,18 @@ in
   # Do not commit these files.
   hardware.asahi.peripheralFirmwareDirectory = ./firmware;
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot = {
-    enable = true;
-    consoleMode = "max";
-    editor = false;
+  boot.loader = {
+    # Use the systemd-boot EFI boot loader.
+    systemd-boot = {
+      enable = true;
+      consoleMode = "max";
+      editor = false;
+    };
+
+    efi.canTouchEfiVariables = false;
+
+    timeout = 1;
   };
-  boot.loader.efi.canTouchEfiVariables = false;
 
   # Network Manager
   networking.hostName = "nixbook";
@@ -167,6 +172,7 @@ in
     pinentry
     pinentry-curses
     pinentry-qt
+    sshfs
   ];
 
   # grml zsh

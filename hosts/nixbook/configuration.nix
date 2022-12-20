@@ -38,6 +38,9 @@ in
     timeout = 1;
   };
 
+  # Increase tmpfs size
+  services.logind.extraConfig = "RuntimeDirectorySize=6G";
+
   # Network Manager
   networking.hostName = "nixbook";
   networking.networkmanager.enable = true;
@@ -63,11 +66,11 @@ in
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
+  console = {
   #   font = "Lat2-Terminus16";
-  #   keyMap = "de";
+    keyMap = "de";
   #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -111,8 +114,8 @@ in
   };
 
   # Enable bluetooth.
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
+  #hardware.bluetooth.enable = true;
+  #services.blueman.enable = true;
 
   # Enable gvfs
   services.gvfs = {
@@ -197,7 +200,7 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "23.05"; # Did you read the comment?
 
   nix.extraOptions = ''
     experimental-features = nix-command flakes

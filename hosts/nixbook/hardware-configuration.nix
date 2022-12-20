@@ -14,12 +14,33 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/a9da19f1-ba58-4258-8225-d41375b9c98c";
-      fsType = "ext4";
+    { device = "/dev/disk/by-uuid/7a06865c-0c46-40dc-be71-009cfdc31807";
+      fsType = "btrfs";
+      options = [ "subvol=root" "compress=zstd" "noatime" ];
+    };
+
+  boot.initrd.luks.devices."nixenc".device = "/dev/disk/by-uuid/ff496dc0-27cc-4905-996a-3235f459b692";
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/7a06865c-0c46-40dc-be71-009cfdc31807";
+      fsType = "btrfs";
+      options = [ "subvol=home" "compress=zstd" "noatime" ];
+    };
+
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/7a06865c-0c46-40dc-be71-009cfdc31807";
+      fsType = "btrfs";
+      options = [ "subvol=nix" "compress=zstd" "noatime" ];
+    };
+
+  fileSystems."/var/log" =
+    { device = "/dev/disk/by-uuid/7a06865c-0c46-40dc-be71-009cfdc31807";
+      fsType = "btrfs";
+      options = [ "subvol=log" "compress=zstd" "noatime" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2968-1EEC";
+    { device = "/dev/disk/by-uuid/9DAB-1EE9";
       fsType = "vfat";
     };
 
@@ -30,6 +51,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp1s0f0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";

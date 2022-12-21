@@ -21,7 +21,7 @@ with pkgs; {
         set noshowmode                  " hide default mode indicator
       '';
 
-      extraPackages = with pkgs; [];
+      extraPackages = with pkgs; [ ];
 
       plugins = with pkgs.vimPlugins; [
         vim-nix # nix syntax highlighting

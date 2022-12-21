@@ -16,11 +16,17 @@
         modules = [
           home-manager.nixosModules.home-manager
           ./hosts/nixbook/configuration.nix
+          ./modules/xorg.nix
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.fugi = import ./modules/home/home-fugi.nix;
+
+              users.fugi.imports = [
+                ./modules/home/home-fugi.nix
+                ./modules/home/i3.nix
+              ];
+
               users.root = import ./modules/home/home-root.nix;
             };
           }

@@ -49,16 +49,6 @@ in
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput = {
-    enable = true;
-
-    touchpad = {
-      tapping = false;
-      naturalScrolling = true;
-    };
-  };
-
   # Environment variables
   environment.variables = {
     MOZ_USE_XINPUT2 = "1"; # firefox smooth scrolling
@@ -72,36 +62,6 @@ in
   #   useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.displayManager.lightdm.background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
-  services.xserver.displayManager.lightdm.greeters.gtk = {
-    enable = true;
-    theme.name = "Adwaita-dark";
-  };
-
-  services.xserver.windowManager.i3 = {
-    enable = true;
-    extraPackages = with pkgs; [
-      i3lock #default i3 screen locker
-      i3blocks #if you are planning on using i3blocks over i3status
-      rofi # application launcher
-   ];
-  };
-
-  # Disable xterm
-  services.xserver.excludePackages = [ pkgs.xterm ];
-
-  # HiDPI
-  services.xserver.dpi = 144;
-
-  # Configure keymap in X11
-  services.xserver.layout = "de";
-  # services.xserver.xkbOptions = {
-  #   "eurosign:e";
-  #   "caps:escape" # map caps to escape.
-  # };
-
   # Enable sound.
   security.rtkit.enable = true; # optional but recommended
   services.pipewire = {
@@ -109,7 +69,6 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
     #jack.enable = true;
   };
 
@@ -176,6 +135,7 @@ in
     pinentry-curses
     pinentry-qt
     sshfs
+    nixpkgs-fmt
   ];
 
   # grml zsh

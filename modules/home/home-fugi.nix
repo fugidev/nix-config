@@ -4,6 +4,7 @@
     ./base.nix
     ./nvim.nix
     ./git.nix
+    ./alacritty.nix
   ];
 
   home.username = "fugi";

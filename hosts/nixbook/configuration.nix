@@ -99,10 +99,10 @@ in
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [
+      ark
       firefox
       neofetch
       xfce.thunar
-      alacritty
       feh
       pavucontrol
       vscodium

@@ -17,6 +17,7 @@
           home-manager.nixosModules.home-manager
           ./hosts/nixbook/configuration.nix
           ./modules/xorg.nix
+          ./modules/fonts.nix
           {
             home-manager = {
               useGlobalPkgs = true;

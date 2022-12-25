@@ -114,9 +114,6 @@ in
   # root user
   users.users.root.shell = lib.mkForce pkgs.zsh;
 
-  # fonts
-  fonts.fonts = with pkgs; [ fira-code ];
-
   # Enable polkit
   security.polkit.enable = true;
 

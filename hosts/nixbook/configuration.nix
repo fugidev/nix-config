@@ -25,6 +25,9 @@ in
   # Do not commit these files.
   hardware.asahi.peripheralFirmwareDirectory = ./firmware;
 
+  # enable backlight control
+  hardware.acpilight.enable = true;
+
   boot.loader = {
     # Use the systemd-boot EFI boot loader.
     systemd-boot = {
@@ -40,6 +43,9 @@ in
 
   # Increase tmpfs size
   services.logind.extraConfig = "RuntimeDirectorySize=6G";
+
+  # lock session when closing lid
+  services.logind.lidSwitch = "lock";
 
   # Network Manager
   networking.hostName = "nixbook";
@@ -96,6 +102,7 @@ in
     isNormalUser = true;
     extraGroups = [
       "wheel" # Enable ‘sudo’.
+      "video" # Allow backlight control
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [

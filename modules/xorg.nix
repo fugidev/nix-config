@@ -42,4 +42,10 @@
     # Configure keymap in X11
     layout = "de";
   };
+
+  # enable xclip
+  environment.systemPackages = [ pkgs.xclip ];
+
+  # enable xss-lock
+  programs.xss-lock.enable = true;
 }

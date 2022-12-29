@@ -26,6 +26,10 @@
               users.fugi.imports = [
                 ./modules/home/home-fugi.nix
                 ./modules/home/i3.nix
+                ./modules/home/user-options.nix
+                ({ pkgs, ... }: {
+                  fugi.wallpaper = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
+                })
               ];
 
               users.root = import ./modules/home/home-root.nix;

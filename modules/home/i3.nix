@@ -3,7 +3,10 @@ let
   mod = "Mod4";
 in
 {
-  imports = [ ./rofi.nix ];
+  imports = [
+    ./rofi.nix
+    ./x-screen-locker.nix
+  ];
 
   xsession.enable = true;
   xsession.windowManager.i3 = {
@@ -20,8 +23,10 @@ in
 
       startup = [
         {
-          command = "feh --no-fehbg --bg-fill ${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath}";
+          # set wallpaper
+          command = "feh --no-fehbg --bg-fill ${config.fugi.wallpaper}";
           notification = false;
+          always = true;
         }
       ];
 
@@ -34,6 +39,9 @@ in
         "${mod}+d" = "exec rofi -show drun";
         "${mod}+b" = "exec firefox";
         "${mod}+colon" = "exec rofimoji";
+        "${mod}+l" = "exec loginctl lock-session";
+        "XF86MonBrightnessUp" = "exec xbacklight -set 100";
+        "XF86MonBrightnessDown" = "exec xbacklight -set 0";
       };
     };
   };

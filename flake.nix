@@ -16,6 +16,7 @@
         modules = [
           home-manager.nixosModules.home-manager
           ./hosts/nixbook/configuration.nix
+          ./modules/base.nix
           ./modules/xorg.nix
           ./modules/fonts.nix
           {

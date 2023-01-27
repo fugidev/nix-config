@@ -6,6 +6,7 @@ in
   imports = [
     ./rofi.nix
     ./x-screen-locker.nix
+    ./theme.nix
   ];
 
   xsession.enable = true;

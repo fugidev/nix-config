@@ -115,6 +115,7 @@ in
       vscodium
       filezilla
       meld
+      sops
     ];
   };
 
@@ -140,6 +141,7 @@ in
     pinentry-qt
     sshfs
     nixpkgs-fmt
+    exa
   ];
 
   # grml zsh
@@ -149,6 +151,9 @@ in
 
     # Make user colour green in prompt instead of default blue
     #zstyle ':prompt:grml:left:items:user' pre '%F{green}%B'
+
+    # Disable git integration in /mnt
+    zstyle ':vcs_info:*' disable-patterns "/mnt(|/*)"
   '';
   programs.zsh.promptInit = ""; # otherwise it'll override the grml prompt
 

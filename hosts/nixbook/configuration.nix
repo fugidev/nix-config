@@ -5,8 +5,8 @@
 { config, pkgs, lib, ... }:
 let
   nixos-m1 = builtins.fetchTarball {
-    url = "https://github.com/tpwrules/nixos-m1/archive/refs/tags/release-2022-12-18.tar.gz";
-    sha256 = "1vbc9lr1qwhdj4gka47pimx71yf4bciqv220mwvzbhsn6x7qmmfj";
+    url = "https://github.com/tpwrules/nixos-m1/archive/refs/tags/release-2023-01-18.tar.gz";
+    sha256 = "1znz3lm5spq62jygp2ha3ypgpyy45s09rvk6xdfvbw55223qvc53";
   };
 
   m1-support = nixos-m1 + "/nix/m1-support";
@@ -32,7 +32,7 @@ in
     # Use the systemd-boot EFI boot loader.
     systemd-boot = {
       enable = true;
-      consoleMode = "max";
+      #consoleMode = "max";
       editor = false;
     };
 

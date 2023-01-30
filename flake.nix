@@ -11,11 +11,11 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
-      nixbook = nixpkgs.lib.nixosSystem {
+      blaze = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
           home-manager.nixosModules.home-manager
-          ./hosts/nixbook/configuration.nix
+          ./hosts/blaze/configuration.nix
           ./modules/base.nix
           ./modules/xorg.nix
           ./modules/fonts.nix

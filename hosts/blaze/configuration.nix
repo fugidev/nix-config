@@ -20,7 +20,7 @@ in
   ];
 
   # Peripheral Firmware cannot be used directly from efi partition.
-  #   cp /boot/asahi/{all_firmware.tar.gz,kernelcache*} hosts/nixbook/firmware
+  #   cp /boot/asahi/{all_firmware.tar.gz,kernelcache*} hosts/blaze/firmware
   #   git add -N hosts/nixos/firmware
   # Do not commit these files.
   hardware.asahi.peripheralFirmwareDirectory = ./firmware;
@@ -48,12 +48,9 @@ in
   services.logind.lidSwitch = "lock";
 
   # Network Manager
-  networking.hostName = "nixbook";
+  networking.hostName = "blaze";
   networking.networkmanager.enable = true;
   programs.nm-applet.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/Berlin";
 
   # Environment variables
   environment.variables = {
@@ -108,7 +105,6 @@ in
     packages = with pkgs; [
       ark
       firefox
-      neofetch
       xfce.thunar
       feh
       pavucontrol
@@ -128,20 +124,12 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    gcc
-    git
-    htop
-    btop
     acpi
     lxqt.lxqt-policykit
-    bat
-    fd
     pinentry
     pinentry-curses
     pinentry-qt
     sshfs
-    nixpkgs-fmt
-    exa
   ];
 
   # grml zsh
@@ -170,9 +158,4 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-    allow-import-from-derivation = true
-  '';
 }

@@ -48,4 +48,7 @@
 
   # enable xss-lock
   programs.xss-lock.enable = true;
+
+  # enable dconf
+  programs.dconf.enable = true;
 }

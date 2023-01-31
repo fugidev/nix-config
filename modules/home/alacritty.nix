@@ -5,7 +5,7 @@
     settings = {
       font = {
         normal.family = "Fira Code";
-        size = 14;
+        size = 16;
       };
 
       colors = {

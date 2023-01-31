@@ -100,8 +100,8 @@ in
     extraGroups = [
       "wheel" # Enable ‘sudo’.
       "video" # Allow backlight control
+      "networkmanager"
     ];
-    shell = pkgs.zsh;
     packages = with pkgs; [
       ark
       firefox
@@ -114,9 +114,6 @@ in
       sops
     ];
   };
-
-  # root user
-  users.users.root.shell = lib.mkForce pkgs.zsh;
 
   # Enable polkit
   security.polkit.enable = true;
@@ -131,25 +128,6 @@ in
     pinentry-qt
     sshfs
   ];
-
-  # grml zsh
-  programs.zsh.enable = true;
-  programs.zsh.interactiveShellInit = ''
-    source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
-
-    # Make user colour green in prompt instead of default blue
-    #zstyle ':prompt:grml:left:items:user' pre '%F{green}%B'
-
-    # Disable git integration in /mnt
-    zstyle ':vcs_info:*' disable-patterns "/mnt(|/*)"
-  '';
-  programs.zsh.promptInit = ""; # otherwise it'll override the grml prompt
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

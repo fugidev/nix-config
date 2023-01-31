@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
+{
+  imports = [
+    ./zsh.nix
+  ];
+
   # set time zone
   time.timeZone = "Europe/Berlin";
 
@@ -12,6 +17,7 @@
     fd
     nixpkgs-fmt
     exa
+    ripgrep
   ];
 
   # enable flake support

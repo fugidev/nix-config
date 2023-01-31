@@ -16,7 +16,6 @@
         modules = [
           home-manager.nixosModules.home-manager
           ./hosts/blaze/configuration.nix
-          ./modules/options.nix
           ./modules/base.nix
           ./modules/xorg.nix
           ./modules/fonts.nix

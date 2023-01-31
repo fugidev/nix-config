@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 {
   imports = [
+    ./options.nix
     ./zsh.nix
   ];
 
@@ -18,6 +19,8 @@
     nixpkgs-fmt
     exa
     ripgrep
+    wget
+    neovim
   ];
 
   # enable flake support

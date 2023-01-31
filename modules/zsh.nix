@@ -8,6 +8,8 @@ in
   programs.zsh = {
     enable = true;
 
+    shellAliases = lib.mkForce { };
+
     interactiveShellInit = ''
       source ${agdsn-zsh-config}/etc/zsh/zshrc
 

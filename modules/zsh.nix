@@ -28,7 +28,7 @@ in
       zstyle ':vcs_info:*' disable-patterns "/mnt(|/*)"
 
       # chevron
-      grml_theme_add_token chevron '%f» '
+      grml_theme_add_token chevron $'%f\U00BB '
 
       # prompt items
       zstyle ':prompt:hw:left:setup' items ip-netns virtual-env change-root time user at host path vcs chevron

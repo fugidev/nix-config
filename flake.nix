@@ -40,6 +40,13 @@
           }
         ];
       };
+      librarian = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/librarian/configuration.nix
+          ./modules/base.nix
+        ];
+      };
     };
   };
 }

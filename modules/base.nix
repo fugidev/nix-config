@@ -21,6 +21,7 @@
     ripgrep
     wget
     neovim
+    dig
   ];
 
   # enable flake support

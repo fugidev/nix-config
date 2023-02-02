@@ -41,6 +41,7 @@ in
         "${mod}+b" = "exec firefox";
         "${mod}+colon" = "exec rofimoji";
         "${mod}+l" = "exec loginctl lock-session";
+        "${mod}+Return" = "exec --no-startup-id alacritty"; # --no-startup-id prevents loading cursor on background after starting alacritty
         "XF86MonBrightnessUp" = "exec xbacklight -set 100";
         "XF86MonBrightnessDown" = "exec xbacklight -set 0";
       };

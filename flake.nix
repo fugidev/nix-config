@@ -3,17 +3,24 @@
 
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-asahi = {
+      url = "github:tpwrules/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, nixos-asahi, ... }@inputs: {
     nixosConfigurations = {
       blaze = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
+          nixos-asahi.nixosModules.default
           home-manager.nixosModules.home-manager
           ./hosts/blaze/configuration.nix
           ./modules/base.nix

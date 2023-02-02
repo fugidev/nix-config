@@ -1,22 +1,8 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, lib, ... }:
-let
-  nixos-m1 = builtins.fetchTarball {
-    url = "https://github.com/tpwrules/nixos-m1/archive/refs/tags/release-2023-01-18.tar.gz";
-    sha256 = "1znz3lm5spq62jygp2ha3ypgpyy45s09rvk6xdfvbw55223qvc53";
-  };
-
-  m1-support = nixos-m1 + "/nix/m1-support";
-in
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    # Include the necessary packages and configuration for Apple M1 support.
-    m1-support
   ];
 
   # Peripheral Firmware cannot be used directly from efi partition.
@@ -32,7 +18,6 @@ in
     # Use the systemd-boot EFI boot loader.
     systemd-boot = {
       enable = true;
-      #consoleMode = "max";
       editor = false;
     };
 
@@ -66,14 +51,14 @@ in
   };
 
   # Enable sound.
-  security.rtkit.enable = true; # optional but recommended
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    #jack.enable = true;
-  };
+  # security.rtkit.enable = true; # optional but recommended
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = true;
+  #   #jack.enable = true;
+  # };
 
   # Enable bluetooth.
   #hardware.bluetooth.enable = true;

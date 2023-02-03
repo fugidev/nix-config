@@ -24,6 +24,10 @@
     networks."40-eno1" = {
       name = "eno1";
       address = [ "192.168.0.202/24" ];
+      routes = [{
+        routeConfig.Gateway = "192.168.0.1";
+      }];
+
       networkConfig.IPv6PrivacyExtensions = "kernel";
       ipv6AcceptRAConfig.UseDNS = false; # ignore dns servers supplied by router
     };

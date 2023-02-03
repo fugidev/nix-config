@@ -4,18 +4,23 @@
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
 
+    sops-nix = {
+      url = github:Mic92/sops-nix;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-asahi = {
-      url = "github:tpwrules/nixos-apple-silicon";
+      url = github:tpwrules/nixos-apple-silicon;
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-asahi, ... }@inputs: {
+  outputs = { self, nixpkgs, sops-nix, home-manager, nixos-asahi, ... }@inputs: {
     nixosConfigurations = {
       blaze = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
@@ -50,8 +55,13 @@
       librarian = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          sops-nix.nixosModules.sops
           ./hosts/librarian/configuration.nix
           ./modules/base.nix
+          ./modules/sops.nix
+          {
+            sops.defaultSopsFile = ./secrets/librarian.yaml;
+          }
         ];
       };
     };

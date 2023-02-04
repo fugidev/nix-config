@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 {
   networking = {
+    hostName = "librarian";
+
     useDHCP = false;
     useNetworkd = true;
 

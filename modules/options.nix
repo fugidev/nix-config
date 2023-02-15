@@ -13,5 +13,9 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHD1ZkrAmC9g5eJPDgv4zuEM+UIIEWromDzM1ltHt4TM fugi@blaze"
       ];
     };
+
+    domain = mkOption {
+      type = types.str;
+    };
   };
 }

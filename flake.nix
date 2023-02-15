@@ -59,8 +59,11 @@
           ./hosts/librarian/configuration.nix
           ./modules/base.nix
           ./modules/sops.nix
+          ./modules/nginx.nix
           {
             sops.defaultSopsFile = ./secrets/librarian.yaml;
+
+            fugi.domain = "librarian.fugi.dev";
           }
         ];
       };

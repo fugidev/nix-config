@@ -1,7 +1,4 @@
 { config, lib, pkgs, ... }:
-let
-  agdsn-zsh-config = pkgs.callPackage ./pkgs/agdsn-zsh-config.nix { };
-in
 {
   users.defaultUserShell = pkgs.zsh;
 
@@ -11,7 +8,7 @@ in
     shellAliases = lib.mkForce { };
 
     interactiveShellInit = ''
-      source ${agdsn-zsh-config}/etc/zsh/zshrc
+      source ${pkgs.agdsn-zsh-config}/etc/zsh/zshrc
 
       # ctrl+backspace, ctrl+delete
       bindkey '\e[3;5~' kill-word

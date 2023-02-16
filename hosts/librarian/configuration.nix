@@ -7,6 +7,7 @@
     # Network configuration
     ./network.nix
     # Host specific modules
+    ./aria2.nix
     ./samba.nix
   ];
 

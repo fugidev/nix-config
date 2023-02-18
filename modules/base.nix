@@ -3,6 +3,7 @@
   imports = [
     ./options.nix
     ./zsh.nix
+    ./tmux.nix
   ];
 
   # set time zone

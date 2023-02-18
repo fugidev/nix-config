@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  ttf-twemoji = pkgs.callPackage ./pkgs/ttf-twemoji { };
+  ttf-twemoji = pkgs.callPackage ../pkgs/ttf-twemoji { };
 in
 {
   fonts = {

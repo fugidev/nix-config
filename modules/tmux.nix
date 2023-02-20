@@ -2,7 +2,7 @@
 {
   programs.tmux = {
     enable = true;
-    historyLimit = 5000;
+    historyLimit = 10000;
     clock24 = true;
     extraConfig = ''
       set -g default-command ${pkgs.zsh}/bin/zsh

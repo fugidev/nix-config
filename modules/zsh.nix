@@ -24,6 +24,10 @@
       # Disable git integration in /mnt
       zstyle ':vcs_info:*' disable-patterns "/mnt(|/*)"
 
+      # Disable ssh/rsync user completion
+      zstyle ':completion:*:ssh:*' users
+      zstyle ':completion:*:rsync:*' users
+
       # chevron
       grml_theme_add_token chevron $'%f\U00BB '
 

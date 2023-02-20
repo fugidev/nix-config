@@ -4,6 +4,7 @@ with pkgs; {
   programs = {
     neovim = {
       enable = true;
+      defaultEditor = true;
 
       extraConfig = ''
         set list                        " show whitespace

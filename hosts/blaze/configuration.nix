@@ -5,12 +5,6 @@
     ./hardware-configuration.nix
   ];
 
-  # Peripheral Firmware cannot be used directly from efi partition.
-  #   cp /boot/asahi/{all_firmware.tar.gz,kernelcache*} hosts/blaze/firmware
-  #   git add -N hosts/nixos/firmware
-  # Do not commit these files.
-  hardware.asahi.peripheralFirmwareDirectory = ./firmware;
-
   # enable backlight control
   hardware.acpilight.enable = true;
 

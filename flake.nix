@@ -31,6 +31,7 @@
           ./modules/base.nix
           ./modules/xorg.nix
           ./modules/fonts.nix
+          ./modules/printing.nix
           {
             fugi.promptColor = "#f7ce46"; # yellow
 

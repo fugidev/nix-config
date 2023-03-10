@@ -29,11 +29,12 @@
           home-manager.nixosModules.home-manager
           ./hosts/blaze/configuration.nix
           ./modules/base.nix
-          ./modules/xorg.nix
           ./modules/fonts.nix
           ./modules/printing.nix
           {
             fugi.promptColor = "#f7ce46"; # yellow
+
+            programs.sway.enable = true;
 
             home-manager = {
               useGlobalPkgs = true;
@@ -41,7 +42,7 @@
 
               users.fugi.imports = [
                 ./modules/home/home-fugi.nix
-                ./modules/home/i3.nix
+                ./modules/home/sway.nix
                 ./modules/home/user-options.nix
                 ({ pkgs, ... }: {
                   fugi.wallpaper = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;

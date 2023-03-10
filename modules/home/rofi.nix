@@ -2,8 +2,10 @@
   programs.rofi = {
     enable = true;
 
+    package = pkgs.rofi-wayland;
+
     theme = "Arc-Dark";
-    font = "mono 18";
+    font = "mono 12";
 
     extraConfig = {
       modi = "drun";
@@ -11,5 +13,7 @@
     };
   };
 
-  home.packages = [ pkgs.rofimoji ];
+  home.packages = with pkgs; [
+    (rofimoji.override { rofi = rofi-wayland; })
+  ];
 }

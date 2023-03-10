@@ -5,6 +5,11 @@
     ./hardware-configuration.nix
   ];
 
+  # enable edge config and beta gpu driver
+  hardware.asahi.addEdgeKernelConfig = true;
+  hardware.asahi.useExperimentalGPUDriver = true;
+  hardware.asahi.experimentalGPUInstallMode = "replace";
+
   # enable backlight control
   hardware.acpilight.enable = true;
 
@@ -22,9 +27,6 @@
 
   # Increase tmpfs size
   services.logind.extraConfig = "RuntimeDirectorySize=6G";
-
-  # lock session when closing lid
-  services.logind.lidSwitch = "lock";
 
   # Network Manager
   networking.hostName = "blaze";

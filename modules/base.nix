@@ -9,6 +9,11 @@
   # set time zone
   time.timeZone = "Europe/Berlin";
 
+  # env variables
+  environment.variables = {
+    EDITOR = "nvim";
+  };
+
   # system packages
   environment.systemPackages = with pkgs; [
     neofetch # very essential

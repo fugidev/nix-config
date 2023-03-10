@@ -7,6 +7,7 @@ in
     ./rofi.nix
     ./x-screen-locker.nix
     ./theme.nix
+    ./bar.nix
   ];
 
   xsession.enable = true;
@@ -45,47 +46,6 @@ in
         "XF86MonBrightnessUp" = "exec xbacklight -set 100";
         "XF86MonBrightnessDown" = "exec xbacklight -set 0";
       };
-    };
-  };
-
-  # enable icon font
-  fonts.fontconfig.enable = true;
-  home.packages = [ pkgs.font-awesome ];
-
-  # status bar
-  programs.i3status-rust = {
-    enable = true;
-
-    bars.top = {
-      icons = "awesome6";
-      blocks = [
-        {
-          block = "networkmanager";
-        }
-        {
-          block = "net";
-        }
-        {
-          block = "disk_space";
-          format = "{icon} {available}";
-        }
-        {
-          block = "memory";
-          clickable = false;
-        }
-        {
-          block = "cpu";
-        }
-        {
-          block = "battery";
-          full_format = "{percentage}";
-        }
-        {
-          block = "time";
-          format = "%a %F %T";
-          interval = 1;
-        }
-      ];
     };
   };
 }

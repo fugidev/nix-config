@@ -29,6 +29,7 @@
           home-manager.nixosModules.home-manager
           ./hosts/blaze/configuration.nix
           ./modules/base.nix
+          ./modules/greetd.nix
           ./modules/fonts.nix
           ./modules/printing.nix
           {

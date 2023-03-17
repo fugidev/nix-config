@@ -42,9 +42,9 @@
               useUserPackages = true;
 
               users.fugi.imports = [
-                ./modules/home/home-fugi.nix
-                ./modules/home/sway.nix
                 ./modules/home/user-options.nix
+                ./modules/home/home-fugi.nix
+                ./hosts/blaze/sway.nix
                 ({ pkgs, ... }: {
                   fugi.wallpaper = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
                 })
@@ -70,6 +70,22 @@
           }
         ];
       };
+    };
+
+    # magmacube home-manager
+    homeConfigurations.fugi = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages."x86_64-linux";
+
+      modules = [
+        ./modules/home/user-options.nix
+        ./modules/home/home-fugi.nix
+        ./hosts/magmacube/sway.nix
+        ({ pkgs, ... }: {
+          programs.home-manager.enable = true;
+
+          fugi.wallpaper = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
+        })
+      ];
     };
   };
 }

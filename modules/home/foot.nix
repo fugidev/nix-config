@@ -6,6 +6,9 @@
       main.font = "monospace:size=10";
 
       colors = {
+        foreground = "dddddd";
+        background = "111111";
+
         regular0 = "090909";
         regular1 = "eb4e3d";
         regular2 = "76d672";

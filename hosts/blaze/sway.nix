@@ -2,7 +2,6 @@
 {
   imports = [
     ../../modules/home/sway.nix
-    ../../modules/home/i3status-rs.nix
   ];
 
   wayland.windowManager.sway = {
@@ -24,11 +23,6 @@
           scale_filter = "linear";
           bg = "${config.fugi.wallpaper} fill";
         };
-
-        bars = [{
-          position = "top";
-          statusCommand = "i3status-rs ${config.xdg.configHome}/i3status-rust/config-top.toml";
-        }];
       };
     };
   };

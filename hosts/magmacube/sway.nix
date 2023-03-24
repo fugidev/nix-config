@@ -10,7 +10,6 @@ in
 {
   imports = [
     ../../modules/home/sway.nix
-    ../../modules/home/waybar.nix
   ];
 
   wayland.windowManager.sway = {
@@ -51,10 +50,6 @@ in
           xkb_layout = "de";
         };
       };
-
-      bars = [{
-        command = "${pkgs.waybar}/bin/waybar";
-      }];
     };
   };
 

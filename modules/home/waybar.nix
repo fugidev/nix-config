@@ -9,7 +9,7 @@
         position = "top";
         modules-left = [ "sway/workspaces" "sway/mode" ];
         modules-center = [ "clock" ];
-        modules-right = [ "disk" "memory" "network" "cpu" "pulseaudio" "tray" ];
+        modules-right = [ "network" "disk" "memory" "cpu" "pulseaudio" "battery" "tray" ];
 
         "sway/workspaces" = {
           disable-scroll = true;
@@ -21,12 +21,43 @@
           interval = 1;
         };
 
+        "network" =
+          let
+            details = " {ipaddr}/{cidr}   {bandwidthDownBytes}  {bandwidthUpBytes}";
+          in
+          {
+            format-wifi = " {essid}" + details;
+            format-ethernet = "" + details;
+            format-disconnected = "Disconnected";
+            interval = 10;
+          };
+
+        "disk" = {
+          format = " {free}";
+        };
+
+        "memory" = {
+          format = " {used:0.1f}G/{total:0.1f}G ({percentage}%)";
+        };
+
         "cpu" = {
-          format = "{usage}% {load} ";
+          format = "{usage:3}%";
         };
 
         "pulseaudio" = {
+          format = " {volume}%";
+          format-bluetooth = " {volume}%";
+          format-muted = " Mute";
           on-click = "pavucontrol";
+        };
+
+        "battery" = {
+          format = "{icon} {capacity}%";
+          format-icons = [ "" "" "" "" "" ];
+          states = {
+            warning = 30;
+            critical = 15;
+          };
         };
 
         "tray" = {

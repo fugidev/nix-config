@@ -36,6 +36,7 @@
             fugi.promptColor = "#f7ce46"; # yellow
 
             programs.sway.enable = true;
+            xdg.portal.enable = true;
 
             home-manager = {
               useGlobalPkgs = true;

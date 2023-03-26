@@ -28,6 +28,7 @@
     wget
     neovim
     dig
+    xdg-utils
   ];
 
   # enable flake support

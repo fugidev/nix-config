@@ -4,5 +4,11 @@
       type = types.path;
       description = "desktop and lockscreen background";
     };
+
+    guiApps = mkOption {
+      type = types.bool;
+      description = "install gui applications";
+      default = false;
+    };
   };
 }

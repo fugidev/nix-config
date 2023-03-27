@@ -9,4 +9,8 @@
 
   home.username = "fugi";
   home.homeDirectory = "/home/fugi";
+
+  home.packages = lib.mkIf (config.fugi.guiApps) (with pkgs; [
+    qalculate-gtk
+  ]);
 }

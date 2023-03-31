@@ -39,6 +39,10 @@ in
     enable = true;
     package = null;
 
+    extraConfigEarly = ''
+      set $mode_power (l)ock, (e)xit, (s)uspend, (p)oweroff, (r)eboot
+    '';
+
     extraConfig = ''
       titlebar_padding 5 1
     '';
@@ -62,7 +66,19 @@ in
         criteria = [
           { app_id = "qalculate-gtk"; }
           { app_id = "pavucontrol"; }
+          { title = "File Operation Progress"; }
         ];
+      };
+
+      modes = lib.mkOptionDefault {
+        "$mode_power" = {
+          l = "exec loginctl lock-session, mode default";
+          e = "exec swaymsg exit";
+          s = "exec systemctl suspend, mode default";
+          p = "exec systemctl poweroff";
+          r = "exec systemctl reboot";
+          Escape = "mode default";
+        };
       };
 
       keybindings = lib.mkOptionDefault ({
@@ -73,6 +89,9 @@ in
         # display brightness
         "--locked XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
         "--locked XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
+        # modes
+        "${mod}+Pause" = "mode \"$mode_power\"";
+        "XF86PowerOff" = "mode \"$mode_power\""; # systemd-inhibit required for this
       } // screenshotKeybindings);
 
       seat."*" = let cursor = config.home.pointerCursor; in {

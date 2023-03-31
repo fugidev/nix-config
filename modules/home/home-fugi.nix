@@ -5,6 +5,7 @@
     ./nvim.nix
     ./git.nix
     ./foot.nix
+    ./direnv.nix
   ];
 
   home.username = "fugi";

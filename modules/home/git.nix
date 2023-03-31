@@ -10,9 +10,8 @@
     };
 
     extraConfig = {
-      core = {
-        pager = "less -+\$LESS -RS";
-      };
+      core.pager = "less -+\$LESS -RS";
+      init.defaultBranch = "main";
     };
   };
 }

@@ -32,17 +32,6 @@
   };
 
   services.swayidle = {
-    enable = true;
-    events = [
-      {
-        event = "before-sleep";
-        command = "${pkgs.systemd}/bin/loginctl lock-session";
-      }
-      {
-        event = "lock";
-        command = "${pkgs.swaylock-effects}/bin/swaylock -c 000000 --clock --indicator-idle-visible";
-      }
-    ];
     timeouts = [
       {
         # lock session after 5 minutes

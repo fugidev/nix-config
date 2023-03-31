@@ -24,6 +24,10 @@
           bg = "${config.fugi.wallpaper} fill";
         };
       };
+
+      startup = [
+        { command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"; }
+      ];
     };
   };
 

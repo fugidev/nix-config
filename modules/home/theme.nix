@@ -1,9 +1,7 @@
 { lib, pkgs, ... }: {
   home.pointerCursor = {
     package = pkgs.callPackage ../../pkgs/apple_cursor { };
-
     name = "macOS-Monterey";
-    size = 24;
 
     x11.enable = true;
     gtk.enable = true;

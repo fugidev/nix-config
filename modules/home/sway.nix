@@ -2,7 +2,7 @@
 let
   mod = "Mod4";
 
-  genScreenshotKeybindings = { baseKeybinds, commands }: builtins.listToAttrs (
+  mkScreenshotKeybindings = { baseKeybinds, commands }: builtins.listToAttrs (
     builtins.concatMap
       (
         keybind: (
@@ -19,7 +19,7 @@ let
       baseKeybinds
   );
 
-  screenshotKeybindings = genScreenshotKeybindings {
+  screenshotKeybindings = mkScreenshotKeybindings {
     baseKeybinds = [ "${mod}+p" "Print" ];
     commands = [
       { modifier = ""; target = "area"; }
@@ -97,10 +97,6 @@ in
       seat."*" = let cursor = config.home.pointerCursor; in {
         xcursor_theme = "${cursor.name} ${builtins.toString cursor.size}";
       };
-
-      startup = [
-        { command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"; }
-      ];
 
       bars = [{
         command = "${pkgs.waybar}/bin/waybar";

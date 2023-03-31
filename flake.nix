@@ -49,6 +49,7 @@
                 ({ pkgs, ... }: {
                   fugi.wallpaper = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
                   fugi.guiApps = true;
+                  home.pointerCursor.size = 24;
                 })
               ];
 
@@ -86,6 +87,7 @@
           programs.home-manager.enable = true;
 
           fugi.wallpaper = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
+          home.pointerCursor.size = 28;
         })
       ];
     };

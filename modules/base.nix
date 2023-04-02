@@ -2,9 +2,11 @@
 {
   imports = [
     ./options.nix
-    ./zsh.nix
     ./tmux.nix
   ];
+
+  # set zsh as default shell
+  users.defaultUserShell = pkgs.zsh;
 
   # set time zone
   time.timeZone = "Europe/Berlin";

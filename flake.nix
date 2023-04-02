@@ -33,8 +33,6 @@
           ./modules/fonts.nix
           ./modules/printing.nix
           {
-            fugi.promptColor = "#f7ce46"; # yellow
-
             programs.sway.enable = true;
             xdg.portal.enable = true;
 
@@ -49,6 +47,8 @@
                 ({ pkgs, ... }: {
                   fugi.wallpaper = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
                   fugi.guiApps = true;
+                  fugi.promptColor = "#f7ce46"; # yellow
+
                   home.pointerCursor.size = 24;
                 })
               ];
@@ -87,6 +87,8 @@
           programs.home-manager.enable = true;
 
           fugi.wallpaper = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
+          fugi.promptColor = "#ff8700"; # orange
+
           home.pointerCursor.size = 28;
         })
       ];

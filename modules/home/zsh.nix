@@ -1,13 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }@args:
 {
-  users.defaultUserShell = pkgs.zsh;
-
   programs.zsh = {
     enable = true;
 
-    shellAliases = lib.mkForce { };
-
-    interactiveShellInit = ''
+    initExtra = ''
       source ${pkgs.agdsn-zsh-config}/etc/zsh/zshrc
 
       # ctrl+backspace, ctrl+delete
@@ -43,6 +39,26 @@
       zstyle ':vcs_info:git*' formats "%F{red}[%F{green}%b%F{yellow}%m%u%c%F{red}]%f "
     '';
 
-    promptInit = ""; # otherwise it'll override the grml prompt
+    # disabled on nixos
+    shellAliases = lib.mkIf (! args ? "nixosConfig") {
+      dco = "docker compose";
+      dcb = "docker compose build";
+      dcdn = "docker compose down";
+      dce = "docker compose exec";
+      dcl = "docker compose logs";
+      dclf = "docker compose logs -f";
+      dcps = "docker compose ps";
+      dcpull = "docker compose pull";
+      dcrestart = "docker compose restart";
+      dcrm = "docker compose rm";
+      dcstart = "docker compose start";
+      dcstop = "docker compose stop";
+      dcup = "docker compose up";
+      dcupb = "docker compose up --build";
+      dcupdb = "docker compose up -d --build";
+      dcupd = "docker compose up -d";
+      dtop = "docker top";
+      hms = "home-manager switch";
+    };
   };
 }

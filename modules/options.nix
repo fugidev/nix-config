@@ -1,11 +1,5 @@
 { config, pkgs, lib, ... }: with lib; {
   options.fugi = {
-    promptColor = mkOption {
-      type = types.str;
-      description = "zsh prompt color";
-      default = "blue";
-    };
-
     authorizedKeys = mkOption {
       type = types.listOf types.str;
       default = [

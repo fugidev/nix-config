@@ -2,6 +2,7 @@
 
   imports = [
     ./base.nix
+    ./zsh.nix
     ./nvim.nix
   ];
 

@@ -1,5 +1,9 @@
 { config, lib, pkgs, ... }@args:
 {
+  imports = [
+    ./user-options.nix
+  ];
+
   programs.zsh = {
     enable = true;
 

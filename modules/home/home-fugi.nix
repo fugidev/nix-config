@@ -3,10 +3,10 @@
   imports = [
     ./base.nix
     ./zsh.nix
-    ./nvim.nix
     ./git.nix
     ./foot.nix
     ./direnv.nix
+    ./neovim
   ];
 
   home.username = "fugi";

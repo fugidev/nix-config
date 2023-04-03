@@ -3,7 +3,7 @@
   imports = [
     ./base.nix
     ./zsh.nix
-    ./nvim.nix
+    ./neovim
   ];
 
   home.username = "root";

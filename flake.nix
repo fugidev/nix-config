@@ -46,8 +46,9 @@
                 ./hosts/blaze/sway.nix
                 ({ pkgs, ... }: {
                   fugi.wallpaper = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
-                  fugi.guiApps = true;
                   fugi.promptColor = "#f7ce46"; # yellow
+                  fugi.guiApps = true;
+                  fugi.nvimFull = true;
 
                   home.pointerCursor.size = 24;
                 })
@@ -88,6 +89,7 @@
 
           fugi.wallpaper = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
           fugi.promptColor = "#ff8700"; # orange
+          fugi.nvimFull = true;
 
           home.pointerCursor.size = 28;
         })

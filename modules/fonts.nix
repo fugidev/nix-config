@@ -6,8 +6,8 @@ in
   fonts = {
     fonts = with pkgs; [
       ttf_bitstream_vera
-      fira-code # mono
       ttf-twemoji # emoji
+      (nerdfonts.override { fonts = [ "FiraCode" ]; })
     ];
 
     # Bitstream Vera (base) -> Twemoji -> DejaVu (rest)
@@ -25,7 +25,7 @@ in
           "DejaVu Sans"
         ];
         monospace = [
-          "Fira Code"
+          "FiraCode Nerd Font"
           "Twemoji"
           "DejaVu Sans Mono"
         ];

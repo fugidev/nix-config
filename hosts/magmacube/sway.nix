@@ -2,8 +2,8 @@
 
 let
   monitor_l = "HDMI-A-1";
-  monitor_c = "DP-2";
-  monitor_r = "DP-1";
+  monitor_c = "DP-1";
+  monitor_r = "DP-2";
 
   wsOutputMap = output: map (ws: { inherit output; workspace = toString ws; });
 in
@@ -48,10 +48,26 @@ in
       input = {
         "type:keyboard" = {
           xkb_layout = "de";
+          xkb_numlock = "enabled";
         };
       };
+
+      startup = [
+        { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"; }
+        { command = "MOZ_ENABLE_WAYLAND=0 thunderbird"; }
+      ];
     };
   };
 
-  # TODO: swayidle
+  services.swayidle = {
+    enable = true;
+    timeouts = [
+      {
+        # lock session after 15 minutes
+        timeout = 900;
+        command = "/usr/bin/loginctl lock-session";
+      }
+    ];
+  };
+
 }

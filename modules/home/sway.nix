@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }@args:
 let
   mod = "Mod4";
 
@@ -66,6 +66,7 @@ in
         criteria = [
           { app_id = "qalculate-gtk"; }
           { app_id = "pavucontrol"; }
+          { app_id = "de.haeckerfelix.AudioSharing"; }
           { title = "File Operation Progress"; }
         ];
       };
@@ -104,22 +105,24 @@ in
     };
   };
 
-  services.swayidle = {
+  services.swayidle = let
+    swaylock = (if args ? "nixosConfig" then "${pkgs.swaylock-effects}/bin/" else "/usr/bin/") + "swaylock";
+    lockCmd = "${swaylock} -f -c 000000 --clock --indicator-idle-visible";
+  in {
     enable = true;
     events = [
       {
         event = "before-sleep";
-        command = "${pkgs.systemd}/bin/loginctl lock-session";
+        command = lockCmd;
       }
       {
         event = "lock";
-        command = "${pkgs.swaylock-effects}/bin/swaylock -f -c 000000 --clock --indicator-idle-visible";
+        command = lockCmd;
       }
     ];
   };
 
   home.packages = with pkgs; [
-    swaylock-effects
     light
     sway-contrib.grimshot
     wl-clipboard

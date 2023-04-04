@@ -29,6 +29,7 @@
       };
 
       scrollback.multiplier = 3.0;
+      scrollback.lines = 100000;
     };
   };
 }

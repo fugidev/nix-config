@@ -93,3 +93,13 @@ require('nvim-treesitter.configs').setup {
     enable = true,
   },
 }
+
+-- indent-blankline
+require("indent_blankline").setup {
+  char = "▏",
+  char_blankline = "",
+  space_char_blankline = "",
+  show_first_indent_level = false,
+  use_treesitter = true,
+}
+vim.cmd('highlight IndentBlanklineChar ctermfg=239') -- darker grey

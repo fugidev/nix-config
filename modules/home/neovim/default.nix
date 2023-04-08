@@ -11,8 +11,6 @@
       set number relativenumber       " hybrid line numbers
       set expandtab shiftwidth=2      " 2 spaces indent
 
-      let g:indentLine_char = '▏'     " set indentLine character to U+258F
-
       " lightline config
       let g:lightline = {
         \ 'colorscheme': 'powerlineish'
@@ -32,7 +30,7 @@
 
     plugins = with pkgs.vimPlugins; [
       #vim-nix # nix syntax highlighting
-      indentLine # visual line indentation
+      indent-blankline-nvim # visual line indentation
       lightline-vim # status line
       nvim-treesitter
     ] ++ (lib.optionals config.fugi.nvimFull [

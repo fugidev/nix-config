@@ -7,6 +7,7 @@
     ./foot.nix
     ./direnv.nix
     ./neovim
+    ./helix.nix
   ];
 
   home.username = "fugi";

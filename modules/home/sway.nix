@@ -45,6 +45,7 @@ in
 
     extraConfig = ''
       titlebar_padding 5 1
+      for_window [app_id="org.jellyfin.jellyfinmediaplayer"] inhibit_idle visible
     '';
 
     config = {
@@ -90,6 +91,12 @@ in
         # display brightness
         "--locked XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
         "--locked XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
+        # media control
+        "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+        "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
+        "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
         # modes
         "${mod}+Pause" = "mode \"$mode_power\"";
         "XF86PowerOff" = "mode \"$mode_power\""; # systemd-inhibit required for this
@@ -121,6 +128,8 @@ in
       }
     ];
   };
+
+  services.playerctld.enable = true;
 
   home.packages = with pkgs; [
     light

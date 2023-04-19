@@ -1,0 +1,17 @@
+diff --git a/include/util/format.hpp b/include/util/format.hpp
+index fac0377..057ea52 100644
+--- a/include/util/format.hpp
++++ b/include/util/format.hpp
+@@ -46,10 +46,10 @@ struct formatter<pow_format> {
+ 
+   template <class FormatContext>
+   auto format(const pow_format& s, FormatContext& ctx) -> decltype(ctx.out()) {
+-    const char* units[] = {"", "k", "M", "G", "T", "P", nullptr};
++    const char* units[] = {"k", "M", "G", "T", "P", nullptr};
+ 
+     auto base = s.binary_ ? 1024ull : 1000ll;
+-    auto fraction = (double)s.val_;
++    auto fraction = (double)s.val_ / base;
+ 
+     int pow;
+     for (pow = 0; units[pow + 1] != nullptr && fraction / base >= 1; ++pow) {

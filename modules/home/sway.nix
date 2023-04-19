@@ -88,6 +88,7 @@ in
         "${mod}+b" = "exec firefox";
         "${mod}+period" = "exec rofimoji";
         "${mod}+l" = "exec loginctl lock-session";
+        "${mod}+t" = "exec thunar";
         # display brightness
         "--locked XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
         "--locked XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
@@ -107,27 +108,29 @@ in
       };
 
       bars = [{
-        command = "${pkgs.waybar}/bin/waybar";
+        command = "${config.programs.waybar.package}/bin/waybar";
       }];
     };
   };
 
-  services.swayidle = let
-    swaylock = (if args ? "nixosConfig" then "${pkgs.swaylock-effects}/bin/" else "/usr/bin/") + "swaylock";
-    lockCmd = "${swaylock} -f -c 000000 --clock --indicator-idle-visible";
-  in {
-    enable = true;
-    events = [
-      {
-        event = "before-sleep";
-        command = lockCmd;
-      }
-      {
-        event = "lock";
-        command = lockCmd;
-      }
-    ];
-  };
+  services.swayidle =
+    let
+      swaylock = (if args ? "nixosConfig" then "${pkgs.swaylock-effects}/bin/" else "/usr/bin/") + "swaylock";
+      lockCmd = "${swaylock} -f -c 000000 --clock --indicator-idle-visible";
+    in
+    {
+      enable = true;
+      events = [
+        {
+          event = "before-sleep";
+          command = lockCmd;
+        }
+        {
+          event = "lock";
+          command = lockCmd;
+        }
+      ];
+    };
 
   services.playerctld.enable = true;
 

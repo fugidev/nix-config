@@ -3,6 +3,10 @@
   programs.waybar = {
     enable = true;
 
+    package = pkgs.waybar.overrideAttrs (o: {
+      patches = [ ./_waybar.patch ];
+    });
+
     settings = {
       mainBar = {
         layer = "top";

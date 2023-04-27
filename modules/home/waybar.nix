@@ -70,9 +70,9 @@
       };
     };
 
-    style = ''
+    style = /* css */ ''
       * {
-        font-family: monospace;
+        font-family: "Fira Code", "Font Awesome 6 Free";
         font-size: 10pt;
       }
 
@@ -87,6 +87,7 @@
 
       .modules-right {
         padding: 0;
+        margin-left: 10px;
       }
 
       #workspaces button {

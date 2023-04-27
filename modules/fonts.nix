@@ -7,6 +7,7 @@ in
     fonts = with pkgs; [
       ttf_bitstream_vera
       ttf-twemoji # emoji
+      fira-code # mono
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
     ];
 
@@ -25,7 +26,8 @@ in
           "DejaVu Sans"
         ];
         monospace = [
-          "FiraCode Nerd Font"
+          "Fira Code"
+          # "FiraCode Nerd Font" # breaks waybar icons
           "Twemoji"
           "DejaVu Sans Mono"
         ];

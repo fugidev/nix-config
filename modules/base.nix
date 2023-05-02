@@ -32,6 +32,7 @@
     neovim
     dig
     xdg-utils
+    jq
   ];
 
   # enable flake support

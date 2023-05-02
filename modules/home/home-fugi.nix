@@ -8,6 +8,7 @@
     ./direnv.nix
     ./neovim
     ./helix.nix
+    ./dunst.nix
   ];
 
   home.username = "fugi";
@@ -15,5 +16,6 @@
 
   home.packages = lib.mkIf (config.fugi.guiApps) (with pkgs; [
     qalculate-gtk
+    remmina
   ]);
 }

@@ -1,12 +1,10 @@
 { config, pkgs, lib, ... }: {
 
   imports = [
-    ./base.nix
     ./zsh.nix
     ./git.nix
     ./foot.nix
     ./direnv.nix
-    ./neovim
     ./helix.nix
     ./dunst.nix
   ];

@@ -10,6 +10,7 @@
         middle-click-paste = false;
         line-number = "relative";
         color-modes = true;
+        true-color = true;
         cursor-shape.insert = "bar";
         whitespace = {
           render = {

@@ -51,13 +51,18 @@
                   fugi.wallpaper = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
                   fugi.promptColor = "#f7ce46"; # yellow
                   fugi.guiApps = true;
-                  fugi.nvimFull = true;
 
                   home.pointerCursor.size = 24;
+                  home.stateVersion = "22.05";
                 })
               ];
 
-              users.root = import ./modules/home/home-root.nix;
+              users.root.imports = [
+                ./modules/home/home-root.nix
+                {
+                  home.stateVersion = "22.05";
+                }
+              ];
             };
           }
         ];
@@ -67,6 +72,7 @@
         system = "x86_64-linux";
         modules = [
           sops-nix.nixosModules.sops
+          home-manager.nixosModules.home-manager
           ./hosts/librarian/configuration.nix
           ./modules/base.nix
           ./modules/sops.nix
@@ -75,6 +81,19 @@
             sops.defaultSopsFile = ./secrets/librarian.yaml;
 
             fugi.domain = "librarian.fugi.dev";
+
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+
+              users.root.imports = [
+                ./modules/home/user-options.nix
+                ./modules/home/home-root.nix
+                {
+                  home.stateVersion = "23.05";
+                }
+              ];
+            };
           }
         ];
       };
@@ -96,9 +115,9 @@
             sha256 = "NA4nhCcnT6B9IJQWh8ldnjSt9eUFmte6AfN3cNz8Fwk=";
           };
           fugi.promptColor = "#ff8700"; # orange
-          fugi.nvimFull = true;
 
           home.pointerCursor.size = 28;
+          home.stateVersion = "22.05";
         })
       ];
     };

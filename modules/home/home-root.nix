@@ -1,9 +1,7 @@
 { config, pkgs, lib, ... }: {
 
   imports = [
-    ./base.nix
     ./zsh.nix
-    ./neovim
     ./helix.nix
   ];
 

@@ -7,6 +7,7 @@
 
   # set zsh as default shell
   users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
 
   # set time zone
   time.timeZone = "Europe/Berlin";

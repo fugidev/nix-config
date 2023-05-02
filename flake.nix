@@ -4,6 +4,9 @@
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
 
+    # gpu does not work on latest unstable
+    nixpkgs-blaze.url = github:FugiMuffi/nixpkgs/unstable-blaze;
+
     sops-nix = {
       url = github:Mic92/sops-nix;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,13 +19,13 @@
 
     nixos-asahi = {
       url = github:tpwrules/nixos-apple-silicon;
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-blaze";
     };
   };
 
-  outputs = { self, nixpkgs, sops-nix, home-manager, nixos-asahi, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-blaze, sops-nix, home-manager, nixos-asahi, ... }@inputs: {
     nixosConfigurations = {
-      blaze = nixpkgs.lib.nixosSystem {
+      blaze = nixpkgs-blaze.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
           nixos-asahi.nixosModules.default
@@ -59,6 +62,7 @@
           }
         ];
       };
+
       librarian = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [

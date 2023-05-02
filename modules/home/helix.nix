@@ -38,5 +38,5 @@
     };
   };
 
-  programs.zsh.shellAliases."hx" = "helix";
+  home.packages = with pkgs; [ rust-analyzer ];
 }

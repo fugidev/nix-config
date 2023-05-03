@@ -1,4 +1,20 @@
-{ config, pkgs, lib, ... }: with lib; {
+{ config, pkgs, lib, ... }:
+
+with lib;
+
+let
+  IP = {
+    options = {
+      address = mkOption {
+        type = types.str;
+      };
+      prefixLength = mkOption {
+        type = types.int;
+      };
+    };
+  };
+in
+{
   options.fugi = {
     authorizedKeys = mkOption {
       type = types.listOf types.str;
@@ -10,6 +26,10 @@
 
     domain = mkOption {
       type = types.str;
+    };
+
+    staticIPv4 = mkOption {
+      type = types.submodule IP;
     };
   };
 }

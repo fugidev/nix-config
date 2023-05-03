@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 {
   imports = [
     # Include the results of the hardware scan.
@@ -7,9 +6,16 @@
     # Network configuration
     ./network.nix
     # Host specific modules
+    ./adguard.nix
     ./aria2.nix
     ./samba.nix
   ];
+
+  # static ip
+  fugi.staticIPv4 = {
+    address = "192.168.0.3";
+    prefixLength = 24;
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

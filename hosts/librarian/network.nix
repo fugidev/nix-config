@@ -25,7 +25,10 @@
   systemd.network = {
     networks."40-eno1" = {
       name = "eno1";
-      address = [ "192.168.0.202/24" ];
+
+      address = with config.fugi.staticIPv4;
+        [ "${address}/${toString prefixLength}" ];
+
       routes = [{
         routeConfig.Gateway = "192.168.0.1";
       }];

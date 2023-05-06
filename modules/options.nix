@@ -31,5 +31,10 @@ in
     staticIPv4 = mkOption {
       type = types.submodule IP;
     };
+
+    borgRepositories = mkOption {
+      type = types.listOf types.str;
+      default = [];
+    };
   };
 }

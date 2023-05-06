@@ -77,10 +77,14 @@
           ./modules/base.nix
           ./modules/sops.nix
           ./modules/nginx.nix
+          ./modules/borg.nix
           {
             sops.defaultSopsFile = ./secrets/librarian.yaml;
 
             fugi.domain = "librarian.fugi.dev";
+            fugi.borgRepositories = [
+              "ssh://u329990-sub1@u329990-sub1.your-storagebox.de:23/./borg-repository"
+            ];
 
             home-manager = {
               useGlobalPkgs = true;

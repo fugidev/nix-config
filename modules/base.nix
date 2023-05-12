@@ -25,7 +25,7 @@ in
 
   # env variables
   environment.variables = {
-    EDITOR = "nvim";
+    EDITOR = "hx";
   };
 
   # system packages

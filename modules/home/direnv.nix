@@ -6,7 +6,7 @@
   };
 
   # hack to make direnv less noisy
-  programs.zsh.initExtra = lib.mkAfter ''
+  programs.zsh.initExtra = lib.mkAfter /* sh */ ''
     _copy_function() {
       test -n "$(declare -f "$1")" || return
       eval "''${_/$1/$2}"

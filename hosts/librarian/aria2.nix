@@ -21,7 +21,7 @@
   };
 
   systemd.services.aria2 = {
-    preStart = lib.mkAfter ''
+    preStart = lib.mkAfter /* sh */ ''
       ${pkgs.gnused}/bin/sed -i "s/aria2rpc/$(cat ${config.sops.secrets.aria2_secret.path})/" /var/lib/aria2/aria2.conf
     '';
 

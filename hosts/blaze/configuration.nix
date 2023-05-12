@@ -99,8 +99,7 @@
   # Enable polkit
   security.polkit.enable = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # packages installed in system profile
   environment.systemPackages = with pkgs; [
     acpi
     lxqt.lxqt-policykit

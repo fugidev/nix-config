@@ -7,7 +7,7 @@
   programs.zsh = {
     enable = true;
 
-    initExtra = ''
+    initExtra = /* zsh */ ''
       source ${pkgs.agdsn-zsh-config}/etc/zsh/zshrc
 
       # ctrl+backspace, ctrl+delete

@@ -1,4 +1,15 @@
 { config, pkgs, lib, ... }:
+let
+  # build fd without jemalloc on asahi, doesn't support 16K pages
+  fd =
+    if (config.hardware ? "asahi") then
+      pkgs.fd.overrideAttrs
+        (_: {
+          buildNoDefaultFeatures = true;
+          buildFeatures = [ "completions" ];
+        })
+    else pkgs.fd;
+in
 {
   imports = [
     ./options.nix

@@ -24,6 +24,7 @@
     nixosConfigurations = {
       blaze = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           nixos-asahi.nixosModules.default
           home-manager.nixosModules.home-manager
@@ -67,6 +68,7 @@
 
       librarian = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let
   # build fd without jemalloc on asahi, doesn't support 16K pages
   fd =
@@ -50,4 +50,6 @@ in
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
+  # speed up nix shell/run
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
 }

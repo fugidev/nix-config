@@ -59,8 +59,8 @@
           format = "{icon} {capacity}%";
           format-icons = [ "" "" "" "" "" ];
           states = {
-            warning = 30;
-            critical = 15;
+            warning = 25;
+            critical = 10;
           };
         };
 
@@ -140,6 +140,19 @@
       }
       .modules-right > :last-child > * {
         border-right: none;
+      }
+
+      #battery {
+        background-color: unset;
+      }
+      #battery.warning {
+        color: #f67400;
+      }
+      #battery.critical {
+        color: #d0312d;
+      }
+      #battery.charging {
+        color: #5dbb63;
       }
     '';
   };

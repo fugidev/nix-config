@@ -16,11 +16,5 @@
       description = "zsh prompt color";
       default = "blue";
     };
-
-    nvimFull = mkOption {
-      type = types.bool;
-      description = "disable some neovim plugins etc.";
-      default = false;
-    };
   };
 }

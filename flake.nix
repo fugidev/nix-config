@@ -3,24 +3,22 @@
 
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
-
+    flake-utils.url = "github:numtide/flake-utils";
     sops-nix = {
       url = github:Mic92/sops-nix;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     home-manager = {
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     nixos-asahi = {
       url = github:tpwrules/nixos-apple-silicon;
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, sops-nix, home-manager, nixos-asahi, ... }@inputs: {
+  outputs = inputs: with inputs; {
     nixosConfigurations = {
       blaze = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
@@ -124,5 +122,8 @@
         })
       ];
     };
-  };
+
+  } // flake-utils.lib.eachDefaultSystem (system: {
+    formatter = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
+  });
 }

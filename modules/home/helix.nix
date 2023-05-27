@@ -39,5 +39,8 @@
     };
   };
 
-  home.packages = with pkgs; [ rust-analyzer ];
+  home.packages = with pkgs; [
+    rust-analyzer
+    nil
+  ];
 }

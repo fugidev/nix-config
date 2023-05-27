@@ -36,5 +36,14 @@ in
       type = types.listOf types.str;
       default = [ ];
     };
+
+    allowUnfree = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+    };
+  };
+
+  config = {
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.fugi.allowUnfree;
   };
 }

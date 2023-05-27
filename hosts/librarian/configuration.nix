@@ -8,6 +8,7 @@
     # Host specific modules
     ./adguard.nix
     ./aria2.nix
+    ./n8n.nix
     ./samba.nix
   ];
 

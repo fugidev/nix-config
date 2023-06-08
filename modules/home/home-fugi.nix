@@ -13,8 +13,10 @@
   home.username = "fugi";
   home.homeDirectory = "/home/fugi";
 
-  home.packages = lib.mkIf (config.fugi.guiApps) (with pkgs; [
+  home.packages = with pkgs; [
+    gopass
+  ] ++ lib.optionals (config.fugi.guiApps) [
     qalculate-gtk
     remmina
-  ]);
+  ];
 }

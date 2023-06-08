@@ -31,6 +31,7 @@ in
   # system packages
   environment.systemPackages = with pkgs; [
     neofetch # very essential
+    hyfetch
     git
     htop
     btop

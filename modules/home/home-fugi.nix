@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }: {
 
   imports = [
+    ./user-options.nix
     ./zsh.nix
     ./git.nix
     ./foot.nix

@@ -27,7 +27,7 @@
         modules = [
           nixos-asahi.nixosModules.default
           home-manager.nixosModules.home-manager
-          ./hosts/blaze/configuration.nix
+          ./hosts/blaze
           ./modules/base.nix
           ./modules/greetd.nix
           ./modules/fonts.nix
@@ -41,7 +41,6 @@
               useUserPackages = true;
 
               users.fugi.imports = [
-                ./modules/home/user-options.nix
                 ./modules/home/home-fugi.nix
                 ./hosts/blaze/sway.nix
                 ({ pkgs, ... }: {
@@ -71,7 +70,7 @@
         modules = [
           sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
-          ./hosts/librarian/configuration.nix
+          ./hosts/librarian
           ./modules/base.nix
           ./modules/sops.nix
           ./modules/nginx.nix
@@ -89,7 +88,6 @@
               useUserPackages = true;
 
               users.root.imports = [
-                ./modules/home/user-options.nix
                 ./modules/home/home-root.nix
                 {
                   home.stateVersion = "23.05";
@@ -106,7 +104,6 @@
       pkgs = nixpkgs.legacyPackages."x86_64-linux";
 
       modules = [
-        ./modules/home/user-options.nix
         ./modules/home/home-fugi.nix
         ./hosts/magmacube/sway.nix
         ({ pkgs, ... }: {

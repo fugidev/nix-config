@@ -39,8 +39,12 @@
       zstyle ':vcs_info:git*' formats "%F{red}[%F{green}%b%F{yellow}%m%u%c%F{red}]%f "
     '';
 
-    # disabled on nixos
-    shellAliases = lib.mkIf (! args ? "nixosConfig") {
+    shellAliases = {
+      # like `glol` but with stat
+      glost = "git log --graph --pretty='format:%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --compact-summary";
+      glosta = "glost --all";
+    } // lib.optionalAttrs (! args ? "nixosConfig") {
+      # disabled on nixos
       dco = "docker compose";
       dcb = "docker compose build";
       dcdn = "docker compose down";

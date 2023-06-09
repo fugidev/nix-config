@@ -76,7 +76,7 @@
           ./modules/nginx.nix
           ./modules/borg.nix
           {
-            sops.defaultSopsFile = ./secrets/librarian.yaml;
+            sops.defaultSopsFile = ./hosts/librarian/secrets.yaml;
 
             fugi.domain = "librarian.fugi.dev";
             fugi.borgRepositories = [

@@ -77,6 +77,22 @@
     },
     "nixpkgs-stable": {
       "locked": {
+        "lastModified": 1686237827,
+        "narHash": "sha256-fAZB+Zkcmc+qlauiFnIH9+2qgwM0NO/ru5pWEw3tDow=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "81ed90058a851eb73be835c770e062c6938c8a9e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-23.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-stable_2": {
+      "locked": {
         "lastModified": 1683401577,
         "narHash": "sha256-sOtJKZZ9HWqcGg2hRj6O4HX9pOFfTzgYgSi+MN1HEWo=",
         "owner": "NixOS",
@@ -97,6 +113,7 @@
         "home-manager": "home-manager",
         "nixos-asahi": "nixos-asahi",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-stable": "nixpkgs-stable",
         "sops-nix": "sops-nix"
       }
     },
@@ -121,7 +138,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nixpkgs-stable": "nixpkgs-stable"
+        "nixpkgs-stable": "nixpkgs-stable_2"
       },
       "locked": {
         "lastModified": 1683521893,

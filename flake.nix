@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.05";
     flake-utils.url = "github:numtide/flake-utils";
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -64,7 +65,7 @@
         ];
       };
 
-      librarian = nixpkgs.lib.nixosSystem {
+      librarian = nixpkgs-stable.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [

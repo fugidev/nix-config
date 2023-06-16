@@ -13,6 +13,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager-stable = {
+      url = "github:nix-community/home-manager/release-23.05";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
     nixos-asahi = {
       url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -69,7 +73,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           sops-nix.nixosModules.sops
-          home-manager.nixosModules.home-manager
+          home-manager-stable.nixosModules.home-manager
           ./hosts/librarian
           ./modules/base.nix
           ./modules/sops.nix

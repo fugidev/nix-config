@@ -14,13 +14,25 @@ in
         password = "ADGUARDPASS"; # placeholder
       }];
 
-      dns = rec {
-        # only listen on local network, as 0.0.0.0 would conflict with systemd-resolved
-        bind_hosts = [ config.fugi.staticIPv4.address ];
-        # use systemd-resolved as upstream
-        upstream_dns = [ "127.0.0.53" ];
-        bootstrap_dns = upstream_dns;
-      };
+      dns =
+        let IPv4 = config.fugi.staticIPv4.address;
+        in {
+          # only listen on local network, as 0.0.0.0 would conflict with systemd-resolved
+          bind_hosts = [ IPv4 ];
+          # use systemd-resolved as upstream
+          upstream_dns = [ "127.0.0.53" ];
+          bootstrap_dns = [ "127.0.0.53" ];
+          # applies to rewrites as well and the default (10s) is way too low
+          blocked_response_ttl = 15 * 60;
+          rewrites = [
+            { domain = config.fugi.domain; answer = IPv4; }
+            { domain = "*.${config.fugi.domain}"; answer = IPv4; }
+          ];
+          anonymize_client_ip = true;
+        };
+
+      querylog.interval = "6h";
+      statistics.interval = "720h";
 
       filters = [
         {

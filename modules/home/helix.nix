@@ -1,7 +1,18 @@
 { config, lib, pkgs, ... }:
+let
+  # https://github.com/helix-editor/helix/pull/7215
+  trailingSpacesPatch = pkgs.fetchpatch {
+    url = "https://github.com/helix-editor/helix/commit/60c06076b25ba5aa60fd4e0abb548a710bca542d.patch";
+    hash = "sha256-T21KUGGPPVnNAoSaRjNQCIyyaImkq/cBcjcRsVUlKxM=";
+  };
+in
 {
   programs.helix = {
     enable = true;
+
+    package = pkgs.helix.overrideAttrs (old: {
+      patches = [ trailingSpacesPatch ];
+    });
 
     settings = {
       theme = "onedark-fugi";
@@ -15,6 +26,7 @@
         whitespace = {
           render = {
             #space = "all"; # no trailing option yet :/
+            space = "trailing";
             tab = "all";
           };
           characters = {

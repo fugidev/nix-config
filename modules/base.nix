@@ -43,6 +43,7 @@ in
     wget
     neovim
     dig
+    doggo
     xdg-utils
     jq
   ];

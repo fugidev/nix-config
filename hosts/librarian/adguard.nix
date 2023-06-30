@@ -17,11 +17,11 @@ in
       dns =
         let IPv4 = config.fugi.staticIPv4.address;
         in {
-          # only listen on local network, as 0.0.0.0 would conflict with systemd-resolved
+          # only listen on local network
           bind_hosts = [ IPv4 ];
-          # use systemd-resolved as upstream
-          upstream_dns = [ "127.0.0.53" ];
-          bootstrap_dns = [ "127.0.0.53" ];
+          # use local resolver as upstream
+          upstream_dns = [ "::1" ];
+          bootstrap_dns = [ "::1" ];
           # applies to rewrites as well and the default (10s) is way too low
           blocked_response_ttl = 15 * 60;
           rewrites = [

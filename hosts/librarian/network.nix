@@ -7,27 +7,20 @@
 
   networking = {
     hostName = "librarian";
-
     useDHCP = false;
-    useNetworkd = true;
 
     # open wireguard port
     firewall.allowedUDPPorts = [ 51820 ];
-
-    nameservers = [
-      "9.9.9.9#dns.quad9.net"
-      "149.112.112.112#dns.quad9.net"
-      "2620:fe::fe#dns.quad9.net"
-      "2620:fe::9#dns.quad9.net"
-    ];
   };
 
-  services.resolved = {
+  services.unbound = {
     enable = true;
-    dnssec = "true";
-    extraConfig = ''
-      DNSOverTLS=yes
-    '';
+    localControlSocketPath = "/run/unbound/unbound.ctl";
+    settings = {
+      server = {
+        prefetch = true;
+      };
+    };
   };
 
   systemd.network = {

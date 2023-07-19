@@ -32,7 +32,7 @@ in
         };
 
       querylog.interval = "6h";
-      statistics.interval = "720h";
+      statistics.interval = "${toString (7*24)}h";
 
       filters = [
         {

@@ -30,8 +30,9 @@
     networks."40-eno1" = {
       name = "eno1";
 
-      address = with config.fugi.staticIPv4;
-        [ "${address}/${toString prefixLength}" ];
+      address = builtins.map
+        ({ address, prefixLength }: "${address}/${toString prefixLength}")
+        (lib.attrVals [ "staticIPv4" "staticIPv6" ] config.fugi);
 
       routes = [{
         routeConfig.Gateway = "192.168.0.1";

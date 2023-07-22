@@ -32,6 +32,10 @@ in
       type = types.submodule IP;
     };
 
+    staticIPv6 = mkOption {
+      type = types.submodule IP;
+    };
+
     borgRepositories = mkOption {
       type = types.listOf types.str;
       default = [ ];

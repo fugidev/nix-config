@@ -15,18 +15,23 @@ in
       }];
 
       dns =
-        let IPv4 = config.fugi.staticIPv4.address;
-        in {
-          # only listen on local network
-          bind_hosts = [ IPv4 ];
+        let
+          inherit (config.fugi) staticIPv4 staticIPv6 domain;
+          IPv4 = staticIPv4.address;
+          IPv6 = staticIPv6.address;
+        in
+        {
+          # listen on local network
+          bind_hosts = [ IPv4 IPv6 ];
           # use local resolver as upstream
           upstream_dns = [ "::1" ];
           bootstrap_dns = [ "::1" ];
           # applies to rewrites as well and the default (10s) is way too low
           blocked_response_ttl = 15 * 60;
           rewrites = [
-            { domain = config.fugi.domain; answer = IPv4; }
-            { domain = "*.${config.fugi.domain}"; answer = IPv4; }
+            { inherit domain; answer = IPv4; }
+            { inherit domain; answer = IPv6; }
+            { domain = "*.${domain}"; answer = domain; }
           ];
           anonymize_client_ip = true;
         };

@@ -18,6 +18,10 @@
     address = "192.168.0.3";
     prefixLength = 24;
   };
+  fugi.staticIPv6 = {
+    address = "fd00::3";
+    prefixLength = 64;
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

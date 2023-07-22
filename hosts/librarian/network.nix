@@ -8,11 +8,14 @@
   networking = {
     hostName = "librarian";
     useDHCP = false;
+    useNetworkd = true;
 
     # open wireguard port
     firewall.allowedUDPPorts = [ 51820 ];
   };
 
+  # use unbound as local dns resolver
+  services.resolved.enable = false;
   services.unbound = {
     enable = true;
     localControlSocketPath = "/run/unbound/unbound.ctl";

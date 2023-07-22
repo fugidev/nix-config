@@ -42,21 +42,9 @@ in
       filters = [
         {
           enabled = true;
-          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt";
-          name = "AdGuard DNS filter";
+          url = "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/multi.txt";
+          name = "HaGeZi's Normal DNS Blocklist";
           id = 0;
-        }
-        {
-          enabled = true;
-          url = "https://blocklistproject.github.io/Lists/adguard/ads-ags.txt";
-          name = "Ads";
-          id = 1;
-        }
-        {
-          enabled = true;
-          url = "https://blocklistproject.github.io/Lists/adguard/tracking-ags.txt";
-          name = "Tracking";
-          id = 2;
         }
       ];
     };

@@ -27,6 +27,7 @@
   };
 
   systemd.network = {
+    # Ethernet
     networks."40-eno1" = {
       name = "eno1";
 
@@ -40,6 +41,16 @@
 
       networkConfig.IPv6PrivacyExtensions = "kernel";
       ipv6AcceptRAConfig.UseDNS = false; # ignore dns servers supplied by router
+    };
+    links."40-eno1" = {
+      matchConfig = {
+        MACAddress = "f8:ca:b8:3c:3c:62";
+      };
+      linkConfig = {
+        NamePolicy = "kernel database onboard slot path";
+        MACAddressPolicy = "persistent";
+        WakeOnLan = "magic";
+      };
     };
 
     # Wireguard

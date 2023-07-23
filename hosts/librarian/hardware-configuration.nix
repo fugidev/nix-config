@@ -3,11 +3,13 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    ../../modules/initrd-ssh.nix
   ];
 
   boot = {
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
+    kernelParams = [ "ip=${config.fugi.staticIPv4.address}::::${config.networking.hostName}:eno1:off" ];
 
     initrd = {
       availableKernelModules = [
@@ -18,6 +20,7 @@
         "uas"
         "sd_mod"
         "sdhci_pci"
+        "e1000e" # network support for unlocking via ssh
       ];
       kernelModules = [ "dm-snapshot" ];
 

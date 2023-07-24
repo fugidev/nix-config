@@ -68,6 +68,8 @@ in
           { app_id = "qalculate-gtk"; }
           { app_id = "pavucontrol"; }
           { app_id = "de.haeckerfelix.AudioSharing"; }
+          { app_id = "blueman-manager"; }
+          { app_id = "nm-connection-editor"; }
           { title = "File Operation Progress"; }
         ];
       };

@@ -106,11 +106,13 @@
     # magmacube home-manager
     homeConfigurations.fugi = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      extraSpecialArgs = { inherit inputs; };
 
       modules = [
         ./modules/home/home-fugi.nix
         ./hosts/magmacube/sway.nix
         ({ pkgs, ... }: {
+          nix.registry.nixpkgs.flake = inputs.nixpkgs;
           programs.home-manager.enable = true;
 
           fugi.wallpaper = pkgs.fetchurl {

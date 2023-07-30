@@ -46,6 +46,9 @@ in
     doggo
     xdg-utils
     jq
+    file
+    pciutils
+    usbutils
   ];
 
   # enable flake support

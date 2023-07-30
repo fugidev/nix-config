@@ -42,10 +42,11 @@
     isNormalUser = true;
     home = "/home/fugi";
     openssh.authorizedKeys.keys = config.fugi.authorizedKeys;
+    packages = with pkgs; [
+      ffmpeg
+      yt-dlp
+    ];
   };
-
-  # List packages installed in system profile.
-  environment.systemPackages = with pkgs; [ ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

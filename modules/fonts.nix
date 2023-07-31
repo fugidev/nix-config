@@ -4,7 +4,7 @@ let
 in
 {
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       ttf_bitstream_vera
       ttf-twemoji # emoji
       fira-code # mono

@@ -14,6 +14,7 @@ in
   imports = [
     ./options.nix
     ./tmux.nix
+    ./upgrade-diff.nix
   ];
 
   # set zsh as default shell

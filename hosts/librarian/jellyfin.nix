@@ -12,10 +12,7 @@
   # auto discovery
   networking.firewall.allowedUDPPorts = [ 1900 7359 ];
 
-  services.nginx.virtualHosts."jellyfin.${config.fugi.domain}" = {
-    forceSSL = true;
-    useACMEHost = config.fugi.domain;
-
+  services.nginx.virtualHosts."jellyfin.${config.networking.fqdn}" = {
     extraConfig = ''
       # The default `client_max_body_size` is 1M, this might not be enough for some posters, etc.
       client_max_body_size 20M;

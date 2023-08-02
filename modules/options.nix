@@ -24,10 +24,6 @@ in
       ];
     };
 
-    domain = mkOption {
-      type = types.str;
-    };
-
     staticIPv4 = mkOption {
       type = types.submodule IP;
     };

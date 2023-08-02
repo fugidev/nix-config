@@ -2,10 +2,7 @@
 {
   services.n8n.enable = true;
 
-  services.nginx.virtualHosts."n8n.${config.fugi.domain}" = {
-    forceSSL = true;
-    useACMEHost = config.fugi.domain;
-
+  services.nginx.virtualHosts."n8n.${config.networking.fqdn}" = {
     locations."/".proxyPass = "http://localhost:5678";
   };
 

@@ -12,10 +12,7 @@
     };
   };
 
-  services.nginx.virtualHosts."paperless.${config.fugi.domain}" = {
-    forceSSL = true;
-    useACMEHost = config.fugi.domain;
-
+  services.nginx.virtualHosts."paperless.${config.networking.fqdn}" = {
     locations."/" = {
       proxyPass = "http://127.0.0.1:${builtins.toString config.services.paperless.port}";
       proxyWebsockets = true;

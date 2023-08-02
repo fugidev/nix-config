@@ -16,9 +16,9 @@ in
 
       dns =
         let
-          inherit (config.fugi) staticIPv4 staticIPv6 domain;
-          IPv4 = staticIPv4.address;
-          IPv6 = staticIPv6.address;
+          inherit (config.networking) fqdn;
+          IPv4 = config.fugi.staticIPv4.address;
+          IPv6 = config.fugi.staticIPv6.address;
         in
         {
           # listen on local network
@@ -29,9 +29,9 @@ in
           # applies to rewrites as well and the default (10s) is way too low
           blocked_response_ttl = 15 * 60;
           rewrites = [
-            { inherit domain; answer = IPv4; }
-            { inherit domain; answer = IPv6; }
-            { domain = "*.${domain}"; answer = domain; }
+            { domain = fqdn; answer = IPv4; }
+            { domain = fqdn; answer = IPv6; }
+            { domain = "*.${fqdn}"; answer = fqdn; }
           ];
           anonymize_client_ip = true;
         };
@@ -75,10 +75,7 @@ in
   networking.firewall.allowedUDPPorts = [ 53 ];
 
   # nginx proxy
-  services.nginx.virtualHosts."dns.${config.fugi.domain}" = {
-    forceSSL = true;
-    useACMEHost = config.fugi.domain;
-
+  services.nginx.virtualHosts."dns.${config.networking.fqdn}" = {
     locations."/".proxyPass = "http://[::1]:${builtins.toString config.services.adguardhome.settings.bind_port}";
   };
 }

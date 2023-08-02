@@ -1,9 +1,6 @@
 { config, lib, pkgs, ... }:
 {
-  services.nginx.virtualHosts."ariang.${config.fugi.domain}" = {
-    forceSSL = true;
-    useACMEHost = config.fugi.domain;
-
+  services.nginx.virtualHosts."ariang.${config.networking.fqdn}" = {
     # ariang frontend
     root = pkgs.callPackage ../../pkgs/ariang { };
 

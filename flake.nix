@@ -41,6 +41,7 @@
           ./modules/fonts.nix
           ./modules/printing.nix
           {
+            fugi.promptColor = "#f7ce46"; # yellow
             programs.sway.enable = true;
             xdg.portal.enable = true;
 
@@ -53,7 +54,6 @@
                 ./hosts/blaze/sway.nix
                 ({ pkgs, ... }: {
                   fugi.wallpaper = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
-                  fugi.promptColor = "#f7ce46"; # yellow
                   fugi.guiApps = true;
 
                   home.pointerCursor.size = 24;
@@ -139,6 +139,7 @@
       modules = [
         ./hosts/iso
         ./modules/options.nix
+        ./modules/zsh.nix
         # {
         #   networking = {
         #     interfaces.ens3.ipv4.addresses = [{

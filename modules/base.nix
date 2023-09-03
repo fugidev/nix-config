@@ -13,16 +13,13 @@ in
 {
   imports = [
     ./options.nix
+    ./zsh.nix
     ./tmux.nix
     ./upgrade-diff.nix
   ];
 
   # combined with hostname, determines fqdn
   networking.domain = lib.mkDefault "fugi.dev";
-
-  # set zsh as default shell
-  users.defaultUserShell = pkgs.zsh;
-  programs.zsh.enable = true;
 
   # set time zone
   time.timeZone = "Europe/Berlin";

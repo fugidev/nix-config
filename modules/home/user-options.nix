@@ -10,11 +10,5 @@
       description = "install gui applications";
       default = false;
     };
-
-    promptColor = mkOption {
-      type = types.str;
-      description = "zsh prompt color";
-      default = "blue";
-    };
   };
 }

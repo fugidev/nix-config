@@ -46,6 +46,7 @@ in
     extraConfig = ''
       titlebar_padding 5 1
       for_window [app_id="org.jellyfin.jellyfinmediaplayer"] inhibit_idle visible
+      for_window [app_id="pinentry-qt"] focus
     '';
 
     config = {
@@ -71,6 +72,7 @@ in
           { app_id = "blueman-manager"; }
           { app_id = "nm-connection-editor"; }
           { title = "File Operation Progress"; }
+          { app_id = "lxqt-policykit-agent"; }
         ];
       };
 

@@ -55,6 +55,7 @@ in
       startup = [
         { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"; }
         { command = "MOZ_ENABLE_WAYLAND=0 thunderbird"; }
+        { command = "lxqt-policykit-agent"; }
       ];
     };
   };

@@ -2,7 +2,7 @@
 {
   services.nginx.virtualHosts."ariang.${config.networking.fqdn}" = {
     # ariang frontend
-    root = pkgs.callPackage ../../pkgs/ariang { };
+    root = "${pkgs.ariang}/share/ariang";
 
     # proxy aria2 rpc
     locations."/jsonrpc" = {

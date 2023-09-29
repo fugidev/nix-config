@@ -66,15 +66,6 @@
     package = lib.mkForce pkgs.gnome.gvfs;
   };
 
-  # Enable GnuPG
-  services.pcscd.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryFlavor = "qt";
-    enableSSHSupport = true;
-  };
-
-
   # Define user account.
   users.users.fugi = {
     isNormalUser = true;

@@ -60,13 +60,6 @@
                   home.stateVersion = "22.05";
                 })
               ];
-
-              users.root.imports = [
-                ./modules/home/home-root.nix
-                {
-                  home.stateVersion = "22.05";
-                }
-              ];
             };
           }
         ];

@@ -52,6 +52,7 @@
               users.fugi.imports = [
                 ./modules/home/home-fugi.nix
                 ./modules/home/mail.nix
+                ./modules/home/ssh.nix
                 ./hosts/blaze/sway.nix
                 ({ pkgs, ... }: {
                   fugi.wallpaper = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;

@@ -1,15 +1,4 @@
 { config, pkgs, lib, inputs, ... }:
-let
-  # build fd without jemalloc on asahi, doesn't support 16K pages
-  fd =
-    if (config.hardware ? "asahi") then
-      pkgs.fd.overrideAttrs
-        (_: {
-          buildNoDefaultFeatures = true;
-          buildFeatures = [ "completions" ];
-        })
-    else pkgs.fd;
-in
 {
   imports = [
     ./options.nix
@@ -39,7 +28,7 @@ in
     bat
     fd
     nixpkgs-fmt
-    exa
+    eza
     ripgrep
     wget
     neovim
@@ -50,6 +39,16 @@ in
     file
     pciutils
     usbutils
+  ];
+
+  # compatibility for NixOS 23.05
+  nixpkgs.overlays = [
+    (
+      self: super:
+        {
+          eza = lib.attrByPath [ "eza" ] super.exa super;
+        }
+    )
   ];
 
   # enable flake support

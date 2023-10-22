@@ -57,8 +57,8 @@
   };
 
   # Enable bluetooth.
-  #hardware.bluetooth.enable = true;
-  #services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   # Enable gvfs
   services.gvfs = {

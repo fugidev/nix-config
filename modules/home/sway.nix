@@ -73,6 +73,8 @@ in
           { app_id = "nm-connection-editor"; }
           { title = "File Operation Progress"; }
           { app_id = "lxqt-policykit-agent"; }
+          { app_id = "org.bunkus.mkvtoolnix-gui"; title = "Edit language"; }
+          { app_id = "pcmanfm-qt"; title = "Copy Files"; }
         ];
       };
 

@@ -12,7 +12,7 @@
 
     iconTheme = {
       package = pkgs.breeze-icons;
-      name = "Breeze";
+      name = "breeze-dark";
     };
 
     theme = {

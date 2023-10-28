@@ -1,12 +1,9 @@
 { config, pkgs, lib, ... }:
-let
-  ttf-twemoji = pkgs.callPackage ../pkgs/ttf-twemoji { };
-in
 {
   fonts = {
     packages = with pkgs; [
       ttf_bitstream_vera
-      ttf-twemoji # emoji
+      twitter-color-emoji # emoji
       fira-code # mono
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
     ];
@@ -17,22 +14,22 @@ in
       defaultFonts = {
         serif = [
           "Bitstream Vera Serif"
-          "Twemoji"
+          "Twitter Color Emoji"
           "DejaVu Serif"
         ];
         sansSerif = [
           "Bitstream Vera Sans"
-          "Twemoji"
+          "Twitter Color Emoji"
           "DejaVu Sans"
         ];
         monospace = [
           "Fira Code"
           # "FiraCode Nerd Font" # breaks waybar icons
-          "Twemoji"
+          "Twitter Color Emoji"
           "DejaVu Sans Mono"
         ];
         emoji = [
-          "Twemoji"
+          "Twitter Color Emoji"
         ];
       };
     };

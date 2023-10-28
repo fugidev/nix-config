@@ -53,6 +53,7 @@
                 ./modules/home/home-fugi.nix
                 ./modules/home/mail.nix
                 ./modules/home/ssh.nix
+                ./modules/home/gpg.nix
                 ./hosts/blaze/sway.nix
                 ({ pkgs, ... }: {
                   fugi.wallpaper = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
@@ -108,6 +109,7 @@
 
       modules = [
         ./modules/home/home-fugi.nix
+        ./modules/home/ssh.nix
         ./hosts/magmacube/sway.nix
         ({ pkgs, ... }: {
           nix.registry.nixpkgs.flake = inputs.nixpkgs;

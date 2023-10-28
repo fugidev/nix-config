@@ -8,7 +8,6 @@
     ./direnv.nix
     ./helix.nix
     ./dunst.nix
-    ./gpg.nix
   ];
 
   home.username = "fugi";

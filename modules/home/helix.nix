@@ -5,7 +5,7 @@
 
     package = pkgs.helix.overrideAttrs (old: {
       # https://github.com/helix-editor/helix/pull/7215
-      patches = [ ./_helix_7215.patch ];
+      # patches = [ ./_helix_7215.patch ];
     });
 
     settings = {
@@ -19,8 +19,8 @@
         cursor-shape.insert = "bar";
         whitespace = {
           render = {
-            #space = "all"; # no trailing option yet :/
-            space = "trailing";
+            space = "all"; # no trailing option yet :/
+            # space = "trailing";
             tab = "all";
           };
           characters = {

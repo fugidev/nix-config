@@ -1,9 +1,9 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, flakeRoot, modulesPath, ... }:
 
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ../../modules/initrd-ssh.nix
+    (flakeRoot + /modules/initrd-ssh.nix)
   ];
 
   boot = {

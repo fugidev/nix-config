@@ -31,7 +31,10 @@
     nixosConfigurations = {
       blaze = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
-        specialArgs = { inherit inputs; };
+        specialArgs = {
+          inherit inputs;
+          flakeRoot = inputs.self;
+        };
         modules = [
           nixos-asahi.nixosModules.default
           home-manager.nixosModules.home-manager
@@ -70,7 +73,10 @@
 
       librarian = nixpkgs-stable.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
+        specialArgs = {
+          inherit inputs;
+          flakeRoot = inputs.self;
+        };
         modules = [
           sops-nix.nixosModules.sops
           home-manager-stable.nixosModules.home-manager
@@ -105,7 +111,10 @@
     # magmacube home-manager
     homeConfigurations.fugi = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages."x86_64-linux";
-      extraSpecialArgs = { inherit inputs; };
+      extraSpecialArgs = {
+        inherit inputs;
+        flakeRoot = inputs.self;
+      };
 
       modules = [
         ./modules/home/home-fugi.nix

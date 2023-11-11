@@ -19,7 +19,7 @@
         cursor-shape.insert = "bar";
         whitespace = {
           render = {
-            space = "all"; # no trailing option yet :/
+            # space = "all"; # no trailing option yet :/
             # space = "trailing";
             tab = "all";
           };

@@ -59,6 +59,10 @@ let
           { host = 8082; netns = 80; }
         ];
       };
+      nameserver = mkOption {
+        type = types.str;
+        example = "10.13.13.1";
+      };
     };
   };
 in
@@ -131,6 +135,14 @@ in
         })
         nsCfg.ports
       )))
+      cfg.namespaces;
+
+    environment.etc = concatMapAttrs
+      (nsName: nsCfg: {
+        "netns/${nsName}/resolv.conf".text = ''
+          nameserver ${nsCfg.nameserver}
+        '';
+      })
       cfg.namespaces;
   };
 }

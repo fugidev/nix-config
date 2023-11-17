@@ -1,4 +1,3 @@
-{ config, lib, pkgs, ... }:
 let
   withExecZsh = host: host // {
     extraOptions = {

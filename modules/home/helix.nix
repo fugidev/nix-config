@@ -1,9 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   programs.helix = {
     enable = true;
 
-    package = pkgs.helix.overrideAttrs (old: {
+    package = pkgs.helix.overrideAttrs (_old: {
       # https://github.com/helix-editor/helix/pull/7215
       # patches = [ ./_helix_7215.patch ];
     });

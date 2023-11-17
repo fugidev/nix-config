@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ pkgs, lib, inputs, ... }:
 {
   imports = [
     ./options.nix
@@ -57,12 +57,9 @@
 
   # compatibility for NixOS 23.05
   nixpkgs.overlays = [
-    (
-      self: super:
-        {
-          eza = lib.attrByPath [ "eza" ] super.exa super;
-        }
-    )
+    (_self: super: {
+      eza = lib.attrByPath [ "eza" ] super.exa super;
+    })
   ];
 
   # enable flake support

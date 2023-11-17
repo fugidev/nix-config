@@ -15,7 +15,7 @@
 
   home.packages = with pkgs; [
     gopass
-  ] ++ lib.optionals (config.fugi.guiApps) [
+  ] ++ lib.optionals config.fugi.guiApps [
     qalculate-gtk
     remmina
   ];

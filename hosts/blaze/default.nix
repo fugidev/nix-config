@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     # Include the results of the hardware scan.
@@ -104,7 +104,7 @@
   # build fd without jemalloc, doesn't support 16K pages
   nixpkgs.overlays = [
     (
-      self: super:
+      _self: super:
         {
           fd = super.fd.overrideAttrs
             (_: {

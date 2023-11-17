@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 let
   heikoDriver = "Kyocera ECOSYS M6630cidn.ppd";
 in

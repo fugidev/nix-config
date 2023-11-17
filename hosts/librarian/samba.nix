@@ -63,7 +63,7 @@ in
     deps = [ "users" ];
     text =
       let
-        sed = "${pkgs.gnused}/bin/sed";
+        sed = lib.getExe pkgs.gnused;
         password_file = config.sops.secrets.smbpass_fugi.path;
         smbpasswd = "${config.services.samba.package}/bin/smbpasswd";
       in

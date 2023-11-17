@@ -1,9 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   programs.waybar = {
     enable = true;
 
-    package = pkgs.waybar.overrideAttrs (o: {
+    package = pkgs.waybar.overrideAttrs (_old: {
       patches = [ ./_waybar.patch ];
     });
 

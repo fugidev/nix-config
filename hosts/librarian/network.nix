@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 {
   sops.secrets = {
     "wg-fugi/privkey".owner = config.users.users.systemd-network.name;

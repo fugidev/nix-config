@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }@args:
+{ config, lib, ... }@args:
 
 if (args ? "nixosConfig") then
 # home-manager as nixos module, main zsh config is done system wide

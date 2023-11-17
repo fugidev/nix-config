@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, ... }:
 let
   domain = "grafana.${config.networking.fqdn}";
   http_port = 8126;

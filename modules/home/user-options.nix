@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: with lib; {
+{ lib, ... }: with lib; {
   options.fugi = {
     wallpaper = mkOption {
       type = types.path;

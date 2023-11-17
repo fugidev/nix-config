@@ -39,6 +39,9 @@
     file
     pciutils
     usbutils
+    ncdu
+    helix
+    traceroute
   ];
 
   # compatibility for NixOS 23.05

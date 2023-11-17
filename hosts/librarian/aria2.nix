@@ -23,11 +23,12 @@ in
   users.groups."media".members = [ "aria2" ];
 
   systemd.services.aria2 = {
+    bindsTo = [ "data.mount" ];
+    after = [ "data.mount" ];
+
     preStart = lib.mkAfter /* sh */ ''
       ${pkgs.gnused}/bin/sed -i "s/aria2rpc/$(cat ${config.sops.secrets.aria2_secret.path})/" /var/lib/aria2/aria2.conf
     '';
-
-    serviceConfig.RequiresMountsFor = "/data";
   };
 
   sops.secrets.aria2_secret.owner = "aria2";

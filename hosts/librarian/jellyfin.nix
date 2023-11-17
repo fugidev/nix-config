@@ -5,6 +5,9 @@
   users.groups."media".members = [ "jellyfin" ];
 
   systemd.services.jellyfin = {
+    bindsTo = [ "data.mount" ];
+    after = [ "data.mount" ];
+
     # mount media paths
     serviceConfig.BindReadOnlyPaths = [
       "/data/share/Filme:/data/movies"

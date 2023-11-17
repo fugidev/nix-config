@@ -76,8 +76,11 @@ in
   # SMB over TCP
   networking.firewall.allowedTCPPorts = [ 445 ];
 
-  # additionally require /data mount
-  systemd.services.samba-smbd.unitConfig.RequiresMountsFor = lib.mkForce "/var/lib/samba /data";
+  # require /data mount
+  systemd.services.samba-smbd = {
+    bindsTo = [ "data.mount" ];
+    after = [ "data.mount" ];
+  };
 
   systemd.tmpfiles.rules = [
     "d ${sharePath} - fugi users - -"

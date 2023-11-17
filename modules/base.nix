@@ -14,8 +14,19 @@
   time.timeZone = "Europe/Berlin";
 
   # env variables
-  environment.variables = {
+  environment.variables = rec {
     EDITOR = "hx";
+    LESS = "-FSR";
+    SYSTEMD_LESS = LESS;
+  };
+
+  programs.less = {
+    enable = true;
+    # horizontal scrolling in smaller steps instead of half page
+    commands = {
+      "\\eOD" = "noaction 20\\e(";
+      "\\eOC" = "noaction 20\\e)";
+    };
   };
 
   # system packages

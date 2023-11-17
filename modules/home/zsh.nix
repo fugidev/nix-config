@@ -1,4 +1,4 @@
-{ config, lib, ... }@args:
+{ config, lib, pkgs, ... }@args:
 
 if (args ? "nixosConfig") then
 # home-manager as nixos module, main zsh config is done system wide
@@ -11,7 +11,7 @@ else
 # standalone home-manager, import the nixos module
   let
     nixosZshConfig = import ../zsh.nix args;
-    extraZshConfig = {
+    extraConfig = {
       shellAliases = {
         dco = "docker compose";
         dcb = "docker compose build";
@@ -46,8 +46,8 @@ else
 
     config = {
       programs.zsh = lib.mkMerge [
-        nixosZshConfig.config.programs.zsh
-        extraZshConfig
+        (builtins.removeAttrs nixosZshConfig.config.programs.zsh [ "autosuggestions" ])
+        extraConfig
       ];
     };
   }

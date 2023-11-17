@@ -2,12 +2,16 @@
 {
   services.jellyfin.enable = true;
 
-  # mount media paths
-  systemd.services.jellyfin.serviceConfig.BindReadOnlyPaths = [
-    "/data/share/Filme:/data/movies"
-    "/data/share/Serien:/data/tvshows"
-    "/data/share/Hörbücher:/data/audiobooks"
-  ];
+  users.groups."media".members = [ "jellyfin" ];
+
+  systemd.services.jellyfin = {
+    # mount media paths
+    serviceConfig.BindReadOnlyPaths = [
+      "/data/share/Filme:/data/movies"
+      "/data/share/Serien:/data/tvshows"
+      "/data/share/Hörbücher:/data/audiobooks"
+    ];
+  };
 
   # auto discovery
   networking.firewall.allowedUDPPorts = [ 1900 7359 ];

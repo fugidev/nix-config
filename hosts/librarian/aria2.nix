@@ -1,4 +1,7 @@
 { config, lib, pkgs, ... }:
+let
+  downloadDir = "/data/share/Downloads/_aria2";
+in
 {
   services.nginx.virtualHosts."ariang.${config.networking.fqdn}" = {
     # ariang frontend
@@ -14,8 +17,10 @@
   # aria2
   services.aria2 = {
     enable = true;
-    downloadDir = "/data/share/Downloads/_aria2";
+    inherit downloadDir;
   };
+
+  users.groups."media".members = [ "aria2" ];
 
   systemd.services.aria2 = {
     preStart = lib.mkAfter /* sh */ ''
@@ -26,4 +31,10 @@
   };
 
   sops.secrets.aria2_secret.owner = "aria2";
+
+  systemd.tmpfiles.rules = [
+    # create downloads directory and set permissions
+    "d ${downloadDir} 2775 fugi media - -"
+    "a ${downloadDir} - - - - d:g::rwx"
+  ];
 }

@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  share_path = "/data/share";
+  sharePath = "/data/share";
 in
 {
   sops.secrets.smbpass_fugi = { };
@@ -46,7 +46,7 @@ in
 
     shares = {
       librarian = {
-        path = share_path;
+        path = sharePath;
         browseable = "yes";
         "read only" = "no";
         "guest ok" = "no";
@@ -80,7 +80,11 @@ in
   systemd.services.samba-smbd.unitConfig.RequiresMountsFor = lib.mkForce "/var/lib/samba /data";
 
   systemd.tmpfiles.rules = [
-    "d ${share_path} - fugi users - -"
-    "d ${share_path}/Downloads - fugi users - -"
+    "d ${sharePath} - fugi users - -"
+    "d ${sharePath}/Downloads - fugi users - -"
+    "d ${sharePath}/Filme 2775 fugi media - -"
+    "a ${sharePath}/Filme - - - - d:g::rwx"
+    "d ${sharePath}/Serien 2775 fugi media - -"
+    "a ${sharePath}/Serien - - - - d:g::rwx"
   ];
 }

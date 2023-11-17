@@ -43,6 +43,7 @@
     isNormalUser = true;
     home = "/home/fugi";
     openssh.authorizedKeys.keys = config.fugi.authorizedKeys;
+    extraGroups = [ "media" ];
     packages = with pkgs; [
       ffmpeg
       yt-dlp

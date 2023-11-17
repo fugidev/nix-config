@@ -4,18 +4,13 @@ let
 
   mkScreenshotKeybindings = { baseKeybinds, commands }: builtins.listToAttrs (
     builtins.concatMap
-      (
-        keybind: (
-          builtins.map
-            ({ modifier, target }:
-              {
-                name = keybind + modifier;
-                value = "exec wl-copy < $(grimshot save ${target})";
-              }
-            )
-            commands
-        )
-      )
+      (keybind: (builtins.map
+        ({ modifier, target }: {
+          name = keybind + modifier;
+          value = "exec wl-copy < $(grimshot save ${target})";
+        })
+        commands
+      ))
       baseKeybinds
   );
 
@@ -46,6 +41,7 @@ in
     extraConfig = ''
       titlebar_padding 5 1
       for_window [app_id="org.jellyfin.jellyfinmediaplayer"] inhibit_idle visible
+      for_window [app_id="com.obsproject.Studio"] inhibit_idle visible
       for_window [app_id="pinentry-qt"] focus
     '';
 
@@ -75,6 +71,7 @@ in
           { app_id = "lxqt-policykit-agent"; }
           { app_id = "org.bunkus.mkvtoolnix-gui"; title = "Edit language"; }
           { app_id = "pcmanfm-qt"; title = "Copy Files"; }
+          { title = "Extracting Files — Ark"; }
         ];
       };
 

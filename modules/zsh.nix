@@ -13,6 +13,8 @@
 
     environment.shellAliases = lib.mkForce { };
 
+    programs.fzf.keybindings = true;
+
     programs.zsh = {
       enable = true;
 

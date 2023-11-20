@@ -103,16 +103,13 @@
 
   # build fd without jemalloc, doesn't support 16K pages
   nixpkgs.overlays = [
-    (
-      _self: super:
-        {
-          fd = super.fd.overrideAttrs
-            (_: {
-              buildNoDefaultFeatures = true;
-              buildFeatures = [ "completions" ];
-            });
-        }
-    )
+    (_self: super: {
+      fd = super.fd.overrideAttrs
+        (_: {
+          buildNoDefaultFeatures = true;
+          buildFeatures = [ "completions" ];
+        });
+    })
   ];
 
   # This value determines the NixOS release from which the default

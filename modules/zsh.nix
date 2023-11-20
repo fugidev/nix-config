@@ -35,6 +35,13 @@
         bindkey '\e[3;5~' kill-word
         bindkey '^H' backward-kill-word
 
+        # Disable ssh/rsync user completion
+        zstyle ':completion:*:ssh:*' users
+        zstyle ':completion:*:rsync:*' users
+
+        # Always enable completion menu
+        zstyle ':completion:*' menu select
+
         ## prompt
 
         # prompt user colour (default blue)
@@ -44,10 +51,6 @@
 
         # Disable git integration in /mnt
         zstyle ':vcs_info:*' disable-patterns "/mnt(|/*)"
-
-        # Disable ssh/rsync user completion
-        zstyle ':completion:*:ssh:*' users
-        zstyle ':completion:*:rsync:*' users
 
         # chevron
         grml_theme_add_token chevron $'%f%(!.#.\U00BB) '

@@ -65,6 +65,11 @@
         zstyle ':vcs_info:*' unstagedstr '!'
         zstyle ':vcs_info:*' stagedstr '+'
         zstyle ':vcs_info:git*' formats "%F{red}[%F{green}%b%F{yellow}%m%u%c%F{red}]%f "
+
+        # pipe mediainfo to less
+        function mediainfo {
+          command mediainfo $@ | less
+        }
       '';
 
       shellAliases = {

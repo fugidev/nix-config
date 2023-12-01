@@ -7,7 +7,8 @@ in
     enable = true;
 
     settings = {
-      bind_host = "::1"; # for web interface
+      # for web interface
+      http.address = "[::1]:3000";
 
       users = [{
         name = "admin";
@@ -76,6 +77,6 @@ in
 
   # nginx proxy
   services.nginx.virtualHosts."dns.${config.networking.fqdn}" = {
-    locations."/".proxyPass = "http://[::1]:${builtins.toString config.services.adguardhome.settings.bind_port}";
+    locations."/".proxyPass = "http://${config.services.adguardhome.settings.http.address}";
   };
 }

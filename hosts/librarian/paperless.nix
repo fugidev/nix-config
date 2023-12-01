@@ -27,9 +27,7 @@
     enable = true;
     ensureUsers = [{
       name = "paperless";
-      ensurePermissions = {
-        "DATABASE paperless" = "ALL PRIVILEGES";
-      };
+      ensureDBOwnership = true;
     }];
     ensureDatabases = [ "paperless" ];
   };

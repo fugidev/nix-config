@@ -1,5 +1,4 @@
 { config, lib, flakeRoot, modulesPath, ... }:
-
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -28,18 +27,18 @@
         device = "/dev/disk/by-uuid/850e280a-dc70-496f-a690-66b7750a575e";
         allowDiscards = true;
       };
+    };
 
-      # The RAIDs are assembled in stage1, so we need to make the config available there.
-      services.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
+    swraid = {
+      enable = true;
+      mdadmConf = ''
+        MAILADDR root
+
+        # mdadm --detail --scan
+        ARRAY /dev/md/librarian:LibrarianRAID1 metadata=1.2 name=librarian:LibrarianRAID1 UUID=fed2c4ff:85b6bb67:598e277f:8e93972d
+      '';
     };
   };
-
-  environment.etc."mdadm.conf".text = ''
-    MAILADDR root
-
-    # mdadm --detail --scan
-    ARRAY /dev/md/librarian:LibrarianRAID1 metadata=1.2 name=librarian:LibrarianRAID1 UUID=fed2c4ff:85b6bb67:598e277f:8e93972d
-  '';
 
   environment.etc.crypttab.text = ''
     crypt-data /dev/md/librarian:LibrarianRAID1 /root/data-luks-key luks,nofail

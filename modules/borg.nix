@@ -1,5 +1,10 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
+  imports = [
+    # shorter alias for borg repositories setting
+    (lib.mkAliasOptionModule [ "fugi" "borgRepositories" ] [ "services" "borgmatic" "settings" "repositories" ])
+  ];
+
   sops.secrets = {
     borg_key = { };
     borg_sshkey = { };
@@ -11,46 +16,39 @@
     enable = true;
 
     settings = {
-      location = {
-        source_directories = [
-          "/home"
-          "/root"
-          "/etc"
-          "/var/lib"
-          "/var/log"
-        ];
-        repositories = config.fugi.borgRepositories;
-        exclude_caches = true;
-      };
+      source_directories = [
+        "/home"
+        "/root"
+        "/etc"
+        "/var/lib"
+        "/var/log"
+      ];
+      exclude_caches = true;
 
-      storage = {
-        encryption_passcommand = "${pkgs.coreutils}/bin/cat ${config.sops.secrets.borg_key.path}";
-        compression = "zstd";
-        ssh_command = "ssh -i ${config.sops.secrets.borg_sshkey.path}";
-      };
+      encryption_passcommand = "${pkgs.coreutils}/bin/cat ${config.sops.secrets.borg_key.path}";
 
-      retention = {
-        keep_daily = 7;
-        keep_weekly = 4;
-        keep_monthly = 12;
-      };
+      compression = "zstd";
 
-      consistency.checks = [{
+      ssh_command = "ssh -i ${config.sops.secrets.borg_sshkey.path}";
+
+      keep_daily = 7;
+      keep_weekly = 4;
+      keep_monthly = 12;
+
+      checks = [{
         name = "repository";
         frequency = "2 weeks";
       }];
 
-      hooks = {
-        on_error = [
-          ''
-            ${pkgs.curl}/bin/curl -s \
-              -F "token=<${config.sops.secrets.pushover_token.path}" \
-              -F "user=<${config.sops.secrets.pushover_user.path}" \
-              -F "message=${config.networking.hostName}: Backup failed!" \
-              https://api.pushover.net/1/messages.json
-          ''
-        ];
-      };
+      on_error = [
+        ''
+          ${pkgs.curl}/bin/curl -s \
+            -F "token=<${config.sops.secrets.pushover_token.path}" \
+            -F "user=<${config.sops.secrets.pushover_user.path}" \
+            -F "message=${config.networking.hostName}: Backup failed!" \
+            https://api.pushover.net/1/messages.json
+        ''
+      ];
     };
   };
 

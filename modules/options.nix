@@ -32,11 +32,6 @@ in
       type = types.submodule IP;
     };
 
-    borgRepositories = mkOption {
-      type = types.listOf types.str;
-      default = [ ];
-    };
-
     allowUnfree = mkOption {
       type = types.listOf types.str;
       default = [ ];

@@ -3,7 +3,7 @@ keys:
   # machines
   - &librarian age1awp9cl63hldzmwkv88ry06hatea3aynshddfwcst36aa5a83k3eq807zu2
 creation_rules:
-  - path_regex: ^hosts/librarian/secrets\.yaml$
+  - path_regex: ^hosts/librarian/.*
     key_groups:
       - pgp:
         - *fugi

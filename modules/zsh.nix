@@ -29,6 +29,9 @@
 
       # zshrc
       interactiveShellInit = /* zsh */ ''
+        # disable git reminder
+        export HW_CONF_ALIASES_GIT_AUTHOR_REMINDER=0
+
         source ${pkgs.agdsn-zsh-config}/etc/zsh/zshrc
 
         # ctrl+backspace, ctrl+delete

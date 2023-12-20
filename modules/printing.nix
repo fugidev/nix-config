@@ -5,7 +5,7 @@ in
 {
   services = {
     avahi.enable = true;
-    avahi.nssmdns = true;
+    avahi.nssmdns4 = true;
     avahi.openFirewall = true;
 
     printing.enable = true;

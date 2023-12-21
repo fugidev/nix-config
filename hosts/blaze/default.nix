@@ -85,6 +85,9 @@
       filezilla
       meld
       sops
+      ffmpeg
+      yt-dlp
+      ffsend
     ];
   };
 

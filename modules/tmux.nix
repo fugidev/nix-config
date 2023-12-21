@@ -7,5 +7,6 @@
     extraConfig = ''
       set -g default-command ${pkgs.zsh}/bin/zsh
     '';
+    terminal = "screen-256color";
   };
 }

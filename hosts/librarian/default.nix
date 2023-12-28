@@ -1,19 +1,10 @@
 { config, pkgs, ... }:
+let
+  hostModulesFilenames = builtins.attrNames (builtins.readDir ./modules);
+  hostModules = map (filename: ./modules + "/${filename}") hostModulesFilenames;
+in
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    # Network configuration
-    ./network.nix
-    # Host specific modules
-    ./adguard.nix
-    ./aria2.nix
-    ./grafana
-    ./jellyfin.nix
-    ./n8n.nix
-    ./paperless.nix
-    ./samba.nix
-  ];
+  imports = hostModules ++ [ ./hardware-configuration.nix ];
 
   # static ip
   fugi.staticIPv4 = {

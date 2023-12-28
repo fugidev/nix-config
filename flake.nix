@@ -107,6 +107,37 @@
           }
         ];
       };
+
+      nitwit = nixpkgs-stable.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+          flakeRoot = inputs.self;
+        };
+        modules = [
+          sops-nix.nixosModules.sops
+          home-manager-stable.nixosModules.home-manager
+          ./hosts/nitwit
+          ./modules/base.nix
+          ./modules/sops.nix
+          ./modules/nginx.nix
+          {
+            sops.defaultSopsFile = ./hosts/nitwit/secrets.yaml;
+
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+
+              users.root.imports = [
+                ./modules/home/home-root.nix
+                {
+                  home.stateVersion = "23.11";
+                }
+              ];
+            };
+          }
+        ];
+      };
     };
 
     # magmacube home-manager

@@ -5,6 +5,7 @@
     ./modules/libreddit.nix
     ./modules/nginx
     ./modules/searx.nix
+    ./modules/thelounge.nix
   ];
 
   # Use the GRUB 2 boot loader.

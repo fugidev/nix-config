@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ./modules/libreddit.nix
     ./modules/nginx
+    ./modules/owncast.nix
     ./modules/roundcube.nix
     ./modules/searx.nix
     ./modules/thelounge.nix

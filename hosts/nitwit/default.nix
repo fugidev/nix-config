@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ./modules/libreddit.nix
     ./modules/nginx
+    ./modules/searx.nix
   ];
 
   # Use the GRUB 2 boot loader.

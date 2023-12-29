@@ -2,6 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./modules/libreddit.nix
     ./modules/nginx
   ];
 

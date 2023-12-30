@@ -66,7 +66,7 @@ in
     };
   };
 
-  services.nginx.virtualHosts."searx.${config.networking.fqdn}" = {
+  services.nginx.virtualHosts."searx.${config.fugi.baseDomain}" = {
     locations."/".proxyPass = "http://${config.services.searx.uwsgiConfig.http}";
   };
 }

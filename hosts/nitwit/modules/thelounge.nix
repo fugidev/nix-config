@@ -8,7 +8,7 @@
     };
   };
 
-  services.nginx.virtualHosts."irc.${config.networking.fqdn}" = {
+  services.nginx.virtualHosts."irc.${config.fugi.baseDomain}" = {
     locations."/" = {
       proxyPass = "http://localhost:${toString config.services.thelounge.port}";
       proxyWebsockets = true;

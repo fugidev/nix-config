@@ -4,7 +4,7 @@ let
 in
 {
   services.roundcube = {
-    hostName = "mail.${config.networking.fqdn}";
+    hostName = "mail.${config.fugi.baseDomain}";
     enable = true;
     plugins = [ "managesieve" ];
     extraConfig = ''

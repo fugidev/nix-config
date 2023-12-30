@@ -9,7 +9,7 @@ in
     port = 8490;
   };
 
-  services.nginx.virtualHosts."libreddit.${config.networking.fqdn}" = {
+  services.nginx.virtualHosts."libreddit.${config.fugi.baseDomain}" = {
     locations."/".proxyPass = "http://${cfg.address}:${toString cfg.port}";
   };
 }

@@ -9,7 +9,7 @@ in
     port = 8298;
   };
 
-  services.nginx.virtualHosts."efg.${config.networking.fqdn}" = {
+  services.nginx.virtualHosts."efg.${config.fugi.baseDomain}" = {
     basicAuthFile = config.sops.secrets."owncast-auth".path;
     locations = {
       "/" = {

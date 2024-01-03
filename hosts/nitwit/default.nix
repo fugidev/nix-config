@@ -2,6 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./modules/invidious.nix
     ./modules/libreddit.nix
     ./modules/nginx
     ./modules/owncast.nix

@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ./modules/invidious.nix
     ./modules/libreddit.nix
+    ./modules/matrix
     ./modules/nginx
     ./modules/owncast.nix
     ./modules/roundcube.nix

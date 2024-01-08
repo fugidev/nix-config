@@ -50,10 +50,8 @@ in
       };
     };
     ${fqdn}.locations = {
-      # Forward all Matrix API calls to synapse
-      "/_matrix".proxyPass = "http://[::1]:8008";
-      # Forward requests for e.g. SSO and password-resets
-      "/_synapse/client".proxyPass = "http://[::1]:8008";
+      # Forward to synapse
+      "/".proxyPass = "http://[::1]:8008";
     };
   };
 

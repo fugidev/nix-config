@@ -55,13 +55,6 @@
     traceroute
   ];
 
-  # compatibility for NixOS 23.05
-  nixpkgs.overlays = [
-    (_self: super: {
-      eza = lib.attrByPath [ "eza" ] super.exa super;
-    })
-  ];
-
   # enable flake support
   nix.extraOptions = ''
     experimental-features = nix-command flakes

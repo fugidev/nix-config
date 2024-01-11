@@ -8,7 +8,7 @@
     helix
     git
     fd
-    exa
+    eza
     ripgrep
     wget
     doggo

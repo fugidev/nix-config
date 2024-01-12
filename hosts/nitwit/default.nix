@@ -2,6 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./modules/exam-poll.nix
     ./modules/invidious.nix
     ./modules/libreddit.nix
     ./modules/matrix

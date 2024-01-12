@@ -1,5 +1,26 @@
 {
   "nodes": {
+    "exam-poll": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1705090887,
+        "narHash": "sha256-nRAOdUPYde78F9cJg/zmOiNDqGfOzp22vfrq1N9m7l8=",
+        "owner": "fugidev",
+        "repo": "exam-poll",
+        "rev": "210cc015a4d491ef477e53ad52e259c4bb8a9633",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fugidev",
+        "repo": "exam-poll",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "locked": {
         "lastModified": 1688025799,
@@ -18,6 +39,24 @@
     "flake-utils": {
       "inputs": {
         "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1701680307,
+        "narHash": "sha256-kAuep2h5ajznlPMD9rnQyffWG8EM/C73lejGofXvdM8=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "4022d587cbbfd70fe950c1e2083a02621806a725",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_2"
       },
       "locked": {
         "lastModified": 1701680307,
@@ -182,7 +221,8 @@
     },
     "root": {
       "inputs": {
-        "flake-utils": "flake-utils",
+        "exam-poll": "exam-poll",
+        "flake-utils": "flake-utils_2",
         "home-manager": "home-manager",
         "home-manager-stable": "home-manager-stable",
         "nixos-asahi": "nixos-asahi",
@@ -230,6 +270,21 @@
       }
     },
     "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

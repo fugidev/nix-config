@@ -8,6 +8,7 @@
     ./direnv.nix
     ./helix.nix
     ./dunst.nix
+    ./sftpman.nix
   ];
 
   home.username = "fugi";

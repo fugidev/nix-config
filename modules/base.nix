@@ -5,6 +5,7 @@
     ./zsh.nix
     ./tmux.nix
     ./upgrade-diff.nix
+    ./locale.nix
   ];
 
   # combined with hostname, determines fqdn

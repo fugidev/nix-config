@@ -34,6 +34,9 @@ in
     enable = true;
     package = null;
 
+    # enable sway-session.target
+    systemd.enable = true;
+
     extraConfigEarly = ''
       set $mode_power (l)ock, (e)xit, (s)uspend, (p)oweroff, (r)eboot
     '';
@@ -110,9 +113,7 @@ in
         xcursor_theme = "${cursor.name} ${builtins.toString cursor.size}";
       };
 
-      bars = [{
-        command = "${config.programs.waybar.package}/bin/waybar";
-      }];
+      bars = [ ];
     };
   };
 

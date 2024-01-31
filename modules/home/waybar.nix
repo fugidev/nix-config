@@ -3,6 +3,11 @@
   programs.waybar = {
     enable = true;
 
+    systemd = {
+      enable = true;
+      target = "sway-session.target";
+    };
+
     package = pkgs.waybar.overrideAttrs (_old: {
       patches = [ ./_waybar.patch ];
     });

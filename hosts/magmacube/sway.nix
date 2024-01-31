@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 let
   monitor_l = "HDMI-A-1";
@@ -11,6 +11,10 @@ in
   imports = [
     ../../modules/home/sway.nix
   ];
+
+  home.sessionVariablesExtra = lib.mkAfter ''
+    unset QT_PLUGIN_PATH QML2_IMPORT_PATH
+  '';
 
   wayland.windowManager.sway = {
     config = {
@@ -53,12 +57,15 @@ in
       };
 
       startup = [
-        { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK MOZ_DBUS_REMOTE"; }
         { command = "MOZ_ENABLE_WAYLAND=0 thunderbird"; }
         { command = "lxqt-policykit-agent"; }
         { command = "blueman-applet"; }
       ];
     };
+
+    extraConfig = ''
+      include /etc/sway/config.d/*
+    '';
   };
 
   services.swayidle = {

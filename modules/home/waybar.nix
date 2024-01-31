@@ -168,4 +168,9 @@
     font-awesome
     pavucontrol
   ];
+
+  # otherwise it breaks for no reason
+  systemd.user.services."waybar".Service.Environment = ''
+    LC_TIME=en_US.UTF-8
+  '';
 }

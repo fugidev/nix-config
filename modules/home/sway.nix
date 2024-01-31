@@ -52,7 +52,10 @@ in
       modifier = mod;
       terminal = "foot";
 
-      focus.followMouse = false;
+      focus = {
+        followMouse = false;
+        wrapping = "yes";
+      };
 
       window = {
         border = 1;

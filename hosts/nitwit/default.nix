@@ -5,6 +5,7 @@
     ./modules/exam-poll.nix
     ./modules/invidious.nix
     ./modules/libreddit.nix
+    ./modules/linkding.nix
     ./modules/matrix
     ./modules/nginx
     ./modules/owncast.nix

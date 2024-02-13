@@ -1,6 +1,7 @@
 { config, lib, ... }:
 let
-  inherit (config.networking) domain fqdn;
+  inherit (config.networking) domain;
+  fqdn = config.fugi.baseDomain;
 in
 {
   # set default options for virtualHosts
@@ -49,10 +50,15 @@ in
         email = "admin@${domain}";
         dnsProvider = "desec";
         dnsPropagationCheck = true;
-        credentialsFile = config.sops.secrets.desec-creds.path;
+        credentialFiles = {
+          DESEC_TOKEN_FILE = config.sops.secrets.desec-token.path;
+        };
+        environmentFile = builtins.toFile "acme-envfile" ''
+          DESEC_PROPAGATION_TIMEOUT=120
+        '';
       };
     };
 
-    sops.secrets.desec-creds.owner = "acme";
+    sops.secrets.desec-token = { };
   };
 }

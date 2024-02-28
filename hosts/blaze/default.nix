@@ -6,7 +6,6 @@
   ];
 
   # enable edge config and beta gpu driver
-  hardware.asahi.addEdgeKernelConfig = true;
   hardware.asahi.useExperimentalGPUDriver = true;
   hardware.asahi.experimentalGPUInstallMode = "replace";
 

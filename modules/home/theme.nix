@@ -1,4 +1,11 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+let
+  gtkExtraCss = ''
+    decoration { box-shadow: none; }
+    decoration:backdrop { box-shadow: none; }
+  '';
+in
+{
   home.pointerCursor = {
     package = pkgs.apple-cursor;
     name = "macOS-Monterey";
@@ -19,6 +26,9 @@
       package = pkgs.breeze-gtk;
       name = "Breeze-Dark";
     };
+
+    gtk3.extraCss = gtkExtraCss;
+    gtk4.extraCss = gtkExtraCss;
   };
 
   qt = {

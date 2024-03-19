@@ -10,7 +10,7 @@
 
       ${pkgs.diffutils}/bin/cmp --silent \
         <(readlink /run/booted-system/{initrd,kernel,kernel-modules}) \
-        <(readlink /run/current-system/{initrd,kernel,kernel-modules}) \
+        <(readlink $systemConfig/{initrd,kernel,kernel-modules}) \
         || echo -e "''${F_BOLD}''${C_RED}Kernel version changed, reboot is advised.''${NO_FORMAT}"
     '';
   };

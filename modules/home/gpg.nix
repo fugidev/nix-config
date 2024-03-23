@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.gpg = {
     enable = true;
@@ -7,6 +8,6 @@
     enable = true;
     enableSshSupport = true;
     enableExtraSocket = true;
-    pinentryFlavor = "qt";
+    pinentryPackage = pkgs.pinentry.qt;
   };
 }

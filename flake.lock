@@ -8,17 +8,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1710031793,
-        "narHash": "sha256-lqxy3OOJxAGjGQ91JHTTaBPsoHXnON8h20VQ2F7Uuns=",
-        "owner": "fugidev",
-        "repo": "exam-poll",
-        "rev": "658d5f466fdea6f9a0e977af88bded09513f8bb6",
-        "type": "github"
+        "lastModified": 1711623102,
+        "narHash": "sha256-f9kau0Ej7fWVwEDae7ME0Ehtih21Y6LTZ1Mj/8fPIog=",
+        "ref": "refs/heads/main",
+        "rev": "b4a9a471ac20c33da4ac6efd65d1c246c388bae8",
+        "revCount": 95,
+        "type": "git",
+        "url": "https://codeberg.org/fugi/exam-poll.git"
       },
       "original": {
-        "owner": "fugidev",
-        "repo": "exam-poll",
-        "type": "github"
+        "type": "git",
+        "url": "https://codeberg.org/fugi/exam-poll.git"
       }
     },
     "flake-compat": {

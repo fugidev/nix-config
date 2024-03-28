@@ -26,7 +26,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     exam-poll = {
-      url = "github:fugidev/exam-poll";
+      url = "git+https://codeberg.org/fugi/exam-poll.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

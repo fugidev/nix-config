@@ -1,15 +1,14 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, flakeRoot, ... }:
 let
   cfg = config.services.invidious;
-  nixpkgs-unstable = inputs.nixpkgs;
+  useFromUnstable = import (flakeRoot + /util/useFromUnstable.nix);
 in
 {
   # Use invidious from unstable branch
-  disabledModules = [ "services/web-apps/invidious.nix" ];
-  imports = [ "${nixpkgs-unstable}/nixos/modules/services/web-apps/invidious.nix" ];
-  nixpkgs.overlays = [
-    (self: super: {
-      inherit (nixpkgs-unstable.legacyPackages."x86_64-linux") invidious http3-ytproxy;
+  imports = [
+    (useFromUnstable {
+      modules = [ "services/web-apps/invidious.nix" ];
+      pkgs = [ "invidious" "http3-ytproxy" ];
     })
   ];
 

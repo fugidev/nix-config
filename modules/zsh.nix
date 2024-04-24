@@ -45,6 +45,9 @@
         # Always enable completion menu
         zstyle ':completion:*' menu select
 
+        # no error when e.g. ? does not match a filename
+        unsetopt nomatch
+
         ## prompt
 
         # prompt user colour (default blue)

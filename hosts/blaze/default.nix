@@ -96,13 +96,24 @@
     sshfs
   ];
 
-  # build fd without jemalloc, doesn't support 16K pages
   nixpkgs.overlays = [
     (_self: super: {
+      # build fd without jemalloc, doesn't support 16K pages
       fd = super.fd.overrideAttrs
         (_: {
           buildNoDefaultFeatures = true;
           buildFeatures = [ "completions" ];
+        });
+      # pin waybar because wireplumber is pinned to < 0.5
+      waybar = super.waybar.overrideAttrs
+        (_: rec {
+          version = "0.10.0";
+          src = pkgs.fetchFromGitHub {
+            owner = "Alexays";
+            repo = "Waybar";
+            rev = version;
+            hash = "sha256-p1VRrKT2kTDy48gDXPMHlLbfcokAOFeTZXGzTeO1SAE=";
+          };
         });
     })
   ];

@@ -33,6 +33,6 @@ in
 
   qt = {
     enable = lib.mkDefault true;
-    platformTheme = "gtk";
+    platformTheme.name = "gtk";
   };
 }

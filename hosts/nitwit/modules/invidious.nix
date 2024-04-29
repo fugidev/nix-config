@@ -34,6 +34,12 @@ in
           hash = "sha256-UbFdAuK204Qc0mQ6ZYGCCnFYszm5DrR0IfXzLjv53yA=";
           decode = "gunzip";
         })
+        # playback fix
+        (pkgs.fetchpatch {
+          url = "https://web.archive.org/web/20240429154203id_/https://patch-diff.githubusercontent.com/raw/iv-org/invidious/pull/4650.patch";
+          hash = "sha256-JPQ4OznQ9jAahuL6Fq/NWsrMb0bzASN50p9Apmghf4w=";
+          decode = "gunzip";
+        })
       ];
     });
     domain = "invidious.${config.fugi.baseDomain}";

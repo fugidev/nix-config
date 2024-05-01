@@ -2,16 +2,16 @@
   description = "fugi's nixos configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     flake-utils.url = "github:numtide/flake-utils";
     sops-nix = {
       url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     home-manager-stable = {
       url = "github:nix-community/home-manager/release-23.11";
@@ -19,21 +19,21 @@
     };
     nixos-asahi = {
       url = "github:tpwrules/nixos-apple-silicon";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     exam-poll = {
       url = "git+https://codeberg.org/fugi/exam-poll.git";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 
   outputs = inputs: with inputs; {
     nixosConfigurations = {
-      blaze = nixpkgs.lib.nixosSystem {
+      blaze = nixpkgs-unstable.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = {
           inherit inputs;
@@ -146,7 +146,7 @@
 
     # magmacube home-manager
     homeConfigurations.fugi = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      pkgs = nixpkgs-unstable.legacyPackages."x86_64-linux";
       extraSpecialArgs = {
         inherit inputs;
         flakeRoot = inputs.self;
@@ -157,7 +157,7 @@
         ./modules/home/ssh.nix
         ./hosts/magmacube/sway.nix
         ({ pkgs, ... }: {
-          nix.registry.nixpkgs.flake = inputs.nixpkgs;
+          nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
           programs.home-manager.enable = true;
 
           fugi.wallpaper = pkgs.fetchurl {
@@ -173,7 +173,7 @@
     };
 
   } // flake-utils.lib.eachDefaultSystem (system: {
-    formatter = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
+    formatter = nixpkgs-unstable.legacyPackages.${system}.nixpkgs-fmt;
 
     packages.iso = nixos-generators.nixosGenerate {
       inherit system;

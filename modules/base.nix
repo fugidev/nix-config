@@ -61,5 +61,5 @@
     experimental-features = nix-command flakes
   '';
   # speed up nix shell/run
-  nix.registry.nixpkgs.flake = inputs.nixpkgs;
+  nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
 }

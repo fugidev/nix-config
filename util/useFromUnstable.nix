@@ -2,7 +2,7 @@
 { config, lib, inputs, ... }:
 let
   hostSystem = config.nixpkgs.system;
-  srcOrDefault = if src != null then src else inputs.nixpkgs;
+  srcOrDefault = if src != null then src else inputs.nixpkgs-unstable;
 in
 {
   disabledModules = modules;

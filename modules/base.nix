@@ -1,4 +1,7 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, lib, inputs, flakeRoot, ... }:
+let
+  useFromUnstable = import (flakeRoot + /util/useFromUnstable.nix);
+in
 {
   imports = [
     ./options.nix
@@ -6,6 +9,9 @@
     ./tmux.nix
     ./upgrade-diff.nix
     ./locale.nix
+    (useFromUnstable {
+      pkgs = [ "lix" ];
+    })
   ];
 
   # combined with hostname, determines fqdn
@@ -56,10 +62,14 @@
     traceroute
   ];
 
-  # enable flake support
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
-  # speed up nix shell/run
-  nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
+  nix = {
+    # use lesbiab nix
+    package = pkgs.lix;
+    # enable flake support
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+    # speed up nix shell/run
+    registry.nixpkgs.flake = inputs.nixpkgs-unstable;
+  };
 }

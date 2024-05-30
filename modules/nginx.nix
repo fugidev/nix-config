@@ -42,12 +42,12 @@ in
     # Setup acme
     security.acme = {
       acceptTerms = true;
+      defaults.email = "admin@${domain}";
 
       # wildcard cert
       certs.${fqdn} = {
         domain = fqdn;
         extraDomainNames = [ "*.${fqdn}" ];
-        email = "admin@${domain}";
         dnsProvider = "desec";
         dnsPropagationCheck = true;
         credentialFiles = {

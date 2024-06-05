@@ -142,9 +142,12 @@ in
   services.playerctld.enable = true;
 
   home.packages = with pkgs; [
-    rofimoji
     light
     sway-contrib.grimshot
     wl-clipboard
+    (rofimoji.override {
+      rofi = pkgs.wofi;
+      x11Support = false;
+    })
   ];
 }

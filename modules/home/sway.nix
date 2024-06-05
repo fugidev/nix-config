@@ -25,7 +25,7 @@ let
 in
 {
   imports = [
-    ./rofi.nix
+    ./wofi.nix
     ./theme.nix
     ./waybar.nix
   ];
@@ -93,9 +93,9 @@ in
       };
 
       keybindings = lib.mkOptionDefault ({
-        "${mod}+d" = "exec rofi -show drun";
+        "${mod}+d" = "exec wofi --show drun --no-actions";
         "${mod}+b" = "exec firefox";
-        "${mod}+period" = "exec rofimoji";
+        "${mod}+period" = "exec rofimoji --selector wofi";
         "${mod}+l" = "exec loginctl lock-session";
         "${mod}+t" = "exec thunar";
         # display brightness
@@ -142,6 +142,7 @@ in
   services.playerctld.enable = true;
 
   home.packages = with pkgs; [
+    rofimoji
     light
     sway-contrib.grimshot
     wl-clipboard

@@ -13,6 +13,8 @@ in
       allow_images = true;
       image_size = 20;
       width = 1000;
+      insensitive = true;
+      matching = "multi-contains";
     };
 
     style = builtins.readFile wofi-arc-dark;

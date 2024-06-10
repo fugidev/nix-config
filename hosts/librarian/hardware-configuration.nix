@@ -35,13 +35,13 @@
         MAILADDR root
 
         # mdadm --detail --scan
-        ARRAY /dev/md/librarian:LibrarianRAID1 metadata=1.2 name=librarian:LibrarianRAID1 UUID=fed2c4ff:85b6bb67:598e277f:8e93972d
+        ARRAY /dev/md/LibrarianRAID1 metadata=1.2 UUID=fed2c4ff:85b6bb67:598e277f:8e93972d
       '';
     };
   };
 
   environment.etc.crypttab.text = ''
-    crypt-data /dev/md/librarian:LibrarianRAID1 /root/data-luks-key luks,nofail
+    crypt-data /dev/md/LibrarianRAID1 /root/data-luks-key luks,nofail
   '';
 
   fileSystems = {

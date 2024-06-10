@@ -1,5 +1,8 @@
 { config, lib, pkgs, ... }:
 let
+  inherit (config.networking) fqdn;
+  IPv4 = config.fugi.staticIPv4.address;
+  IPv6 = config.fugi.staticIPv6.address;
   adguardUser = "adguardhome";
 in
 {
@@ -15,27 +18,14 @@ in
         password = "ADGUARDPASS"; # placeholder
       }];
 
-      dns =
-        let
-          inherit (config.networking) fqdn;
-          IPv4 = config.fugi.staticIPv4.address;
-          IPv6 = config.fugi.staticIPv6.address;
-        in
-        {
-          # listen on local network
-          bind_hosts = [ IPv4 IPv6 ];
-          # use local resolver as upstream
-          upstream_dns = [ "::1" ];
-          bootstrap_dns = [ "::1" ];
-          # applies to rewrites as well and the default (10s) is way too low
-          blocked_response_ttl = 15 * 60;
-          rewrites = [
-            { domain = fqdn; answer = IPv4; }
-            { domain = fqdn; answer = IPv6; }
-            { domain = "*.${fqdn}"; answer = fqdn; }
-          ];
-          anonymize_client_ip = true;
-        };
+      dns = {
+        # listen on local network
+        bind_hosts = [ IPv4 IPv6 ];
+        # use local resolver as upstream
+        upstream_dns = [ "::1" ];
+        bootstrap_dns = [ "::1" ];
+        anonymize_client_ip = true;
+      };
 
       querylog.interval = "6h";
       statistics.interval = "${toString (7*24)}h";
@@ -48,6 +38,16 @@ in
           id = 0;
         }
       ];
+
+      filtering = {
+        # applies to rewrites as well and the default (10s) is way too low
+        blocked_response_ttl = 15 * 60;
+        rewrites = [
+          { domain = fqdn; answer = IPv4; }
+          { domain = fqdn; answer = IPv6; }
+          { domain = "*.${fqdn}"; answer = fqdn; }
+        ];
+      };
     };
   };
 

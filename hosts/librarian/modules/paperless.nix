@@ -3,7 +3,7 @@
   services.paperless = {
     enable = true;
     passwordFile = config.sops.secrets.paperless_password.path;
-    extraConfig = {
+    settings = {
       PAPERLESS_DBHOST = "/run/postgresql";
       PAPERLESS_OCR_LANGUAGE = "deu+eng";
       PAPERLESS_ADMIN_USER = "fugi";
@@ -32,5 +32,5 @@
     ensureDatabases = [ "paperless" ];
   };
 
-  sops.secrets.paperless_password.owner = config.services.paperless.user;
+  sops.secrets.paperless_password = { };
 }

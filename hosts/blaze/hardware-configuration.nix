@@ -16,30 +16,30 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/7a06865c-0c46-40dc-be71-009cfdc31807";
+      device = "/dev/disk/by-uuid/c93a8bdb-66ab-4c39-a0f3-e880ee274c52";
       fsType = "btrfs";
       options = [ "subvol=root" "compress=zstd" "noatime" ];
     };
 
-  boot.initrd.luks.devices."nixenc".device = "/dev/disk/by-uuid/ff496dc0-27cc-4905-996a-3235f459b692";
+  boot.initrd.luks.devices."nixenc".device = "/dev/disk/by-uuid/6d32354c-7b7b-4ea4-8af6-7f41efa69fbc";
 
   fileSystems."/home" =
     {
-      device = "/dev/disk/by-uuid/7a06865c-0c46-40dc-be71-009cfdc31807";
+      device = "/dev/disk/by-uuid/c93a8bdb-66ab-4c39-a0f3-e880ee274c52";
       fsType = "btrfs";
       options = [ "subvol=home" "compress=zstd" "noatime" ];
     };
 
   fileSystems."/nix" =
     {
-      device = "/dev/disk/by-uuid/7a06865c-0c46-40dc-be71-009cfdc31807";
+      device = "/dev/disk/by-uuid/c93a8bdb-66ab-4c39-a0f3-e880ee274c52";
       fsType = "btrfs";
       options = [ "subvol=nix" "compress=zstd" "noatime" ];
     };
 
   fileSystems."/var/log" =
     {
-      device = "/dev/disk/by-uuid/7a06865c-0c46-40dc-be71-009cfdc31807";
+      device = "/dev/disk/by-uuid/c93a8bdb-66ab-4c39-a0f3-e880ee274c52";
       fsType = "btrfs";
       options = [ "subvol=log" "compress=zstd" "noatime" ];
     };
@@ -48,6 +48,7 @@
     {
       device = "/dev/disk/by-uuid/9DAB-1EE9";
       fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices = [

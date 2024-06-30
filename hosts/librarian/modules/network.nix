@@ -80,4 +80,11 @@
       ];
     };
   };
+
+  # initrd network
+  boot.initrd.systemd.network = {
+    enable = true;
+    networks."40-eno1" = config.systemd.network.networks."40-eno1";
+    links."40-eno1" = config.systemd.network.links."40-eno1";
+  };
 }

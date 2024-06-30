@@ -66,6 +66,7 @@
     "/boot" = {
       device = "/dev/disk/by-uuid/6EBD-0C45";
       fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
     };
 
     "/data" = {

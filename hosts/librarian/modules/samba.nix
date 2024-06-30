@@ -18,8 +18,6 @@ in
       smb ports = 445
       min protocol = SMB3_00
 
-      hosts allow = 192.168.0. 127.0.0.1 ::1
-      hosts deny = 0.0.0.0/0
       guest account = nobody
       map to guest = bad user
 

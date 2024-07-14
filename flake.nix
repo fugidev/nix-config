@@ -173,33 +173,22 @@
       ];
     };
 
-  } // flake-utils.lib.eachDefaultSystem (system: {
-    formatter = nixpkgs-unstable.legacyPackages.${system}.nixpkgs-fmt;
+    formatter = flake-utils.lib.eachDefaultSystemMap (
+      system: nixpkgs-unstable.legacyPackages.${system}.nixpkgs-fmt
+    );
 
-    packages.iso = nixos-generators.nixosGenerate {
-      inherit system;
-      format = "install-iso";
-      modules = [
-        ./hosts/iso
-        ./modules/options.nix
-        ./modules/zsh.nix
-        # {
-        #   networking = {
-        #     interfaces.ens3.ipv4.addresses = [{
-        #       address = "178.254.28.214";
-        #       prefixLength = 22;
-        #     }];
-        #     defaultGateway = {
-        #       address = "178.254.28.1";
-        #       interface = "ens3";
-        #     };
-        #     nameservers = [
-        #       "178.254.16.151"
-        #       "178.254.16.141"
-        #     ];
-        #   };
-        # }
-      ];
+    packages = {
+      x86_64-linux = {
+        iso = nixos-generators.nixosGenerate {
+          system = "x86_64-linux";
+          format = "install-iso";
+          modules = [
+            ./hosts/iso
+            ./modules/options.nix
+            ./modules/zsh.nix
+          ];
+        };
+      };
     };
-  });
+  };
 }

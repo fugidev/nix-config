@@ -47,6 +47,7 @@
           ./modules/greetd.nix
           ./modules/fonts.nix
           ./modules/printing.nix
+          ./modules/ios-support.nix
           {
             fugi.promptColor = "#f7ce46"; # yellow
             programs.sway.enable = true;

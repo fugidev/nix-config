@@ -19,5 +19,8 @@
   ] ++ lib.optionals config.fugi.guiApps [
     qalculate-gtk
     remmina
+    mpv
+    pcmanfm-qt
+    skanlite
   ];
 }

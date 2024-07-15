@@ -38,7 +38,8 @@ in
 
   # system packages
   environment.systemPackages = with pkgs; [
-    neofetch # very essential
+    # neofetch # very essential
+    fastfetch
     hyfetch
     git
     htop
@@ -60,6 +61,9 @@ in
     ncdu
     helix
     traceroute
+    gptfdisk
+    nmap
+    pv
   ];
 
   nix = {

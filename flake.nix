@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     flake-utils.url = "github:numtide/flake-utils";
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -184,6 +185,19 @@
           format = "install-iso";
           modules = [
             ./hosts/iso
+            ./modules/options.nix
+            ./modules/zsh.nix
+          ];
+        };
+      };
+      aarch64-linux = {
+        raspi-installer = nixos-generators.nixosGenerate {
+          system = "aarch64-linux";
+          format = "sd-aarch64-installer";
+          modules = [
+            nixos-hardware.nixosModules.raspberry-pi-4
+            ./hosts/iso
+            ./hosts/iso/pi4.nix
             ./modules/options.nix
             ./modules/zsh.nix
           ];

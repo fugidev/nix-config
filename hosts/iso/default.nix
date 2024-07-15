@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
   time.timeZone = "Europe/Berlin";
 
@@ -13,6 +13,11 @@
     wget
     doggo
   ];
+
+  boot.supportedFilesystems = {
+    # bcachefs = true;
+    zfs = lib.mkForce false;
+  };
 
   ## nitwit
   # networking = {

@@ -2,6 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./modules/network.nix
   ];
 
   hardware = {
@@ -16,8 +17,6 @@
     libraspberrypi
     raspberrypi-eeprom
   ];
-
-  networking.hostName = "shepherd";
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

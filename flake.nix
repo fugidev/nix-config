@@ -144,6 +144,38 @@
           }
         ];
       };
+
+      shepherd = nixpkgs-stable.lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = {
+          inherit inputs;
+          flakeRoot = inputs.self;
+        };
+        modules = [
+          nixos-hardware.nixosModules.raspberry-pi-4
+          sops-nix.nixosModules.sops
+          home-manager-stable.nixosModules.home-manager
+          ./hosts/shepherd
+          ./modules/base.nix
+          ./modules/sops.nix
+          ./modules/nginx.nix
+          {
+            sops.defaultSopsFile = ./hosts/shepherd/secrets.yaml;
+
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+
+              users.root.imports = [
+                ./modules/home/home-root.nix
+                {
+                  home.stateVersion = "24.05";
+                }
+              ];
+            };
+          }
+        ];
+      };
     };
 
     # magmacube home-manager

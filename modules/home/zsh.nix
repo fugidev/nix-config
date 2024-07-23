@@ -32,6 +32,9 @@ else
         dtop = "docker top";
         hms = "home-manager switch";
       };
+      initExtra = ''
+        source ${pkgs.fzf}/share/fzf/key-bindings.zsh
+      '';
     };
   in
   {
@@ -49,5 +52,7 @@ else
         (builtins.removeAttrs nixosZshConfig.config.programs.zsh [ "autosuggestions" ])
         extraConfig
       ];
+
+      home.packages = [ pkgs.fzf ];
     };
   }

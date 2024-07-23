@@ -43,13 +43,14 @@ else
       (lib.mkAliasOptionModule [ "programs" "zsh" "interactiveShellInit" ] [ "programs" "zsh" "initExtra" ])
       (lib.mkAliasOptionModule [ "programs" "zsh" "promptInit" ] [ "programs" "zsh" "initExtra" ])
       (lib.mkAliasOptionModule [ "programs" "zsh" "shellInit" ] [ "programs" "zsh" "envExtra" ])
+      (lib.mkAliasOptionModule [ "programs" "zsh" "autosuggestions" ] [ "programs" "zsh" "autosuggestion" ])
     ];
 
     inherit (nixosZshConfig) options;
 
     config = {
       programs.zsh = lib.mkMerge [
-        (builtins.removeAttrs nixosZshConfig.config.programs.zsh [ "autosuggestions" ])
+        nixosZshConfig.config.programs.zsh
         extraConfig
       ];
 

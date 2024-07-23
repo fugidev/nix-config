@@ -1,5 +1,9 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 {
+  home.sessionVariables = {
+    EDITOR = lib.getExe config.programs.helix.package;
+  };
+
   programs.helix = {
     enable = true;
 

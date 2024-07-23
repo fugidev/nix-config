@@ -9,7 +9,7 @@
     };
 
     package = pkgs.waybar.overrideAttrs (_old: {
-      # patches = [ ./_waybar.patch ];
+      patches = [ ./0001-bandwidth-units.patch ];
     });
 
     settings = {

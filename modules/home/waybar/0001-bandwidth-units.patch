@@ -1,11 +1,11 @@
 diff --git a/include/util/format.hpp b/include/util/format.hpp
-index fac0377..057ea52 100644
+index cf8d706b..353df17c 100644
 --- a/include/util/format.hpp
 +++ b/include/util/format.hpp
 @@ -46,10 +46,10 @@ struct formatter<pow_format> {
  
    template <class FormatContext>
-   auto format(const pow_format& s, FormatContext& ctx) -> decltype(ctx.out()) {
+   auto format(const pow_format& s, FormatContext& ctx) const -> decltype(ctx.out()) {
 -    const char* units[] = {"", "k", "M", "G", "T", "P", nullptr};
 +    const char* units[] = {"k", "M", "G", "T", "P", nullptr};
  

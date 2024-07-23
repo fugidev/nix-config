@@ -27,7 +27,7 @@ in
   imports = [
     ./wofi.nix
     ./theme.nix
-    ./waybar.nix
+    ./waybar
   ];
 
   wayland.windowManager.sway = {

@@ -8,6 +8,7 @@
     ./ssh.nix
     ./alacritty.nix
     ./gpg-darwin.nix
+    ./direnv.nix
   ];
 
   nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;

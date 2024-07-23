@@ -1,18 +1,10 @@
-let
-  withExecZsh = host: host // {
-    extraOptions = {
-      "RemoteCommand" = "exec zsh";
-      "RequestTTY" = "yes";
-    };
-  };
-in
 {
   programs.ssh = {
     enable = true;
     serverAliveInterval = 240;
     includes = [ "config.local" ]; # stateful extra config
 
-    matchBlocks = rec {
+    matchBlocks = {
       "cleric" = {
         hostname = "cleric.fugi.dev";
         port = 2122;
@@ -37,22 +29,9 @@ in
         proxyJump = "fugi@librarian";
       };
       # ifsr
-      "quitte" = withExecZsh quitte_;
-      "kaki" = withExecZsh kaki_;
-      "quitte_" = {
+      "quitte" = {
         hostname = "quitte.ifsr.de";
         user = "root";
-      };
-      "kaki_" = {
-        hostname = "kaki.ifsr.de";
-        user = "root";
-      };
-      "durian" = {
-        hostname = "durian.ifsr.de";
-        user = "root";
-        setEnv = {
-          TERM = "xterm-256color";
-        };
       };
     };
   };

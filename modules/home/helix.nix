@@ -4,8 +4,14 @@
     enable = true;
 
     package = pkgs.helix.overrideAttrs (_old: {
-      # https://github.com/helix-editor/helix/pull/7215
-      # patches = [ ./_helix_7215.patch ];
+      # trailing spaces
+      # patches = [
+      #   (pkgs.fetchpatch {
+      #     url = "https://web.archive.org/web/20240723091032id_/https://patch-diff.githubusercontent.com/raw/helix-editor/helix/pull/7215.patch";
+      #     hash = "sha256-N25n7Lcdz7wKUHXaWQ+7PuJcmscDXx77qFOWUlXqX4I=";
+      #     decode = "gunzip";
+      #   })
+      # ];
     });
 
     settings = {
@@ -17,6 +23,7 @@
         color-modes = true;
         true-color = true;
         cursor-shape.insert = "bar";
+        auto-format = false;
         whitespace = {
           render = {
             # space = "all"; # no trailing option yet :/

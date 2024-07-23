@@ -178,32 +178,49 @@
       };
     };
 
-    # magmacube home-manager
-    homeConfigurations.fugi = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs-unstable.legacyPackages."x86_64-linux";
-      extraSpecialArgs = {
-        inherit inputs;
-        flakeRoot = inputs.self;
+    homeConfigurations = {
+      "fugi@magmacube" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs-unstable.legacyPackages."x86_64-linux";
+        extraSpecialArgs = {
+          inherit inputs;
+          flakeRoot = inputs.self;
+        };
+
+        modules = [
+          ./modules/home/home-fugi.nix
+          ./modules/home/ssh.nix
+          ./hosts/magmacube/sway.nix
+          ({ pkgs, ... }: {
+            nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
+            programs.home-manager.enable = true;
+
+            fugi.wallpaper = pkgs.fetchurl {
+              url = "https://web.archive.org/web/20230404203951if_/https://images.wallpapersden.com/image/download/macos-12-monterey-digital_bG1mZ2mUmZqaraWkpJRpbW5trWlpamc.jpg";
+              sha256 = "NA4nhCcnT6B9IJQWh8ldnjSt9eUFmte6AfN3cNz8Fwk=";
+            };
+            fugi.promptColor = "#ff8700"; # orange
+
+            home.pointerCursor.size = 28;
+            home.stateVersion = "22.05";
+          })
+        ];
       };
 
-      modules = [
-        ./modules/home/home-fugi.nix
-        ./modules/home/ssh.nix
-        ./hosts/magmacube/sway.nix
-        ({ pkgs, ... }: {
-          nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
-          programs.home-manager.enable = true;
+      "fugi@blaze" = home-manager-stable.lib.homeManagerConfiguration {
+        pkgs = nixpkgs-stable.legacyPackages."aarch64-darwin";
+        extraSpecialArgs = {
+          inherit inputs;
+          flakeRoot = inputs.self;
+        };
 
-          fugi.wallpaper = pkgs.fetchurl {
-            url = "https://web.archive.org/web/20230404203951if_/https://images.wallpapersden.com/image/download/macos-12-monterey-digital_bG1mZ2mUmZqaraWkpJRpbW5trWlpamc.jpg";
-            sha256 = "NA4nhCcnT6B9IJQWh8ldnjSt9eUFmte6AfN3cNz8Fwk=";
-          };
-          fugi.promptColor = "#ff8700"; # orange
-
-          home.pointerCursor.size = 28;
-          home.stateVersion = "22.05";
-        })
-      ];
+        modules = [
+          ./modules/home/home-fugi-darwin.nix
+          {
+            fugi.promptColor = "#f7ce46"; # yellow
+            home.stateVersion = "24.05";
+          }
+        ];
+      };
     };
 
     formatter = flake-utils.lib.eachDefaultSystemMap (

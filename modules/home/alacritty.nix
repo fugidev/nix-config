@@ -42,4 +42,9 @@
       cursor.style.shape = "Beam";
     };
   };
+
+  home.sessionVariables = {
+    # required for colors to work in less/manpages
+    GROFF_NO_SGR = 1;
+  };
 }

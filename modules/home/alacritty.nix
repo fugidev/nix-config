@@ -1,17 +1,21 @@
+{ config, lib, ... }:
 {
   programs.alacritty = {
     enable = true;
 
     settings = {
+      shell = lib.getExe config.programs.zsh.package;
+
       font = {
         normal.family = "Fira Code";
-        size = 16;
+        size = 13;
       };
 
       colors = {
         primary = {
-          background = "#14191e";
-          foreground = "#c5c8c6";
+          foreground = "#dddddd";
+          background = "#111111";
+          # background = "#14191e";
         };
         normal = {
           black = "#090909";

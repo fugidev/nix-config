@@ -2,7 +2,7 @@
   description = "fugi's nixos configuration";
 
   inputs = {
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/feb2849fdeb70028c70d73b848214b00d324a497";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     flake-utils.url = "github:numtide/flake-utils";

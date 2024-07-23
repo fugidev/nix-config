@@ -9,7 +9,7 @@
     };
 
     package = pkgs.waybar.overrideAttrs (_old: {
-      patches = [ ./_waybar.patch ];
+      # patches = [ ./_waybar.patch ];
     });
 
     settings = {

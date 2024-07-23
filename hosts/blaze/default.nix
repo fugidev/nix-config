@@ -46,7 +46,7 @@
   };
 
   # Enable sound.
-  sound.enable = true;
+  # sound.enable = true;
   security.rtkit.enable = true; # optional but recommended
 
   # Enable bluetooth.

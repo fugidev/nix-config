@@ -24,6 +24,11 @@
     timeout = 1;
   };
 
+  boot.kernelParams = [
+    # switch fn key mode
+    "hid_apple.fnmode=2"
+  ];
+
   # Increase tmpfs size
   services.logind.extraConfig = "RuntimeDirectorySize=6G";
 

@@ -3,6 +3,7 @@ let
   inherit (config.networking) fqdn;
   IPv4 = config.fugi.staticIPv4.address;
   IPv6 = config.fugi.staticIPv6.address;
+  fqdn_shepherd = "shepherd.fugi.dev";
   adguardUser = "adguardhome";
 in
 {
@@ -46,6 +47,9 @@ in
           { domain = fqdn; answer = IPv4; }
           { domain = fqdn; answer = IPv6; }
           { domain = "*.${fqdn}"; answer = fqdn; }
+          { domain = fqdn_shepherd; answer = "192.168.0.4"; }
+          { domain = fqdn_shepherd; answer = "fd00::4"; }
+          { domain = "*.${fqdn_shepherd}"; answer = fqdn_shepherd; }
         ];
       };
     };

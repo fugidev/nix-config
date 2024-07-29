@@ -1,5 +1,15 @@
 { config, lib, ... }:
 {
+  # static ip
+  fugi.staticIPv4 = {
+    address = "192.168.0.4";
+    prefixLength = 24;
+  };
+  fugi.staticIPv6 = {
+    address = "fd00::4";
+    prefixLength = 64;
+  };
+
   sops.secrets = {
     "wg-fugi/privkey".owner = config.users.users.systemd-network.name;
     "wg-fugi/psk".owner = config.users.users.systemd-network.name;
@@ -31,15 +41,14 @@
     networks."40-end0" = {
       name = "end0";
 
-      # address = builtins.map
-      #   ({ address, prefixLength }: "${address}/${toString prefixLength}")
-      #   (lib.attrVals [ "staticIPv4" "staticIPv6" ] config.fugi);
+      address = builtins.map
+        ({ address, prefixLength }: "${address}/${toString prefixLength}")
+        (lib.attrVals [ "staticIPv4" "staticIPv6" ] config.fugi);
 
-      # routes = [{
-      #   routeConfig.Gateway = "192.168.0.1";
-      # }];
+      routes = [{
+        routeConfig.Gateway = "192.168.0.1";
+      }];
 
-      networkConfig.DHCP = "ipv4"; # TODO remove
       networkConfig.IPv6PrivacyExtensions = "kernel";
       ipv6AcceptRAConfig.UseDNS = false; # ignore dns servers supplied by router
     };

@@ -7,10 +7,17 @@ in
   # set default options for virtualHosts
   options = with lib; {
     services.nginx.virtualHosts = mkOption {
-      type = types.attrsOf (types.submodule {
-        forceSSL = mkDefault true;
-        useACMEHost = mkDefault fqdn;
-      });
+      type = types.attrsOf (types.submodule
+        ({ name, ... }: {
+          forceSSL = mkDefault true;
+          useACMEHost = mkDefault fqdn;
+          # split up nginx access logs per vhost
+          extraConfig = ''
+            access_log /var/log/nginx/${name}_access.log;
+            error_log /var/log/nginx/${name}_error.log;
+          '';
+        })
+      );
     };
   };
 

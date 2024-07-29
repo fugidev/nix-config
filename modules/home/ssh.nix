@@ -28,6 +28,10 @@
         user = "fugi";
         proxyJump = "fugi@librarian";
       };
+      "shepherd" = {
+        hostname = "shepherd.fugi.dev";
+        user = "root";
+      };
       # ifsr
       "quitte" = {
         hostname = "quitte.ifsr.de";

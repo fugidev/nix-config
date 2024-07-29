@@ -21,6 +21,14 @@
           "idmap=user"
         ];
       };
+      shepherd = {
+        host = "shepherd.fugi.dev";
+        mountPoint = "/etc/nixos";
+        user = "root";
+        mountOptions = [
+          "idmap=user"
+        ];
+      };
       quitte = {
         host = "quitte.ifsr.de";
         mountPoint = "/etc/nixos";

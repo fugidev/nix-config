@@ -1,7 +1,4 @@
-{ pkgs, lib, inputs, flakeRoot, ... }:
-let
-  useFromUnstable = import (flakeRoot + /util/useFromUnstable.nix);
-in
+{ pkgs, lib, ... }:
 {
   imports = [
     ./options.nix
@@ -9,9 +6,6 @@ in
     ./tmux.nix
     ./upgrade-diff.nix
     ./locale.nix
-    (useFromUnstable {
-      pkgs = [ "lix" ];
-    })
   ];
 
   # combined with hostname, determines fqdn

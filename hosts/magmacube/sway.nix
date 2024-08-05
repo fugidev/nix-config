@@ -16,11 +16,16 @@ in
     unset QT_PLUGIN_PATH QML2_IMPORT_PATH
   '';
 
-  wayland.windowManager.sway = {
-    config = {
-      # don't add sway to path
-      package = null;
+  systemd.user.sessionVariables = {
+    QML2_IMPORT_PATH = lib.mkForce "";
+    QT_PLUGIN_PATH = lib.mkForce "";
+  };
 
+  wayland.windowManager.sway = {
+    # don't add sway to path
+    package = null;
+
+    config = {
       focus.mouseWarping = false;
 
       fonts.size = 10.0;
@@ -43,7 +48,7 @@ in
           };
           ${monitor_c} = {
             inherit mode bg;
-            pos = "1440 870";
+            pos = "1440 780";
           };
           ${monitor_r} = {
             inherit mode bg;

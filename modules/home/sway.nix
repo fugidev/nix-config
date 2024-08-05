@@ -32,10 +32,13 @@ in
 
   wayland.windowManager.sway = {
     enable = true;
-    package = null;
 
     # enable sway-session.target
     systemd.enable = true;
+
+    extraSessionCommands = ''
+      export NIXOS_OZONE_WL=1
+    '';
 
     extraConfigEarly = ''
       set $mode_power (l)ock, (e)xit, (s)uspend, (p)oweroff, (r)eboot

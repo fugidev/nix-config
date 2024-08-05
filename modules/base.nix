@@ -25,7 +25,6 @@ in
     EDITOR = "hx";
     LESS = "-FSR";
     SYSTEMD_LESS = LESS;
-    NIXOS_OZONE_WL = 1;
   };
 
   programs.less = {

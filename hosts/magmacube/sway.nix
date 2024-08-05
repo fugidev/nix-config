@@ -18,6 +18,9 @@ in
 
   wayland.windowManager.sway = {
     config = {
+      # don't add sway to path
+      package = null;
+
       focus.mouseWarping = false;
 
       fonts.size = 10.0;

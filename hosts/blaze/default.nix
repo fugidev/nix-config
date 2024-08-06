@@ -11,6 +11,11 @@
 
   # enable backlight control
   hardware.acpilight.enable = true;
+  services.udev.extraRules = ''
+    SUBSYSTEM=="leds", ACTION=="add", KERNEL=="kbd_backlight", \
+      RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/leds/%k/brightness", \
+      RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/leds/%k/brightness"
+  '';
 
   boot.loader = {
     # Use the systemd-boot EFI boot loader.

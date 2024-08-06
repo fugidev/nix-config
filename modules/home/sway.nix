@@ -104,6 +104,9 @@ in
         # display brightness
         "--locked XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
         "--locked XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
+        # keyboard brightness
+        "--locked Shift+XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10 -s sysfs/leds/kbd_backlight";
+        "--locked Shift+XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10 -s sysfs/leds/kbd_backlight";
         # media control
         "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
         "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";

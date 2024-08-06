@@ -4,7 +4,7 @@
     ./hardware-configuration.nix
     ./modules/exam-poll.nix
     ./modules/invidious.nix
-    ./modules/libreddit.nix
+    ./modules/redlib.nix
     ./modules/linkding.nix
     ./modules/matrix
     ./modules/nginx

@@ -1,25 +1,25 @@
-{ config, pkgs, flakeRoot, ... }:
+{ config, flakeRoot, ... }:
 let
-  cfg = config.services.libreddit;
+  cfg = config.services.redlib;
   useFromUnstable = import (flakeRoot + /util/useFromUnstable.nix);
 in
 {
-  # Use libreddit/redlib from unstable branch
+  # Use redlib from unstable branch
   imports = [
     (useFromUnstable {
-      modules = [ "services/misc/libreddit.nix" ];
+      modules = [ "services/misc/redlib.nix" ];
       pkgs = [ "redlib" ];
     })
   ];
+  disabledModules = [ "services/misc/libreddit.nix" ];
 
-  services.libreddit = {
+  services.redlib = {
     enable = true;
-    package = pkgs.redlib;
     address = "127.0.0.1";
     port = 8490;
   };
 
-  services.nginx.virtualHosts."libreddit.${config.fugi.baseDomain}" = {
+  services.nginx.virtualHosts."redlib.${config.fugi.baseDomain}" = {
     locations."/".proxyPass = "http://${cfg.address}:${toString cfg.port}";
   };
 }

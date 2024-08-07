@@ -1,15 +1,20 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, ... }:
+let
+  thisMachine = config.fugi.machines.${config.networking.hostName};
+in
 {
   imports = [
     ./options.nix
+    ./machines.nix
     ./zsh.nix
     ./tmux.nix
     ./upgrade-diff.nix
     ./locale.nix
   ];
 
-  # combined with hostname, determines fqdn
-  networking.domain = lib.mkDefault "fugi.dev";
+  networking = {
+    inherit (thisMachine) domain;
+  };
 
   # set time zone
   time.timeZone = "Europe/Berlin";

@@ -122,14 +122,11 @@
         nixpkgs = nixpkgs-stable;
         home-manager = home-manager-stable;
         modules = [
-          sops-nix.nixosModules.sops
           ./modules/sops.nix
           ./modules/nginx.nix
           ./modules/borg.nix
           (home-root "23.05")
           {
-            sops.defaultSopsFile = ./hosts/librarian/secrets.yaml;
-
             fugi.borgRepositories = [{
               path = "ssh://u329990-sub1@u329990-sub1.your-storagebox.de:23/./borg-repository";
               label = "storagebox";
@@ -144,13 +141,9 @@
         nixpkgs = nixpkgs-stable;
         home-manager = home-manager-stable;
         modules = [
-          sops-nix.nixosModules.sops
           ./modules/sops.nix
           ./modules/nginx.nix
           (home-root "23.11")
-          {
-            sops.defaultSopsFile = ./hosts/nitwit/secrets.yaml;
-          }
         ];
       };
 
@@ -161,13 +154,9 @@
         home-manager = home-manager-stable;
         modules = [
           nixos-hardware.nixosModules.raspberry-pi-4
-          sops-nix.nixosModules.sops
           ./modules/sops.nix
           ./modules/nginx.nix
           (home-root "24.05")
-          {
-            sops.defaultSopsFile = ./hosts/shepherd/secrets.yaml;
-          }
         ];
       };
     };

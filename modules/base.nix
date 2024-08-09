@@ -5,7 +5,6 @@ in
 {
   imports = [
     ./options.nix
-    ./machines.nix
     ./zsh.nix
     ./tmux.nix
     ./upgrade-diff.nix

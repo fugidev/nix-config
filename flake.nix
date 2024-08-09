@@ -32,19 +32,61 @@
     };
   };
 
-  outputs = inputs: with inputs; {
-    nixosConfigurations = {
-      blaze = nixpkgs-unstable.lib.nixosSystem {
-        system = "aarch64-linux";
-        specialArgs = {
-          inherit inputs;
-          flakeRoot = inputs.self;
+  outputs = inputs:
+    let
+      mkNixosSystem = (
+        {
+          hostName,
+          system,
+          nixpkgs,
+          home-manager ? null,
+          modules ? [],
+        }:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            flakeRoot = inputs.self;
+          };
+          modules =
+            [
+              ./hosts/${hostName}
+              ./modules/base.nix
+              ./modules/machines.nix
+              ({ config, ... }: {
+                _module.args.machineConfig = config.fugi.machines.${hostName};
+              })
+            ]
+            ++ nixpkgs.lib.optionals (home-manager != null) [
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                };
+              }
+            ]
+            ++ modules;
+        }
+      );
+
+      home-root = stateVersion: {
+        home-manager.users.root = {
+          imports = [ ./modules/home/home-root.nix ];
+          home = { inherit stateVersion; };
         };
+      };
+    in
+  with inputs;
+  {
+    nixosConfigurations = {
+      blaze = mkNixosSystem {
+        hostName = "blaze";
+        system = "aarch64-linux";
+        nixpkgs = nixpkgs-unstable;
+        home-manager = home-manager;
         modules = [
           nixos-asahi.nixosModules.default
-          home-manager.nixosModules.home-manager
-          ./hosts/blaze
-          ./modules/base.nix
           ./modules/greetd.nix
           ./modules/fonts.nix
           ./modules/printing.nix
@@ -55,9 +97,6 @@
             xdg.portal.enable = true;
 
             home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-
               users.fugi.imports = [
                 ./modules/home/home-fugi.nix
                 ./modules/home/mail.nix
@@ -77,20 +116,17 @@
         ];
       };
 
-      librarian = nixpkgs-stable.lib.nixosSystem {
+      librarian = mkNixosSystem {
+        hostName = "librarian";
         system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-          flakeRoot = inputs.self;
-        };
+        nixpkgs = nixpkgs-stable;
+        home-manager = home-manager-stable;
         modules = [
           sops-nix.nixosModules.sops
-          home-manager-stable.nixosModules.home-manager
-          ./hosts/librarian
-          ./modules/base.nix
           ./modules/sops.nix
           ./modules/nginx.nix
           ./modules/borg.nix
+          (home-root "23.05")
           {
             sops.defaultSopsFile = ./hosts/librarian/secrets.yaml;
 
@@ -98,81 +134,39 @@
               path = "ssh://u329990-sub1@u329990-sub1.your-storagebox.de:23/./borg-repository";
               label = "storagebox";
             }];
-
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-
-              users.root.imports = [
-                ./modules/home/home-root.nix
-                {
-                  home.stateVersion = "23.05";
-                }
-              ];
-            };
           }
         ];
       };
 
-      nitwit = nixpkgs-stable.lib.nixosSystem {
+      nitwit = mkNixosSystem {
+        hostName = "nitwit";
         system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-          flakeRoot = inputs.self;
-        };
+        nixpkgs = nixpkgs-stable;
+        home-manager = home-manager-stable;
         modules = [
           sops-nix.nixosModules.sops
-          home-manager-stable.nixosModules.home-manager
-          ./hosts/nitwit
-          ./modules/base.nix
           ./modules/sops.nix
           ./modules/nginx.nix
+          (home-root "23.11")
           {
             sops.defaultSopsFile = ./hosts/nitwit/secrets.yaml;
-
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-
-              users.root.imports = [
-                ./modules/home/home-root.nix
-                {
-                  home.stateVersion = "23.11";
-                }
-              ];
-            };
           }
         ];
       };
 
-      shepherd = nixpkgs-stable.lib.nixosSystem {
+      shepherd = mkNixosSystem {
+        hostName = "shepherd";
         system = "aarch64-linux";
-        specialArgs = {
-          inherit inputs;
-          flakeRoot = inputs.self;
-        };
+        nixpkgs = nixpkgs-stable;
+        home-manager = home-manager-stable;
         modules = [
           nixos-hardware.nixosModules.raspberry-pi-4
           sops-nix.nixosModules.sops
-          home-manager-stable.nixosModules.home-manager
-          ./hosts/shepherd
-          ./modules/base.nix
           ./modules/sops.nix
           ./modules/nginx.nix
+          (home-root "24.05")
           {
             sops.defaultSopsFile = ./hosts/shepherd/secrets.yaml;
-
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-
-              users.root.imports = [
-                ./modules/home/home-root.nix
-                {
-                  home.stateVersion = "24.05";
-                }
-              ];
-            };
           }
         ];
       };

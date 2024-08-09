@@ -100,7 +100,9 @@ in
         IPv4.cidr = "192.168.0.4/24";
         IPv6.cidr = "fd00::4/64";
       };
-      nitwit = { };
+      nitwit = {
+        IPv4.cidr = "178.254.28.214/22";
+      };
       blaze = { };
     };
   };

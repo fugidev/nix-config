@@ -1,3 +1,4 @@
+{ lib, pkgs, ... }:
 {
   programs.git = {
     enable = true;
@@ -10,8 +11,20 @@
     };
 
     extraConfig = {
-      core.pager = "less -+\$LESS -RS";
+      core.pager = "diffr | less";
+      interactive.diffFilter = "diffr";
       init.defaultBranch = "main";
     };
   };
+
+  home.packages = [
+    (pkgs.writeShellScriptBin "diffr" ''
+      # added color is background*10/green
+      # removed color is background*5/red
+      exec ${lib.getExe pkgs.diffr} \
+        --colors refine-added:none:background:26,35,26:foreground:green \
+        --colors refine-removed:none:background:53,27,24:foreground:red \
+        "$@"
+    '')
+  ];
 }

@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
   hostModulesFilenames = builtins.attrNames (builtins.readDir ./modules);
-  hostModules = map (filename: ./modules + "/${filename}") hostModulesFilenames;
+  hostModules = map (filename: ./modules/${filename}) hostModulesFilenames;
 in
 {
   imports = hostModules ++ [ ./hardware-configuration.nix ];

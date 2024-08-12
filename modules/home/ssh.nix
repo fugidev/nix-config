@@ -26,7 +26,6 @@
       "magmacube" = {
         hostname = "192.168.0.2";
         user = "fugi";
-        proxyJump = "fugi@librarian";
       };
       "shepherd" = {
         hostname = "shepherd.fugi.dev";

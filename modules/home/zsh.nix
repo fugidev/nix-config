@@ -19,7 +19,7 @@ else
         dce = "docker compose exec";
         dcl = "docker compose logs";
         dclf = "docker compose logs -f";
-        dcps = "docker compose ps";
+        dcps = "docker compose ps --format 'table {{.Name}}\\t{{.Image}}\\t{{.Service}}\\t{{.RunningFor}}\\t{{.Status}}\\t{{.Ports}}'";
         dcpull = "docker compose pull";
         dcrestart = "docker compose restart";
         dcrm = "docker compose rm";
@@ -30,6 +30,7 @@ else
         dcupdb = "docker compose up -d --build";
         dcupd = "docker compose up -d";
         dtop = "docker top";
+        dps = "docker ps --format 'table {{.ID}}\\t{{.Names}}\\t{{.Image}}\\t{{.RunningFor}}\\t{{.Status}}'";
         hms = "home-manager switch";
       };
       initExtra = ''

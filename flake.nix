@@ -70,6 +70,27 @@
         }
       );
 
+      mkHome = (
+        {
+          home-manager,
+          pkgs,
+          modules ? [],
+        }:
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs;
+            flakeRoot = inputs.self;
+          };
+          modules =
+            [{
+              nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
+              programs.home-manager.enable = true;
+            }]
+            ++ modules;
+        }
+      );
+
       home-root = stateVersion: {
         home-manager.users.root = {
           imports = [ ./modules/home/home-root.nix ];
@@ -162,21 +183,15 @@
     };
 
     homeConfigurations = {
-      "fugi@magmacube" = home-manager.lib.homeManagerConfiguration {
+      "fugi@magmacube" = mkHome {
+        home-manager = home-manager;
         pkgs = nixpkgs-unstable.legacyPackages."x86_64-linux";
-        extraSpecialArgs = {
-          inherit inputs;
-          flakeRoot = inputs.self;
-        };
 
         modules = [
           ./modules/home/home-fugi.nix
           ./modules/home/ssh.nix
           ./hosts/magmacube/sway.nix
           ({ pkgs, ... }: {
-            nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
-            programs.home-manager.enable = true;
-
             fugi.wallpaper = pkgs.fetchurl {
               url = "https://web.archive.org/web/20230404203951if_/https://images.wallpapersden.com/image/download/macos-12-monterey-digital_bG1mZ2mUmZqaraWkpJRpbW5trWlpamc.jpg";
               sha256 = "NA4nhCcnT6B9IJQWh8ldnjSt9eUFmte6AfN3cNz8Fwk=";
@@ -189,12 +204,9 @@
         ];
       };
 
-      "fugi@blaze" = home-manager-stable.lib.homeManagerConfiguration {
+      "fugi@blaze" = mkHome {
+        home-manager = home-manager-stable;
         pkgs = nixpkgs-stable.legacyPackages."aarch64-darwin";
-        extraSpecialArgs = {
-          inherit inputs;
-          flakeRoot = inputs.self;
-        };
 
         modules = [
           ./modules/home/home-fugi-darwin.nix

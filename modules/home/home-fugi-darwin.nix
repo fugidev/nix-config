@@ -1,4 +1,4 @@
-{ lib, inputs, ... }:
+{ lib, ... }:
 {
   imports = [
     ./zsh.nix
@@ -10,10 +10,6 @@
     ./gpg-darwin.nix
     ./direnv.nix
   ];
-
-  nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
-
-  programs.home-manager.enable = true;
 
   home.username = "fugi";
   home.homeDirectory = "/Users/fugi";

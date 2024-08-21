@@ -86,6 +86,9 @@
             [{
               nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
               programs.home-manager.enable = true;
+              programs.zsh.sessionVariables = {
+                NIX_PATH = "nixpkgs=${inputs.nixpkgs-unstable}";
+              };
             }]
             ++ modules;
         }

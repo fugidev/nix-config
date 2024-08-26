@@ -1,4 +1,7 @@
-{ config, ... }:
+{ config, lib, ... }:
+let
+  consumptionDir = "/data/share/_paperless";
+in
 {
   services.paperless = {
     enable = true;
@@ -10,6 +13,7 @@
       PAPERLESS_FILENAME_FORMAT = "{created_year}/{created_year}-{created_month}-{created_day} {title}";
       PAPERLESS_OCR_DESKEW = false; # deskew sometimes messes up, so I do it manually
     };
+    inherit consumptionDir;
   };
 
   services.nginx.virtualHosts."paperless.${config.networking.fqdn}" = {
@@ -33,4 +37,18 @@
   };
 
   sops.secrets.paperless_password = { };
+
+  # ensure consumption directory is created, set permissions
+  systemd.tmpfiles.settings."10-paperless" = {
+    ${consumptionDir} = lib.mkForce {
+      d = {
+        mode = "2775";
+        user = "fugi";
+        group = "paperless";
+      };
+      a = {
+        argument = "d:g::rwx";
+      };
+    };
+  };
 }

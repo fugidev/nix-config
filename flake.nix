@@ -193,6 +193,7 @@
         modules = [
           ./modules/home/home-fugi.nix
           ./modules/home/ssh.nix
+          ./modules/home/locale.nix
           ./hosts/magmacube/sway.nix
           ({ pkgs, ... }: {
             fugi.wallpaper = pkgs.fetchurl {

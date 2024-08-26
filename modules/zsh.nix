@@ -89,13 +89,19 @@
 
     nixpkgs.overlays = [
       (_self: super: {
-        zsh = super.zsh.overrideAttrs
-          (_: {
-            patches = [
-              # disable double escaping of remote paths for rsync/scp completion
-              ../misc/zsh_completion_remote_files.patch
-            ];
-          });
+        zsh = super.zsh.overrideAttrs (old: {
+          patches = [
+            # disable double escaping of remote paths for rsync/scp completion
+            ../misc/zsh_completion_remote_files.patch
+          ];
+          # fix build
+          outputs = [ "out" "man" ];
+          postInstall = lib.concatLines (
+            builtins.filter
+              (x: lib.hasInfix "html" x == false)
+              (lib.splitString "\n" old.postInstall)
+          );
+        });
       })
     ];
   };

@@ -80,9 +80,10 @@ in
     enable = true;
     timeouts = [
       {
-        # lock session after 15 minutes
+        # lock session and turn off displays after 15 minutes
         timeout = 900;
-        command = "/usr/bin/loginctl lock-session";
+        command = "/usr/bin/loginctl lock-session; /usr/bin/swaymsg 'output * dpms off'";
+        resumeCommand = "/usr/bin/swaymsg 'output * dpms on'";
       }
     ];
   };

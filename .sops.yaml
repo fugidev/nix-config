@@ -4,6 +4,7 @@ keys:
   - &librarian age1awp9cl63hldzmwkv88ry06hatea3aynshddfwcst36aa5a83k3eq807zu2
   - &nitwit age1mwtf0z96stqezcxgrrkt4zx5cnc2nekt06vpzz8m74tz68uy6y7shepulr
   - &shepherd age19f0hh85t7dm5rk3t9x3xghlnmp4z44hdsh0qhhsnenyl0f3pe9csg4a4w9
+  - &cleric age179wwsnh6yswq5lgt0xu5c5p2ht35twdu3z6dnxs5ypcd0pq0pfgqtn928p
 creation_rules:
   - path_regex: ^hosts/librarian/.*
     key_groups:
@@ -23,3 +24,9 @@ creation_rules:
         - *fugi
         age:
         - *shepherd
+  - path_regex: ^hosts/cleric/.*
+    key_groups:
+      - pgp:
+        - *fugi
+        age:
+        - *cleric

@@ -183,6 +183,18 @@
           (home-root "24.05")
         ];
       };
+
+      cleric = mkNixosSystem {
+        hostName = "cleric";
+        system = "x86_64-linux";
+        nixpkgs = nixpkgs-stable;
+        home-manager = home-manager-stable;
+        modules = [
+          ./modules/sops.nix
+          ./modules/nginx.nix
+          (home-root "24.05")
+        ];
+      };
     };
 
     homeConfigurations = {

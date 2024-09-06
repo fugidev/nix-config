@@ -29,6 +29,14 @@
           "idmap=user"
         ];
       };
+      cleric = {
+        host = "cleric.fugi.dev";
+        mountPoint = "/etc/nixos";
+        user = "root";
+        mountOptions = [
+          "idmap=user"
+        ];
+      };
       quitte = {
         host = "quitte.ifsr.de";
         mountPoint = "/etc/nixos";

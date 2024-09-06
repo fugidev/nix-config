@@ -7,7 +7,6 @@
     matchBlocks = {
       "cleric" = {
         hostname = "cleric.fugi.dev";
-        port = 2122;
         user = "root";
       };
       "nitwit" = {
@@ -29,6 +28,11 @@
       };
       "shepherd" = {
         hostname = "shepherd.fugi.dev";
+        user = "root";
+      };
+      "oldcleric" = {
+        hostname = "fugi.dev";
+        port = 2122;
         user = "root";
       };
       # ifsr

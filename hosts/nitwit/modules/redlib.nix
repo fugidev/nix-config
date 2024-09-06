@@ -1,4 +1,4 @@
-{ config, flakeRoot, ... }:
+{ config, flakeRoot, machineConfig, ... }:
 let
   cfg = config.services.redlib;
   useFromUnstable = import (flakeRoot + /util/useFromUnstable.nix);
@@ -19,7 +19,7 @@ in
     port = 8490;
   };
 
-  services.nginx.virtualHosts."redlib.${config.fugi.baseDomain}" = {
+  services.nginx.virtualHosts."redlib.${machineConfig.baseDomain}" = {
     locations."/".proxyPass = "http://${cfg.address}:${toString cfg.port}";
   };
 }

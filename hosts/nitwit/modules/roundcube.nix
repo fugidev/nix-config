@@ -1,10 +1,10 @@
-{ config, ... }:
+{ config, machineConfig, ... }:
 let
   hostName = config.services.roundcube.hostName;
 in
 {
   services.roundcube = {
-    hostName = "mail.${config.fugi.baseDomain}";
+    hostName = "mail.${machineConfig.baseDomain}";
     enable = true;
     plugins = [ "managesieve" ];
     extraConfig = ''

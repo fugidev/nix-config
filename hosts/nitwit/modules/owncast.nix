@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, machineConfig, ... }:
 let
   cfg = config.services.owncast;
 in
@@ -9,7 +9,7 @@ in
     port = 8298;
   };
 
-  services.nginx.virtualHosts."efg.${config.fugi.baseDomain}" = {
+  services.nginx.virtualHosts."efg.${machineConfig.baseDomain}" = {
     basicAuthFile = config.sops.secrets."owncast-auth".path;
     locations = {
       "/" = {

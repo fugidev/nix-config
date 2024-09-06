@@ -1,4 +1,4 @@
-{ config, pkgs, flakeRoot, ... }:
+{ config, pkgs, flakeRoot, machineConfig, ... }:
 let
   cfg = config.services.invidious;
   useFromUnstable = import (flakeRoot + /util/useFromUnstable.nix);
@@ -30,7 +30,7 @@ in
         # })
       ];
     });
-    domain = "invidious.${config.fugi.baseDomain}";
+    domain = "invidious.${machineConfig.baseDomain}";
     nginx.enable = true;
     http3-ytproxy.enable = true;
     port = 8723;

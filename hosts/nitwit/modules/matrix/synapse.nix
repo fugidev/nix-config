@@ -1,6 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, machineConfig, ... }:
 let
-  inherit (config.fugi) baseDomain;
+  inherit (machineConfig) baseDomain;
   fqdn = "matrix.${baseDomain}";
   baseUrl = "https://${fqdn}";
 

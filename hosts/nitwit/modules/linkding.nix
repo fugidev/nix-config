@@ -1,4 +1,4 @@
-{ config, ... }:
+{ machineConfig, ... }:
 {
   virtualisation.oci-containers = {
     backend = "docker";
@@ -14,7 +14,7 @@
     };
   };
 
-  services.nginx.virtualHosts."linkding.${config.fugi.baseDomain}" = {
+  services.nginx.virtualHosts."linkding.${machineConfig.baseDomain}" = {
     locations."/".proxyPass = "http://127.0.0.1:9090";
   };
 }

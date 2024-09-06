@@ -1,7 +1,7 @@
-{ config, lib, ... }:
+{ config, lib, machineConfig, ... }:
 let
-  inherit (config.networking) domain;
-  fqdn = config.fugi.baseDomain;
+  inherit (machineConfig) domain;
+  fqdn = machineConfig.baseDomain;
 in
 {
   # set default options for virtualHosts

@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ config, inputs, machineConfig, ... }:
 let
   cfg = config.services.exam-poll;
 in
@@ -11,11 +11,11 @@ in
     enable = true;
     frontend = {
       port = 8129;
-      hostName = "poll.${config.fugi.baseDomain}";
+      hostName = "poll.${machineConfig.baseDomain}";
     };
     backend = {
       port = 8192;
-      hostName = "poll-api.${config.fugi.baseDomain}";
+      hostName = "poll-api.${machineConfig.baseDomain}";
     };
     mongodb = {
       uri = "mongodb://localhost:27017";

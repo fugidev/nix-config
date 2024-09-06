@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, machineConfig, ... }:
 {
   services.thelounge = {
     enable = true;
@@ -8,7 +8,7 @@
     };
   };
 
-  services.nginx.virtualHosts."irc.${config.fugi.baseDomain}" = {
+  services.nginx.virtualHosts."irc.${machineConfig.baseDomain}" = {
     locations."/" = {
       proxyPass = "http://localhost:${toString config.services.thelounge.port}";
       proxyWebsockets = true;

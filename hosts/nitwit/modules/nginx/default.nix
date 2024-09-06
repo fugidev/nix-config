@@ -1,6 +1,6 @@
-{ config, ... }:
+{ machineConfig, ... }:
 {
-  services.nginx.virtualHosts.${config.fugi.baseDomain} = {
+  services.nginx.virtualHosts.${machineConfig.baseDomain} = {
     locations = {
       "=/index.html".alias = ./index.html;
     };

@@ -1,13 +1,13 @@
-{ config, pkgs, ... }:
+{ pkgs, machineConfig, ... }:
 let
   cinnyConfig = {
     allowCustomHomeservers = false;
     defaultHomeserver = 0;
-    homeserverList = [ config.fugi.baseDomain ];
+    homeserverList = [ machineConfig.baseDomain ];
   };
 in
 {
-  services.nginx.virtualHosts."cinny.${config.fugi.baseDomain}" = {
+  services.nginx.virtualHosts."cinny.${machineConfig.baseDomain}" = {
     # Workaround because cinny fails to build on nitwit for some reason
     # https://github.com/NixOS/nixpkgs/pull/267754
     root = pkgs.cinny;

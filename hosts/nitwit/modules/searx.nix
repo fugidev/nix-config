@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, machineConfig, ... }:
 let
   enginesToList = lib.mapAttrsToList (name: value: value // { inherit name; });
 in
@@ -66,7 +66,7 @@ in
     };
   };
 
-  services.nginx.virtualHosts."searx.${config.fugi.baseDomain}" = {
+  services.nginx.virtualHosts."searx.${machineConfig.baseDomain}" = {
     locations."/".proxyPass = "http://${config.services.searx.uwsgiConfig.http}";
   };
 }

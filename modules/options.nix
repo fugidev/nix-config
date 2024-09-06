@@ -35,11 +35,6 @@ in
       type = types.listOf types.str;
       default = [ ];
     };
-
-    baseDomain = mkOption {
-      type = types.str;
-      default = config.networking.fqdn;
-    };
   };
 
   config = {

@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ pkgs, machineConfig, ... }:
 {
-  services.nginx.virtualHosts."synapse-admin.${config.fugi.baseDomain}" = {
+  services.nginx.virtualHosts."synapse-admin.${machineConfig.baseDomain}" = {
     root = pkgs.synapse-admin.override {
-      baseUrl = "https://matrix.${config.fugi.baseDomain}";
+      baseUrl = "https://matrix.${machineConfig.baseDomain}";
     };
   };
 }

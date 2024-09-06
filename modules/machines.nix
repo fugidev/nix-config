@@ -106,7 +106,7 @@ in
       cleric = {
         IPv4.cidr = "152.53.103.37/22";
         IPv6.cidr = "2a0a:4cc0:80:20f8::1/64";
-        # baseDomain = "fugi.dev";
+        baseDomain = "fugi.dev";
       };
       blaze = { };
     };

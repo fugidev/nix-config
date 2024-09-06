@@ -8,7 +8,7 @@ in
 {
   home.pointerCursor = {
     package = pkgs.apple-cursor;
-    name = "macOS-Monterey";
+    name = "macOS";
 
     x11.enable = true;
     gtk.enable = true;

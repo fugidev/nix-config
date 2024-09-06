@@ -45,7 +45,6 @@
     eza
     ripgrep
     wget
-    neovim
     dig
     doggo
     xdg-utils

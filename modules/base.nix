@@ -1,7 +1,4 @@
-{ config, pkgs, ... }:
-let
-  thisMachine = config.fugi.machines.${config.networking.hostName};
-in
+{ pkgs, machineConfig, ... }:
 {
   imports = [
     ./options.nix
@@ -12,7 +9,7 @@ in
   ];
 
   networking = {
-    inherit (thisMachine) domain;
+    inherit (machineConfig) domain;
   };
 
   # set time zone

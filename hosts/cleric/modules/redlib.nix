@@ -19,7 +19,7 @@ in
     port = 8490;
   };
 
-  services.nginx.virtualHosts."redlib.${machineConfig.baseDomain}" = {
+  services.nginx.virtualHosts."libreddit.${machineConfig.baseDomain}" = {
     locations."/".proxyPass = "http://${cfg.address}:${toString cfg.port}";
   };
 }

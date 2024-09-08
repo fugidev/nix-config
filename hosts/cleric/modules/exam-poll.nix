@@ -39,6 +39,7 @@ in
         image = "mongo:5";
         autoStart = true;
         ports = [ "127.0.0.1:27017:27017" ];
+        volumes = [ "exam-poll_db:/data/db" ];
       };
     };
   };

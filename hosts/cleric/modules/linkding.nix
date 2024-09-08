@@ -7,7 +7,7 @@
         image = "sissbruecker/linkding:latest";
         autoStart = true;
         ports = [ "127.0.0.1:9090:9090" ];
-        volumes = [ "data:/etc/linkding/data" ];
+        volumes = [ "linkding_data:/etc/linkding/data" ];
         # fix memory allocation error
         extraOptions = [ "--ulimit" "nofile=1048576:1048576" ];
       };

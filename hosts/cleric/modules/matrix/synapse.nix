@@ -11,16 +11,21 @@ let
   '';
 in
 {
-  sops.secrets."matrix-secrets".owner = "matrix-synapse";
+  sops.secrets = {
+    "synapse/secrets".owner = "matrix-synapse";
+    "synapse/signing-key".owner = "matrix-synapse";
+  };
 
   services.matrix-synapse = {
     enable = true;
     configureRedisLocally = true;
-    extraConfigFiles = [ config.sops.secrets."matrix-secrets".path ];
+    extraConfigFiles = [ config.sops.secrets."synapse/secrets".path ];
 
     settings = {
       server_name = baseDomain;
       public_baseurl = baseUrl;
+
+      signing_key_path = config.sops.secrets."synapse/signing-key".path;
 
       listeners = [{
         port = 8008;

@@ -9,6 +9,7 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
+  boot.initrd.systemd.enable = true;
   boot.initrd.availableKernelModules = [ "usb_storage" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];

@@ -18,7 +18,6 @@ in
       server = {
         secret_key = "@SEARXNG_SECRET@";
         limiter = true;
-        public_instance = true;
         method = "GET";
       };
       ui = {
@@ -63,6 +62,10 @@ in
         "google news".shortcut = "gn";
         "google videos".shortcut = "gv";
       };
+    };
+    limiterSettings = {
+      # this seems to break using it as browser default search engine... wtf
+      "botdetection.ip_limit".link_token = false;
     };
   };
 

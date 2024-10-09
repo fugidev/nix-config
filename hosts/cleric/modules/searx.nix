@@ -1,6 +1,7 @@
 { config, lib, machineConfig, ... }:
 let
   enginesToList = lib.mapAttrsToList (name: value: value // { inherit name; });
+  fqdn = "searx.${machineConfig.baseDomain}";
 in
 {
   sops.secrets."searx-env-file" = { };
@@ -69,7 +70,18 @@ in
     };
   };
 
-  services.nginx.virtualHosts."searx.${machineConfig.baseDomain}" = {
-    locations."/".proxyPass = "http://${config.services.searx.uwsgiConfig.http}";
+  services.nginx = {
+    commonHttpConfig = ''
+      log_format no_query '$remote_addr - $remote_user [$time_local] '
+        '"$request_method $uri" $status $body_bytes_sent '
+        '"$http_referer" "$http_user_agent"';
+    '';
+    virtualHosts.${fqdn} = {
+      extraConfig = lib.mkForce ''
+        access_log /var/log/nginx/${fqdn}_access.log no_query;
+        error_log /var/log/nginx/${fqdn}_error.log;
+      '';
+      locations."/".proxyPass = "http://${config.services.searx.uwsgiConfig.http}";
+    };
   };
 }

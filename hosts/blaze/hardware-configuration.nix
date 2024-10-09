@@ -19,7 +19,7 @@
     {
       device = "/dev/disk/by-uuid/c93a8bdb-66ab-4c39-a0f3-e880ee274c52";
       fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" "noatime" ];
+      options = [ "subvol=root" "compress=zstd" "noatime" "x-systemd.device-timeout=0" ];
     };
 
   boot.initrd.luks.devices."nixenc".device = "/dev/disk/by-uuid/6d32354c-7b7b-4ea4-8af6-7f41efa69fbc";

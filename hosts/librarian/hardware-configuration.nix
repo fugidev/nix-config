@@ -48,7 +48,7 @@
     "/" = {
       device = "/dev/volume/nixos";
       fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" "noatime" ];
+      options = [ "subvol=root" "compress=zstd" "noatime" "x-systemd.device-timeout=0" ];
     };
 
     "/nix" = {

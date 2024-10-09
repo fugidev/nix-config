@@ -27,7 +27,7 @@
     "/" = {
       device = "/dev/disk/by-uuid/35d03db4-c452-4e17-98c1-063314cce6e7";
       fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" "noatime" ];
+      options = [ "subvol=root" "compress=zstd" "noatime" "x-systemd.device-timeout=0" ];
     };
 
     "/nix" = {

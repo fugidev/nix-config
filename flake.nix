@@ -149,6 +149,7 @@
           ./modules/sops.nix
           ./modules/nginx.nix
           ./modules/borg.nix
+          ./modules/adguard.nix
           (home-root "23.05")
           {
             fugi.borgRepositories = [{

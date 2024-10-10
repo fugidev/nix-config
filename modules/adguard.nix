@@ -1,10 +1,21 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, machineConfig, ... }:
 let
-  inherit (config.networking) fqdn;
-  IPv4 = config.fugi.staticIPv4.address;
-  IPv6 = config.fugi.staticIPv6.address;
-  fqdn_shepherd = "shepherd.fugi.dev";
   adguardUser = "adguardhome";
+  hosts = with config.fugi.machines; [
+    librarian
+    shepherd
+  ];
+  hostsRewrites = builtins.concatMap
+    (host:
+      [
+        { domain = "*.${host.baseDomain}"; answer = host.baseDomain; }
+      ] ++ lib.optionals (host.IPv4 != null) [
+        { domain = host.baseDomain; answer = host.IPv4.address; }
+      ] ++ lib.optionals (host.IPv6 != null) [
+        { domain = host.baseDomain; answer = host.IPv6.address; }
+      ]
+    )
+    hosts;
 in
 {
   services.adguardhome = {
@@ -21,7 +32,10 @@ in
 
       dns = {
         # listen on local network
-        bind_hosts = [ IPv4 IPv6 ];
+        bind_hosts = [
+          machineConfig.IPv4.address
+          machineConfig.IPv6.address
+        ];
         # use local resolver as upstream
         upstream_dns = [ "::1" ];
         bootstrap_dns = [ "::1" ];
@@ -43,14 +57,7 @@ in
       filtering = {
         # applies to rewrites as well and the default (10s) is way too low
         blocked_response_ttl = 15 * 60;
-        rewrites = [
-          { domain = fqdn; answer = IPv4; }
-          { domain = fqdn; answer = IPv6; }
-          { domain = "*.${fqdn}"; answer = fqdn; }
-          { domain = fqdn_shepherd; answer = "192.168.0.4"; }
-          { domain = fqdn_shepherd; answer = "fd00::4"; }
-          { domain = "*.${fqdn_shepherd}"; answer = fqdn_shepherd; }
-        ];
+        rewrites = hostsRewrites;
       };
     };
   };
@@ -80,7 +87,7 @@ in
   networking.firewall.allowedUDPPorts = [ 53 ];
 
   # nginx proxy
-  services.nginx.virtualHosts."dns.${config.networking.fqdn}" = {
+  services.nginx.virtualHosts."dns.${machineConfig.baseDomain}" = {
     locations."/".proxyPass = "http://${config.services.adguardhome.settings.http.address}";
   };
 }

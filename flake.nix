@@ -149,6 +149,7 @@
           ./modules/sops.nix
           ./modules/nginx.nix
           ./modules/borg.nix
+          ./modules/unbound.nix
           ./modules/adguard.nix
           (home-root "23.05")
           {
@@ -181,6 +182,7 @@
           nixos-hardware.nixosModules.raspberry-pi-4
           ./modules/sops.nix
           ./modules/nginx.nix
+          ./modules/unbound.nix
           ./modules/adguard.nix
           (home-root "24.05")
         ];
@@ -194,6 +196,7 @@
         modules = [
           ./modules/sops.nix
           ./modules/nginx.nix
+          ./modules/unbound.nix
           ./modules/borg.nix
           (home-root "24.05")
           {

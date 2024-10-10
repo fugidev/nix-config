@@ -181,6 +181,7 @@
           nixos-hardware.nixosModules.raspberry-pi-4
           ./modules/sops.nix
           ./modules/nginx.nix
+          ./modules/adguard.nix
           (home-root "24.05")
         ];
       };

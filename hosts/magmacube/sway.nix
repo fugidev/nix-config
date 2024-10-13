@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 let
   monitor_l = "HDMI-A-1";
@@ -12,19 +12,7 @@ in
     ../../modules/home/sway.nix
   ];
 
-  home.sessionVariablesExtra = lib.mkAfter ''
-    unset QT_PLUGIN_PATH QML2_IMPORT_PATH
-  '';
-
-  systemd.user.sessionVariables = {
-    QML2_IMPORT_PATH = lib.mkForce "";
-    QT_PLUGIN_PATH = lib.mkForce "";
-  };
-
   wayland.windowManager.sway = {
-    # don't add sway to path
-    package = null;
-
     config = {
       focus.mouseWarping = false;
 
@@ -70,10 +58,6 @@ in
         { command = "blueman-applet"; }
       ];
     };
-
-    extraConfig = ''
-      include /etc/sway/config.d/*
-    '';
   };
 
   services.swayidle = {
@@ -87,8 +71,4 @@ in
       }
     ];
   };
-
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "apple_cursor"
-  ];
 }

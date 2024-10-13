@@ -104,6 +104,44 @@
   with inputs;
   {
     nixosConfigurations = {
+      magmacube = mkNixosSystem {
+        hostName = "magmacube";
+        system = "x86_64-linux";
+        nixpkgs = nixpkgs-stable;
+        home-manager = home-manager-stable;
+        modules = [
+          ./modules/greetd.nix
+          ./modules/fonts.nix
+          ./modules/printing.nix
+          {
+            fugi.promptColor = "#ff8700"; # orange
+            programs.sway.enable = true;
+            xdg.portal.enable = true;
+
+            home-manager = {
+              users.fugi.imports = [
+                ./modules/home/home-fugi.nix
+                # ./modules/home/mail.nix
+                ./modules/home/ssh.nix
+                ./modules/home/gpg.nix
+                ./hosts/magmacube/sway.nix
+                ({ pkgs, ... }: {
+                  fugi.wallpaper = pkgs.fetchurl {
+                    url = "https://images.wallpapersden.com/image/download/macos-12-monterey-digital_bG1mZ2mUmZqaraWkpJRpbW5trWlpamc.jpg";
+                    # url = "https://web.archive.org/web/20230404203951if_/https://images.wallpapersden.com/image/download/macos-12-monterey-digital_bG1mZ2mUmZqaraWkpJRpbW5trWlpamc.jpg";
+                    sha256 = "NA4nhCcnT6B9IJQWh8ldnjSt9eUFmte6AfN3cNz8Fwk=";
+                  };
+                  fugi.guiApps = true;
+
+                  home.pointerCursor.size = 28;
+                  home.stateVersion = "24.05";
+                })
+              ];
+            };
+          }
+        ];
+      };
+
       blaze = mkNixosSystem {
         hostName = "blaze";
         system = "aarch64-linux";
@@ -210,28 +248,6 @@
     };
 
     homeConfigurations = {
-      "fugi@magmacube" = mkHome {
-        home-manager = home-manager;
-        pkgs = nixpkgs-unstable.legacyPackages."x86_64-linux";
-
-        modules = [
-          ./modules/home/home-fugi.nix
-          ./modules/home/ssh.nix
-          ./modules/home/locale.nix
-          ./hosts/magmacube/sway.nix
-          ({ pkgs, ... }: {
-            fugi.wallpaper = pkgs.fetchurl {
-              url = "https://web.archive.org/web/20230404203951if_/https://images.wallpapersden.com/image/download/macos-12-monterey-digital_bG1mZ2mUmZqaraWkpJRpbW5trWlpamc.jpg";
-              sha256 = "NA4nhCcnT6B9IJQWh8ldnjSt9eUFmte6AfN3cNz8Fwk=";
-            };
-            fugi.promptColor = "#ff8700"; # orange
-
-            home.pointerCursor.size = 28;
-            home.stateVersion = "22.05";
-          })
-        ];
-      };
-
       "fugi@blaze" = mkHome {
         home-manager = home-manager-stable;
         pkgs = nixpkgs-stable.legacyPackages."aarch64-darwin";

@@ -92,6 +92,10 @@ in
       (builtins.attrValues config.fugi.machines);
 
     fugi.machines = {
+      magmacube = {
+        IPv4.cidr = "192.168.0.2/24";
+        IPv6.cidr = "fd00::2/64";
+      };
       librarian = {
         IPv4.cidr = "192.168.0.3/24";
         IPv6.cidr = "fd00::3/64";

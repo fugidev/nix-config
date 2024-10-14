@@ -123,7 +123,6 @@
                 # ./modules/home/mail.nix
                 ./modules/home/ssh.nix
                 ./modules/home/gpg.nix
-                ./hosts/magmacube/sway.nix
                 ({ pkgs, ... }: {
                   fugi.wallpaper = pkgs.fetchurl {
                     url = "https://images.wallpapersden.com/image/download/macos-12-monterey-digital_bG1mZ2mUmZqaraWkpJRpbW5trWlpamc.jpg";

@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, flakeRoot, ... }:
 
 let
   monitor_l = "HDMI-A-1";
@@ -9,7 +9,7 @@ let
 in
 {
   imports = [
-    ../../modules/home/sway.nix
+    (flakeRoot + /modules/home/sway.nix)
   ];
 
   wayland.windowManager.sway = {

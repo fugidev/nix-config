@@ -40,10 +40,6 @@ in
       "video"
       "networkmanager"
     ];
-    packages = with pkgs; [
-      firefox
-      xfce.thunar
-    ];
   };
 
   # Enable polkit
@@ -58,7 +54,11 @@ in
     sshfs
   ];
 
-  fugi.allowUnfree = [ "apple_cursor" ];
+  fugi.allowUnfree = [
+    "apple_cursor"
+    "discord"
+    "spotify"
+  ];
 
   system.stateVersion = "24.05";
 }

@@ -79,20 +79,6 @@
       "video" # Allow backlight control
       "networkmanager"
     ];
-    packages = with pkgs; [
-      ark
-      firefox
-      xfce.thunar
-      feh
-      pavucontrol
-      vscodium
-      filezilla
-      meld
-      sops
-      ffmpeg
-      yt-dlp
-      ffsend
-    ];
   };
 
   # Enable polkit

@@ -15,12 +15,32 @@
   home.homeDirectory = "/home/fugi";
 
   home.packages = with pkgs; [
-    gopass
+    ffsend
+    ffmpeg
+    yt-dlp
+    mediainfo
+    sops
+    trash-cli
   ] ++ lib.optionals config.fugi.guiApps [
+    firefox
+    xfce.thunar
+    xed-editor
+    gnome.file-roller
+    # utils
     qalculate-gtk
     remmina
+    filezilla
+    # media
     mpv
-    pcmanfm-qt
+    feh
+    pavucontrol
+    jellyfin-media-player
+    # office
     skanlite
+    # development
+    vscodium
+    meld
+  ] ++ lib.optionals (config.fugi.guiApps && !pkgs.naps2.meta.broken) [
+    naps2
   ];
 }

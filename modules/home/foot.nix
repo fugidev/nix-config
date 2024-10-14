@@ -31,4 +31,16 @@
       scrollback.lines = 100000;
     };
   };
+
+  xdg.desktopEntries."foot-bash" = {
+    name = "Foot (bash)";
+    genericName = "Terminal";
+    exec = "foot bash";
+    icon = "foot";
+    categories = [ "System" "TerminalEmulator" ];
+    settings = {
+      Keywords = "shell;prompt;command;commandline;";
+      StartupWMClass = "foot";
+    };
+  };
 }

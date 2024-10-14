@@ -120,7 +120,7 @@
             home-manager = {
               users.fugi.imports = [
                 ./modules/home/home-fugi.nix
-                # ./modules/home/mail.nix
+                ./modules/home/mail.nix
                 ./modules/home/ssh.nix
                 ./modules/home/gpg.nix
                 ({ pkgs, ... }: {

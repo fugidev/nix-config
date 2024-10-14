@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }@args:
+{ config, lib, pkgs, ... }:
 let
   mod = "Mod4";
 
@@ -129,8 +129,7 @@ in
 
   services.swayidle =
     let
-      swaylock = (if args ? "nixosConfig" then "${pkgs.swaylock-effects}/bin/" else "/usr/bin/") + "swaylock";
-      lockCmd = "${swaylock} -f -c 000000 --clock --indicator-idle-visible";
+      lockCmd = "${lib.getExe pkgs.swaylock-effects} -f -c 000000 --clock --indicator-idle-visible";
     in
     {
       enable = true;

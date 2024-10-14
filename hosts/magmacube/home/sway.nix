@@ -1,11 +1,12 @@
-{ config, flakeRoot, ... }:
-
+{ config, pkgs, flakeRoot, ... }:
 let
   monitor_l = "HDMI-A-1";
   monitor_c = "DP-1";
   monitor_r = "DP-2";
 
   wsOutputMap = output: map (ws: { inherit output; workspace = toString ws; });
+
+  swayCfg = config.wayland.windowManager.sway;
 in
 {
   imports = [
@@ -66,8 +67,8 @@ in
       {
         # lock session and turn off displays after 15 minutes
         timeout = 900;
-        command = "/usr/bin/loginctl lock-session; /usr/bin/swaymsg 'output * dpms off'";
-        resumeCommand = "/usr/bin/swaymsg 'output * dpms on'";
+        command = "${pkgs.systemd}/bin/loginctl lock-session; ${swayCfg.package}/bin/swaymsg 'output * dpms off'";
+        resumeCommand = "${swayCfg.package}/bin/swaymsg 'output * dpms on'";
       }
     ];
   };

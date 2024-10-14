@@ -39,6 +39,7 @@ in
     extraSessionCommands = ''
       export NIXOS_OZONE_WL=1
       export XDG_SCREENSHOTS_DIR=~/Pictures/screenshots
+      unset __HM_ZSH_SESS_VARS_SOURCED
     '';
 
     extraConfigEarly = ''

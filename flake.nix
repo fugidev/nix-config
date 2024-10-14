@@ -34,6 +34,11 @@
 
   outputs = inputs:
     let
+      specialArgs = {
+        inherit inputs;
+        flakeRoot = inputs.self;
+      };
+
       mkNixosSystem = (
         {
           hostName,
@@ -43,11 +48,7 @@
           modules ? [],
         }:
         nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-            flakeRoot = inputs.self;
-          };
+          inherit system specialArgs;
           modules =
             [
               ./hosts/${hostName}
@@ -63,6 +64,7 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
+                  extraSpecialArgs = specialArgs;
                 };
               }
             ]
@@ -78,10 +80,7 @@
         }:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = {
-            inherit inputs;
-            flakeRoot = inputs.self;
-          };
+          extraSpecialArgs = specialArgs;
           modules =
             [{
               nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;

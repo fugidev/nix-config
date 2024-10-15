@@ -1,12 +1,11 @@
-{ config, flakeRoot, machineConfig, ... }:
+{ config, util, machineConfig, ... }:
 let
   cfg = config.services.redlib;
-  useFromUnstable = import (flakeRoot + /util/useFromUnstable.nix);
 in
 {
   # Use redlib from unstable branch
   imports = [
-    (useFromUnstable {
+    (util.useFromUnstable {
       modules = [ "services/misc/redlib.nix" ];
       pkgs = [ "redlib" ];
     })

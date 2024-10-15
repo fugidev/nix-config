@@ -37,6 +37,7 @@
       specialArgs = {
         inherit inputs;
         flakeRoot = inputs.self;
+        util = import ./util inputs.nixpkgs-unstable.lib;
       };
 
       mkNixosSystem = (

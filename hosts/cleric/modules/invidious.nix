@@ -1,12 +1,11 @@
-{ config, pkgs, flakeRoot, machineConfig, ... }:
+{ config, pkgs, util, machineConfig, ... }:
 let
   cfg = config.services.invidious;
-  useFromUnstable = import (flakeRoot + /util/useFromUnstable.nix);
 in
 {
   # Use invidious from unstable branch
   imports = [
-    (useFromUnstable {
+    (util.useFromUnstable {
       modules = [ "services/web-apps/invidious.nix" ];
       pkgs = [ "invidious" "http3-ytproxy" ];
     })

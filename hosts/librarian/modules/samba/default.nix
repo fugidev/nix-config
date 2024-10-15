@@ -1,12 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, util, ... }:
 let
   inherit (lib) types mkOption;
-
-  shareFilenames = builtins.attrNames (builtins.readDir ./shares);
-  shareModules = map (filename: ./shares/${filename}) shareFilenames;
 in
 {
-  imports = shareModules;
+  imports = (util.dirPaths ./shares);
 
   options.fugi.sambaCreds = mkOption {
     type = types.attrsOf (types.path);

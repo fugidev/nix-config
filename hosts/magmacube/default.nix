@@ -1,14 +1,10 @@
-{ pkgs, ... }:
-let
-  homeModulesFilenames = builtins.attrNames (builtins.readDir ./home);
-  homeModules = map (filename: ./home/${filename}) homeModulesFilenames;
-in
+{ pkgs, util, ... }:
 {
   imports = [
     ./hardware-configuration.nix
   ];
 
-  home-manager.users.fugi.imports = homeModules;
+  home-manager.users.fugi.imports = util.dirPaths ./home;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader = {

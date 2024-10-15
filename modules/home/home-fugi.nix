@@ -25,7 +25,7 @@
     firefox
     xfce.thunar
     xed-editor
-    gnome.file-roller
+    file-roller
     # utils
     qalculate-gtk
     remmina

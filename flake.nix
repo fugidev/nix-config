@@ -106,8 +106,8 @@
       magmacube = mkNixosSystem {
         hostName = "magmacube";
         system = "x86_64-linux";
-        nixpkgs = nixpkgs-stable;
-        home-manager = home-manager-stable;
+        nixpkgs = nixpkgs-unstable;
+        home-manager = home-manager;
         modules = [
           ./modules/greetd.nix
           ./modules/fonts.nix

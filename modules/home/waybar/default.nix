@@ -9,7 +9,14 @@
     };
 
     package = pkgs.waybar.overrideAttrs (_old: {
-      patches = [ ./0001-bandwidth-units.patch ];
+      patches = [
+        ./0001-bandwidth-units.patch
+        # fix tray
+        (pkgs.fetchpatch {
+          url = "https://github.com/Alexays/Waybar/commit/0d02f6877d88551ea2be0cd151c1e6354e208b1c.patch";
+          hash = "sha256-wpdK6AY+14jt85dOQy6xkh8tNGDN2F9GA9zOfAuOaIc=";
+        })
+      ];
     });
 
     settings = {

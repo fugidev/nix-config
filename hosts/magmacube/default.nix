@@ -1,8 +1,6 @@
 { pkgs, util, ... }:
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ] ++ (util.dirPaths ./modules);
 
   home-manager.users.fugi.imports = util.dirPaths ./home;
 

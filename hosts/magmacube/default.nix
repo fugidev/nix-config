@@ -17,8 +17,6 @@
   console.keyMap = "de";
 
   networking.hostName = "magmacube";
-  networking.networkmanager.enable = true;
-  programs.nm-applet.enable = true;
 
   # Enable sound.
   services.pipewire = {

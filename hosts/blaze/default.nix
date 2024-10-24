@@ -1,9 +1,11 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, util, ... }:
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
+
+  home-manager.users.fugi.imports = util.dirPaths ./home;
 
   # enable edge config and beta gpu driver
   hardware.asahi.useExperimentalGPUDriver = true;

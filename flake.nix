@@ -163,7 +163,6 @@
                 ./modules/home/mail.nix
                 ./modules/home/ssh.nix
                 ./modules/home/gpg.nix
-                ./hosts/blaze/sway.nix
                 ({ pkgs, ... }: {
                   fugi.wallpaper = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
                   fugi.guiApps = true;

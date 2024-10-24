@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, flakeRoot, ... }:
 {
   imports = [
-    ../../modules/home/sway.nix
+    (flakeRoot + /modules/home/sway.nix)
   ];
 
   wayland.windowManager.sway = {

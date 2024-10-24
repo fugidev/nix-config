@@ -35,6 +35,8 @@ in
 
     # enable sway-session.target
     systemd.enable = true;
+    # autostart
+    systemd.xdgAutostart = true;
 
     extraSessionCommands = ''
       export NIXOS_OZONE_WL=1

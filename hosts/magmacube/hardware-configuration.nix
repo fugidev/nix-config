@@ -24,6 +24,10 @@
     };
   };
 
+  environment.etc.crypttab.text = ''
+    crypt-games UUID=5019e6d8-de45-41c1-ad6d-81466c528747 - luks,nofail
+  '';
+
   fileSystems = {
     "/" = {
       device = "/dev/mapper/magmacube-root";
@@ -47,6 +51,12 @@
       device = "/dev/disk/by-uuid/B8F6-13E2";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
+    };
+
+    "/media/games" = {
+      device = "/dev/mapper/crypt-games";
+      fsType = "btrfs";
+      options = [ "subvol=@games" "compress=zstd" "noatime" "nofail" ];
     };
   };
 

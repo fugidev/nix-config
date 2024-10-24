@@ -28,6 +28,7 @@ in
     ./wofi.nix
     ./theme.nix
     ./waybar
+    ./polkit-agent.nix
   ];
 
   wayland.windowManager.sway = {

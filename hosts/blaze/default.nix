@@ -86,7 +86,6 @@
   # packages installed in system profile
   environment.systemPackages = with pkgs; [
     acpi
-    lxqt.lxqt-policykit
     pinentry
     pinentry-curses
     pinentry-qt

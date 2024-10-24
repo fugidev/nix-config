@@ -42,7 +42,6 @@
 
   # packages installed in system profile
   environment.systemPackages = with pkgs; [
-    lxqt.lxqt-policykit
     pinentry
     pinentry-curses
     pinentry-qt

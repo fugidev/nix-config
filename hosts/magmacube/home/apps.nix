@@ -10,5 +10,6 @@
     tenacity
     spotify
     prismlauncher
+    vdhcoapp
   ];
 }

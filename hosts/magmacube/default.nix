@@ -27,6 +27,10 @@
     pulse.enable = true;
   };
 
+  # Enable bluetooth.
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
   # Define user account.
   users.users.fugi = {
     isNormalUser = true;

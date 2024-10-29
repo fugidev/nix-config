@@ -1,11 +1,11 @@
-{ config, lib, ... }:
+{ config, lib, machineConfig, ... }:
 {
   options = {
-    fugi.dhcp4 = {
+    fugi.dhcp = {
       interface = lib.mkOption {
         type = lib.types.str;
       };
-      pool = lib.mkOption {
+      IPv4Pool = lib.mkOption {
         type = lib.types.str;
       };
     };
@@ -19,7 +19,7 @@
           valid-lifetime = 4*24*60*60; # 4d
           # valid-lifetime = 10*24*60*60; # 10d
           calculate-tee-times = true;
-          interfaces-config.interfaces = [ config.fugi.dhcp4.interface ];
+          interfaces-config.interfaces = [ config.fugi.dhcp.interface ];
           lease-database = {
             name = "/var/lib/kea/dhcp4.leases";
             type = "memfile";
@@ -27,7 +27,7 @@
           subnet4 = [{
             subnet = "192.168.0.0/24";
             pools = [{
-              inherit (config.fugi.dhcp4) pool;
+              pool = config.fugi.dhcp.IPv4Pool;
             }];
             option-data = [
               {
@@ -55,6 +55,19 @@
           }];
         };
       };
+    };
+
+    services.radvd = {
+      enable = true;
+      config = ''
+        interface ${config.fugi.dhcp.interface} {
+          AdvSendAdvert on;
+          AdvDefaultLifetime 0;
+          AdvCurHopLimit 0;
+          AdvOtherConfigFlag on;
+          RDNSS ${machineConfig.IPv6.address} { };
+        };
+      '';
     };
   };
 }

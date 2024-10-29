@@ -4,8 +4,8 @@
     (flakeRoot + /modules/dhcp.nix)
   ];
 
-  fugi.dhcp4 = {
+  fugi.dhcp = {
     interface = "eno1";
-    pool = "192.168.0.101 - 192.168.0.160";
+    IPv4Pool = "192.168.0.101 - 192.168.0.160";
   };
 }

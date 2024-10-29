@@ -58,6 +58,7 @@
     gptfdisk
     nmap
     pv
+    smartmontools
   ];
 
   nix = {

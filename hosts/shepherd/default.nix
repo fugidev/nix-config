@@ -1,9 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, util, ... }:
 {
-  imports = [
-    ./hardware-configuration.nix
-    ./modules/network.nix
-  ];
+  imports = (util.dirPaths ./modules) ++ [ ./hardware-configuration.nix ];
 
   hardware = {
     raspberry-pi."4".apply-overlays-dtmerge.enable = true;

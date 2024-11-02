@@ -54,7 +54,6 @@ in
       };
 
       startup = [
-        { command = "MOZ_ENABLE_WAYLAND=0 thunderbird"; }
         { command = "blueman-applet"; }
       ];
     };

@@ -11,7 +11,6 @@
 
   fugi.allowUnfree = [
     "steam"
-    "steam-original"
-    "steam-run"
+    "steam-unwrapped"
   ];
 }

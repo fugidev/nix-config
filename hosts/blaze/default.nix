@@ -39,7 +39,6 @@
   services.logind.extraConfig = "RuntimeDirectorySize=6G";
 
   # Network Manager
-  networking.hostName = "blaze";
   networking.networkmanager.enable = true;
   programs.nm-applet.enable = true;
 

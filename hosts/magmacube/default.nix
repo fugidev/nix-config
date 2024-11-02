@@ -14,8 +14,6 @@
     timeout = 1;
   };
 
-  networking.hostName = "magmacube";
-
   # Define user account.
   users.users.fugi = {
     isNormalUser = true;

@@ -1,7 +1,6 @@
 { config, machineConfig, ... }:
 {
   networking = {
-    inherit (machineConfig) hostName;
     useDHCP = false;
     useNetworkd = true;
   };

@@ -16,7 +16,6 @@
   };
 
   networking = {
-    hostName = "shepherd";
     useDHCP = false;
     useNetworkd = true;
 

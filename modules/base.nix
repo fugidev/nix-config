@@ -9,7 +9,7 @@
   ];
 
   networking = {
-    inherit (machineConfig) domain;
+    inherit (machineConfig) domain hostName;
   };
 
   # set time zone

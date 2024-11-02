@@ -193,18 +193,6 @@
         ];
       };
 
-      nitwit = mkNixosSystem {
-        hostName = "nitwit";
-        system = "x86_64-linux";
-        nixpkgs = nixpkgs-stable;
-        home-manager = home-manager-stable;
-        modules = [
-          ./modules/sops.nix
-          ./modules/nginx.nix
-          (home-root "23.11")
-        ];
-      };
-
       shepherd = mkNixosSystem {
         hostName = "shepherd";
         system = "aarch64-linux";

@@ -50,6 +50,7 @@
 
   # home-manager
   home-manager.users.fugi = {
+    imports = [ ./home/home-fugi.nix ];
     fugi.guiApps = true;
   };
 

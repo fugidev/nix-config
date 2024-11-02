@@ -9,6 +9,9 @@
     ./helix.nix
     ./dunst.nix
     ./sftpman.nix
+    ./mail.nix
+    ./ssh.nix
+    ./gpg.nix
   ];
 
   home.username = "fugi";

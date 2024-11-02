@@ -111,16 +111,6 @@
         home-manager = home-manager;
         modules = [
           ./modules/desktop.nix
-          {
-            home-manager = {
-              users.fugi.imports = [
-                ./modules/home/home-fugi.nix
-                ./modules/home/mail.nix
-                ./modules/home/ssh.nix
-                ./modules/home/gpg.nix
-              ];
-            };
-          }
         ];
       };
 
@@ -132,17 +122,6 @@
         modules = [
           nixos-asahi.nixosModules.default
           ./modules/desktop.nix
-          {
-            home-manager = {
-              users.fugi.imports = [
-                ./modules/home/home-fugi.nix
-                ./modules/home/mail.nix
-                ./modules/home/ssh.nix
-                ./modules/home/gpg.nix
-                ./modules/home/librewolf.nix
-              ];
-            };
-          }
         ];
       };
 

@@ -111,6 +111,7 @@
         home-manager = home-manager;
         modules = [
           ./modules/desktop.nix
+          ./modules/sops.nix
         ];
       };
 

@@ -23,6 +23,14 @@
         "/var/lib"
         "/var/log"
       ];
+      exclude_patterns = [
+        "/home/*/.cache"
+        "/home/**/site-packages"
+        "/home/**/node_modules"
+      ];
+      exclude_if_present = [
+        ".nobackup"
+      ];
       exclude_caches = true;
 
       encryption_passcommand = "${pkgs.coreutils}/bin/cat ${config.sops.secrets.borg_key.path}";

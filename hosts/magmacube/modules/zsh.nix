@@ -1,5 +1,7 @@
 { ... }:
 {
+  fugi.promptColor = "#ff8700"; # orange
+
   programs.zsh = {
     shellAliases = {
       rebuild = "nixos-rebuild --log-format multiline --use-remote-sudo";

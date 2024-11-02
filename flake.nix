@@ -112,10 +112,6 @@
         modules = [
           ./modules/desktop.nix
           {
-            fugi.promptColor = "#ff8700"; # orange
-            programs.sway.enable = true;
-            xdg.portal.enable = true;
-
             home-manager = {
               users.fugi.imports = [
                 ./modules/home/home-fugi.nix
@@ -124,8 +120,7 @@
                 ./modules/home/gpg.nix
                 ({ pkgs, ... }: {
                   fugi.wallpaper = pkgs.fetchurl {
-                    url = "https://images.wallpapersden.com/image/download/macos-12-monterey-digital_bG1mZ2mUmZqaraWkpJRpbW5trWlpamc.jpg";
-                    # url = "https://web.archive.org/web/20230404203951if_/https://images.wallpapersden.com/image/download/macos-12-monterey-digital_bG1mZ2mUmZqaraWkpJRpbW5trWlpamc.jpg";
+                    url = "https://web.archive.org/web/20230404203951if_/https://images.wallpapersden.com/image/download/macos-12-monterey-digital_bG1mZ2mUmZqaraWkpJRpbW5trWlpamc.jpg";
                     sha256 = "NA4nhCcnT6B9IJQWh8ldnjSt9eUFmte6AfN3cNz8Fwk=";
                   };
                   fugi.guiApps = true;
@@ -148,10 +143,6 @@
           nixos-asahi.nixosModules.default
           ./modules/desktop.nix
           {
-            fugi.promptColor = "#f7ce46"; # yellow
-            programs.sway.enable = true;
-            xdg.portal.enable = true;
-
             home-manager = {
               users.fugi.imports = [
                 ./modules/home/home-fugi.nix

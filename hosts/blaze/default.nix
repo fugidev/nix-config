@@ -47,16 +47,6 @@
     MOZ_USE_XINPUT2 = "1"; # firefox smooth scrolling
   };
 
-  # Define user account.
-  users.users.fugi = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel" # Enable ‘sudo’.
-      "video" # Allow backlight control
-      "networkmanager"
-    ];
-  };
-
   # packages installed in system profile
   environment.systemPackages = with pkgs; [
     acpi

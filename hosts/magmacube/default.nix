@@ -14,16 +14,6 @@
     timeout = 1;
   };
 
-  # Define user account.
-  users.users.fugi = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "video"
-      "networkmanager"
-    ];
-  };
-
   fugi.allowUnfree = [
     "discord"
     "spotify"

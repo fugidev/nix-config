@@ -34,5 +34,19 @@
     sshfs
   ];
 
+  # window manager
+  programs.sway.enable = true;
+  xdg.portal.enable = true;
+
+  # Define user account.
+  users.users.fugi = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "video"
+      "networkmanager"
+    ];
+  };
+
   fugi.allowUnfree = [ "apple_cursor" ];
 }

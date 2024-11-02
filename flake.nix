@@ -133,16 +133,9 @@
         modules = [
           ./modules/sops.nix
           ./modules/nginx.nix
-          ./modules/borg.nix
           ./modules/unbound.nix
           ./modules/adguard.nix
           (home-root "23.05")
-          {
-            fugi.borgRepositories = [{
-              path = "ssh://u329990-sub1@u329990-sub1.your-storagebox.de:23/./borg-repository";
-              label = "storagebox";
-            }];
-          }
         ];
       };
 
@@ -170,14 +163,7 @@
           ./modules/sops.nix
           ./modules/nginx.nix
           ./modules/unbound.nix
-          ./modules/borg.nix
           (home-root "24.05")
-          {
-            fugi.borgRepositories = [{
-              path = "ssh://u329990-sub5@u329990-sub5.your-storagebox.de:23/./borg-repository";
-              label = "storagebox";
-            }];
-          }
         ];
       };
     };

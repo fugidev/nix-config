@@ -48,5 +48,10 @@
     ];
   };
 
+  # home-manager
+  home-manager.users.fugi = {
+    fugi.guiApps = true;
+  };
+
   fugi.allowUnfree = [ "apple_cursor" ];
 }

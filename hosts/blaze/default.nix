@@ -1,4 +1,4 @@
-{ pkgs, lib, util, ... }:
+{ pkgs, util, ... }:
 {
   imports = [ ./hardware-configuration.nix ] ++ (util.dirPaths ./modules);
 
@@ -48,28 +48,6 @@
     MOZ_USE_XINPUT2 = "1"; # firefox smooth scrolling
   };
 
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    # font = "Lat2-Terminus16";
-    keyMap = "de";
-    # useXkbConfig = true; # use xkbOptions in tty.
-  };
-
-  # Enable sound.
-  # sound.enable = true;
-  security.rtkit.enable = true; # optional but recommended
-
-  # Enable bluetooth.
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
-
-  # Enable gvfs
-  services.gvfs = {
-    enable = true;
-    package = lib.mkForce pkgs.gnome.gvfs;
-  };
-
   # Define user account.
   users.users.fugi = {
     isNormalUser = true;
@@ -80,16 +58,9 @@
     ];
   };
 
-  # Enable polkit
-  security.polkit.enable = true;
-
   # packages installed in system profile
   environment.systemPackages = with pkgs; [
     acpi
-    pinentry
-    pinentry-curses
-    pinentry-qt
-    sshfs
   ];
 
   nixpkgs.overlays = [
@@ -102,8 +73,6 @@
         });
     })
   ];
-
-  fugi.allowUnfree = [ "apple_cursor" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

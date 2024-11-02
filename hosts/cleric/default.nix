@@ -6,10 +6,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  console.keyMap = "de";
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 

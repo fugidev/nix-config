@@ -1,4 +1,4 @@
-{ pkgs, machineConfig, ... }:
+{ lib, pkgs, machineConfig, ... }:
 {
   imports = [
     ./options.nix
@@ -14,6 +14,9 @@
 
   # set time zone
   time.timeZone = "Europe/Berlin";
+
+  # keymap
+  console.keyMap = lib.mkDefault "de";
 
   # env variables
   environment.variables = rec {

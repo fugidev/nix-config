@@ -110,9 +110,7 @@
         nixpkgs = nixpkgs-unstable;
         home-manager = home-manager;
         modules = [
-          ./modules/greetd.nix
-          ./modules/fonts.nix
-          ./modules/printing.nix
+          ./modules/desktop.nix
           {
             fugi.promptColor = "#ff8700"; # orange
             programs.sway.enable = true;
@@ -148,10 +146,7 @@
         home-manager = home-manager;
         modules = [
           nixos-asahi.nixosModules.default
-          ./modules/greetd.nix
-          ./modules/fonts.nix
-          ./modules/printing.nix
-          ./modules/ios-support.nix
+          ./modules/desktop.nix
           {
             fugi.promptColor = "#f7ce46"; # yellow
             programs.sway.enable = true;

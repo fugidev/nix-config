@@ -1,4 +1,4 @@
-{ pkgs, util, ... }:
+{ util, ... }:
 {
   imports = [ ./hardware-configuration.nix ] ++ (util.dirPaths ./modules);
 
@@ -14,22 +14,7 @@
     timeout = 1;
   };
 
-  console.keyMap = "de";
-
   networking.hostName = "magmacube";
-
-  # Enable sound.
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  # Enable bluetooth.
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
 
   # Define user account.
   users.users.fugi = {
@@ -41,19 +26,7 @@
     ];
   };
 
-  # Enable polkit
-  security.polkit.enable = true;
-
-  # packages installed in system profile
-  environment.systemPackages = with pkgs; [
-    pinentry
-    pinentry-curses
-    pinentry-qt
-    sshfs
-  ];
-
   fugi.allowUnfree = [
-    "apple_cursor"
     "discord"
     "spotify"
   ];

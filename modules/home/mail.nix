@@ -15,9 +15,5 @@
 
   home.packages = with pkgs; [
     birdtray
-    (makeAutostartItem {
-      name = "com.ulduzsoft.Birdtray";
-      package = birdtray;
-    })
   ];
 }

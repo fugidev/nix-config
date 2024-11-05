@@ -51,9 +51,9 @@
       };
       wireguardPeers = [{
         wireguardPeerConfig = {
-          PublicKey = "lJwLzQYJ2+DRO8E4nNeVxMLR4mGQg5Fjui6TPxzEbzA=";
+          PublicKey = "s55IyezD0MMUACjoftr46f2X8mWCWgPOPf6i71EN/DM=";
           PresharedKeyFile = config.sops.secrets."wg-fugi/psk".path;
-          Endpoint = "fugi.dev:51820";
+          Endpoint = "cleric.fugi.dev:51820";
           AllowedIPs = [ "10.13.13.0/24" ];
           PersistentKeepalive = 25;
         };

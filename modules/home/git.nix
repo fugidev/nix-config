@@ -13,6 +13,8 @@
     extraConfig = {
       init.defaultBranch = "main";
 
+      tag.gpgSign = false;
+
       color = {
         diff-highlight = {
           oldNormal = "red";

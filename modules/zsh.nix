@@ -78,11 +78,16 @@
         }
       '';
 
-      shellAliases = {
-        # like `glol` but with stat
-        glost = "git log --graph --pretty='format:%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --compact-summary";
-        glosta = "glost --all";
-      };
+      shellAliases =
+        let
+          log-format = "%Cred%h%Creset -%C(auto)%(decorate:tag=)%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset";
+        in rec {
+          glol = "git log --graph --pretty='${log-format}' --abbrev-commit";
+          glola = "${glol} --all";
+          # like `glol` but with stat
+          glost = "git log --graph --pretty='format:${log-format}%n' --abbrev-commit --compact-summary";
+          glosta = "${glost} --all";
+        };
 
       autosuggestions.enable = true;
     };

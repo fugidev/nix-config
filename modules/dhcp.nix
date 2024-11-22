@@ -52,6 +52,13 @@
                   "${librarian.IPv4.address}, ${shepherd.IPv4.address}";
               }
             ];
+            reservations = [
+              {
+                # schnurbsi
+                hw-address = "70:C9:32:0B:1F:5E";
+                ip-address = "192.168.0.7";
+              }
+            ];
           }];
         };
       };

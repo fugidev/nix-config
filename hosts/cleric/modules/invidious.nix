@@ -32,6 +32,7 @@ in
     domain = "invidious.${machineConfig.baseDomain}";
     nginx.enable = true;
     http3-ytproxy.enable = true;
+    sig-helper.enable = true;
     port = 8723;
     settings = {
       registration_enabled = false;

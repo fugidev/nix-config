@@ -31,7 +31,7 @@
         user = "root";
       };
       "oldcleric" = {
-        hostname = "fugi.dev";
+        hostname = "oldcleric.fugi.dev";
         port = 2122;
         user = "root";
       };

@@ -32,6 +32,10 @@ let
       ip = "10.13.13.9";
       pubkey = "E6PSt6wehfrx3MbwXdOa64194epQ0UDFxjm7YNAygyU=";
     };
+    oldcleric = {
+      ip = "10.13.13.10";
+      pubkey = "YIGsHSRB0p3JDMTxlLGNd85h8seO192/LOwIfyymfD4=";
+    };
   };
 in
 {

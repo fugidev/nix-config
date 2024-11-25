@@ -1,4 +1,4 @@
-{ util, ... }:
+{ pkgs, util, ... }:
 {
   imports = [ ./hardware-configuration.nix ] ++ (util.dirPaths ./modules);
 
@@ -13,6 +13,9 @@
     efi.canTouchEfiVariables = false;
     timeout = 1;
   };
+
+  # use latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   fugi.allowUnfree = [
     "discord"

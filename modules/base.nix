@@ -72,4 +72,11 @@
       experimental-features = nix-command flakes
     '';
   };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "aspnetcore-runtime-wrapped-6.0.36"
+    "dotnet-core-combined"
+    "dotnet-sdk-6.0.428"
+    "dotnet-sdk-wrapped-6.0.428"
+  ];
 }

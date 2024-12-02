@@ -25,6 +25,7 @@
             type = "memfile";
           };
           subnet4 = [{
+            id = 1;
             subnet = "192.168.0.0/24";
             pools = [{
               pool = config.fugi.dhcp.IPv4Pool;

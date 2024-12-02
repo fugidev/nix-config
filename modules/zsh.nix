@@ -87,6 +87,7 @@
           # like `glol` but with stat
           glost = "git log --graph --pretty='format:${log-format}%n' --abbrev-commit --compact-summary";
           glosta = "${glost} --all";
+          gfetch = "git fetch --tags --force";
         };
 
       autosuggestions.enable = true;

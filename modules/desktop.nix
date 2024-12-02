@@ -24,6 +24,9 @@
   # Enable gvfs
   services.gvfs.enable = true;
 
+  # secret service
+  services.gnome.gnome-keyring.enable = true;
+
   # Enable polkit
   security.polkit.enable = true;
 

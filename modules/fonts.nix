@@ -5,7 +5,7 @@
       ttf_bitstream_vera
       twitter-color-emoji # emoji
       fira-code # mono
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      nerd-fonts.fira-code
     ];
 
     # Bitstream Vera (base) -> Twemoji -> DejaVu (rest)

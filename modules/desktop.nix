@@ -5,6 +5,7 @@
     ./fonts.nix
     ./printing.nix
     ./ios-support.nix
+    ./thunar.nix
   ];
 
   # Enable sound.

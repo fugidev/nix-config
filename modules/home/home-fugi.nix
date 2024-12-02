@@ -26,7 +26,6 @@
     trash-cli
   ] ++ lib.optionals config.fugi.guiApps [
     firefox
-    xfce.thunar
     xed-editor
     file-roller
     # utils

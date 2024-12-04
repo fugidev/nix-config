@@ -33,7 +33,7 @@
         (lib.attrVals [ "staticIPv4" "staticIPv6" ] config.fugi);
 
       routes = [{
-        routeConfig.Gateway = "192.168.0.1";
+        Gateway = "192.168.0.1";
       }];
 
       networkConfig.IPv6PrivacyExtensions = "kernel";
@@ -60,20 +60,18 @@
         PrivateKeyFile = config.sops.secrets."wg-fugi/privkey".path;
       };
       wireguardPeers = [{
-        wireguardPeerConfig = {
-          PublicKey = "s55IyezD0MMUACjoftr46f2X8mWCWgPOPf6i71EN/DM=";
-          PresharedKeyFile = config.sops.secrets."wg-fugi/psk".path;
-          Endpoint = "cleric.fugi.dev:51820";
-          AllowedIPs = [ "10.13.13.0/24" ];
-          PersistentKeepalive = 25;
-        };
+        PublicKey = "s55IyezD0MMUACjoftr46f2X8mWCWgPOPf6i71EN/DM=";
+        PresharedKeyFile = config.sops.secrets."wg-fugi/psk".path;
+        Endpoint = "cleric.fugi.dev:51820";
+        AllowedIPs = [ "10.13.13.0/24" ];
+        PersistentKeepalive = 25;
       }];
     };
     networks."40-wg-fugi" = {
       matchConfig.Name = "wg-fugi";
       networkConfig.Address = "10.13.13.8/24";
       routes = [
-        { routeConfig = { Gateway = "10.13.13.1"; Destination = "10.13.13.0/24"; }; }
+        { Gateway = "10.13.13.1"; Destination = "10.13.13.0/24"; }
       ];
     };
   };

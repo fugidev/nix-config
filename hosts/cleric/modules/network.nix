@@ -16,8 +16,8 @@
       ];
 
       routes = [
-        { routeConfig.Gateway = "152.53.100.1"; }
-        { routeConfig.Gateway = "fe80::1"; }
+        { Gateway = "152.53.100.1"; }
+        { Gateway = "fe80::1"; }
       ];
 
       networkConfig.IPv6PrivacyExtensions = "kernel";

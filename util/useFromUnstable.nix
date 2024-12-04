@@ -1,8 +1,8 @@
 { modules ? [ ], pkgs ? [ ], src ? null }:
 { config, lib, inputs, ... }:
 let
-  hostSystem = config.nixpkgs.system;
   srcOrDefault = if src != null then src else inputs.nixpkgs-unstable;
+  srcPkgs = import srcOrDefault { inherit (config.nixpkgs) config localSystem crossSystem; };
 in
 {
   disabledModules = modules;
@@ -12,7 +12,7 @@ in
   config.nixpkgs.overlays = [
     (self: super:
       lib.genAttrs pkgs
-      (pkg: srcOrDefault.legacyPackages.${hostSystem}.${pkg})
+      (pkg: srcPkgs.${pkg})
     )
   ];
 }

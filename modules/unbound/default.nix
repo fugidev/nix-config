@@ -3,6 +3,10 @@ let
   confDir = "/etc/unbound/unbound.conf.d";
 in
 {
+  imports = [
+    ./exporter.nix
+  ];
+
   # use unbound as local dns resolver
   services.resolved.enable = false;
   services.unbound = {
@@ -11,6 +15,7 @@ in
     settings = {
       server = {
         prefetch = true;
+        extended-statistics = true;
       };
       include = "${confDir}/*.conf";
     };

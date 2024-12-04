@@ -65,11 +65,9 @@ in
       };
       wireguardPeers = lib.mapAttrsToList
         (name: peer: {
-          wireguardPeerConfig = {
-            PublicKey = peer.pubkey;
-            AllowedIPs = [ "${peer.ip}/32" ];
-            PresharedKeyFile = config.sops.secrets."wireguard/psk-${name}".path;
-          };
+          PublicKey = peer.pubkey;
+          AllowedIPs = [ "${peer.ip}/32" ];
+          PresharedKeyFile = config.sops.secrets."wireguard/psk-${name}".path;
         })
         peers;
     };
@@ -78,7 +76,8 @@ in
       address = ["10.13.13.1/24"];
       networkConfig = {
         IPMasquerade = "ipv4";
-        IPForward = true;
+        IPv4Forwarding = true;
+        IPv6Forwarding = true;
       };
     };
   };

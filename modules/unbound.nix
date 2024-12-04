@@ -1,4 +1,7 @@
 { ... }:
+let
+  confDir = "/etc/unbound/unbound.conf.d";
+in
 {
   # use unbound as local dns resolver
   services.resolved.enable = false;
@@ -9,6 +12,15 @@
       server = {
         prefetch = true;
       };
+      include = "${confDir}/*.conf";
+    };
+  };
+
+  systemd.tmpfiles.settings."10-unbound.conf.d" = {
+    ${confDir}.d = {
+      mode = "0755";
+      user = "root";
+      group = "root";
     };
   };
 }

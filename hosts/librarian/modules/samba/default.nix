@@ -15,38 +15,36 @@ in
       enable = true;
 
       # not needed
-      enableNmbd = false;
-      enableWinbindd = false;
+      nmbd.enable = false;
+      winbindd.enable = false;
 
-      securityType = "user";
+      settings.global = {
+        "smb ports" = "445";
+        "min protocol" = "SMB3_00";
 
-      extraConfig = ''
-        smb ports = 445
-        min protocol = SMB3_00
+        "guest account" = "nobody";
+        "map to guest" = "bad user";
 
-        guest account = nobody
-        map to guest = bad user
-
-        disable spoolss = yes
-        disable netbios = yes
+        "disable spoolss" = "yes";
+        "disable netbios" = "yes";
 
         # should improve speed
-        use sendfile = yes
+        "use sendfile" = "yes";
 
         # hide bloat
-        veto files = /._*/.apdisk/.AppleDouble/.DS_Store/.TemporaryItems/.Trashes/desktop.ini/ehthumbs.db/Network Trash Folder/Temporary Items/Thumbs.db/
-        delete veto files = yes
+        "veto files" = "/._*/.apdisk/.AppleDouble/.DS_Store/.TemporaryItems/.Trashes/desktop.ini/ehthumbs.db/Network Trash Folder/Temporary Items/Thumbs.db/";
+        "delete veto files" = "yes";
 
         # recommended config for improved apple support
-        vfs objects = fruit streams_xattr
-        fruit:metadata = stream
-        fruit:model = MacSamba
-        fruit:posix_rename = yes
-        fruit:veto_appledouble = no
-        fruit:nfs_aces = no
-        fruit:wipe_intentionally_left_blank_rfork = yes
-        fruit:delete_empty_adfiles = yes
-      '';
+        "vfs objects" = "fruit streams_xattr";
+        "fruit:metadata" = "stream";
+        "fruit:model" = "MacSamba";
+        "fruit:posix_rename" = "yes";
+        "fruit:veto_appledouble" = "no";
+        "fruit:nfs_aces" = "no";
+        "fruit:wipe_intentionally_left_blank_rfork" = "yes";
+        "fruit:delete_empty_adfiles" = "yes";
+      };
     };
 
     # SMB over TCP

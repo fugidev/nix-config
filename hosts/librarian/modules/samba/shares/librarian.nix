@@ -4,7 +4,7 @@ let
 in
 {
   services.samba = {
-    shares = {
+    settings = {
       librarian = {
         path = sharePath;
         browseable = "yes";

@@ -39,12 +39,13 @@
 
         "network" =
           let
-            details = " {ipaddr}/{cidr}   {bandwidthDownBytes}  {bandwidthUpBytes}";
+            bandwidth = " {bandwidthDownBytes}  {bandwidthUpBytes}";
           in
           {
-            format-wifi = " {essid}" + details;
-            format-ethernet = "" + details;
-            format-disconnected = "Disconnected";
+            format-wifi = " {essid}  " + bandwidth;
+            format-ethernet = " {ipaddr}/{cidr}  " + bandwidth;
+            format-disconnected = " Disconnected";
+            tooltip-format-wifi = " {essid} {ipaddr}/{cidr}";
             interval = 10;
           };
 

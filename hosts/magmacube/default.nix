@@ -1,4 +1,4 @@
-{ pkgs, util, ... }:
+{ config, pkgs, util, ... }:
 {
   imports = [ ./hardware-configuration.nix ] ++ (util.dirPaths ./modules);
 
@@ -16,6 +16,9 @@
 
   # use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  services.openssh.enable = true;
+  users.users.root.openssh.authorizedKeys.keys = config.fugi.authorizedKeys;
 
   fugi.allowUnfree = [
     "discord"

@@ -45,4 +45,7 @@
   ] ++ lib.optionals (config.fugi.guiApps && !pkgs.naps2.meta.broken) [
     naps2
   ];
+
+  # Allow jellyfin-media-player to get controlled via mpris
+  xdg.dataFile."jellyfinmediaplayer/scripts/mpris.so".source = "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
 }

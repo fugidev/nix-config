@@ -7,14 +7,18 @@ in
   imports = [
     (util.useFromUnstable {
       modules = [ "services/web-apps/invidious.nix" ];
-      pkgs = [ "invidious" "http3-ytproxy" ];
+      pkgs = [
+        "invidious"
+        "http3-ytproxy"
+        "inv-sig-helper"
+      ];
     })
   ];
 
   services.invidious = {
     enable = true;
-    package = pkgs.invidious.overrideAttrs (_old: {
-      patches = [
+    package = pkgs.invidious.overrideAttrs (old: {
+      patches = old.patches ++ [
         # support for private instances
         (pkgs.fetchpatch {
           url = "https://web.archive.org/web/20240103152302id_/https://patch-diff.githubusercontent.com/raw/iv-org/invidious/pull/4259.diff";
@@ -33,12 +37,20 @@ in
     nginx.enable = true;
     http3-ytproxy.enable = true;
     sig-helper.enable = true;
+    sig-helper.package = pkgs.inv-sig-helper.overrideAttrs (old: {
+      src = pkgs.fetchFromGitHub {
+        inherit (old.src) owner repo;
+        rev = "63a8d8166f046c75f05786ebfa7f114cabf0f9a6";
+        hash = "sha256-VK+a+1HfESIxH5kj9FfXEuTf6m8kweHgMNJcst2xGzE=";
+      };
+    });
     port = 8723;
     settings = {
       registration_enabled = false;
       private_instance = true;
       db.user = "invidious";
     };
+    extraSettingsFile = "/var/lib/invidious/extra-conf.yaml";
   };
 
   services.nginx.virtualHosts.${cfg.domain}.enableACME = false;

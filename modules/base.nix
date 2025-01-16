@@ -62,6 +62,7 @@
     nmap
     pv
     smartmontools
+    duf
   ];
 
   nix = {

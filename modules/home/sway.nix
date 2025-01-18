@@ -86,6 +86,7 @@ in
           { app_id = "org.bunkus.mkvtoolnix-gui"; title = "Edit language"; }
           { app_id = "pcmanfm-qt"; title = "Copy Files"; }
           { title = "Extracting Files — Ark"; }
+          { app_id = "naps2"; title = "^(?!NAPS2|Preview)"; }
         ];
       };
 

@@ -63,6 +63,7 @@
     pv
     smartmontools
     duf
+    nix-output-monitor
   ];
 
   nix = {

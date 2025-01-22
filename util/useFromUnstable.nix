@@ -2,7 +2,10 @@
 { config, lib, inputs, ... }:
 let
   srcOrDefault = if src != null then src else inputs.nixpkgs-unstable;
-  srcPkgs = import srcOrDefault { inherit (config.nixpkgs) config localSystem crossSystem; };
+  srcPkgs = import srcOrDefault {
+    inherit (config.nixpkgs) config crossSystem;
+    localSystem = config.nixpkgs.localSystem.system;
+  };
 in
 {
   disabledModules = modules;

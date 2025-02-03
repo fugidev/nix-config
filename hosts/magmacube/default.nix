@@ -25,5 +25,10 @@
     "spotify"
   ];
 
+  systemd.services.greetd.unitConfig = {
+    After = [ "sys-devices-pci0000:00-0000:00:03.1-0000:07:00.0-0000:08:00.0-0000:09:00.0-drm-card1.device" ];
+    Wants = [ "sys-devices-pci0000:00-0000:00:03.1-0000:07:00.0-0000:08:00.0-0000:09:00.0-drm-card1.device" ];
+  };
+
   system.stateVersion = "24.05";
 }

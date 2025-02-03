@@ -37,13 +37,6 @@ in
     nginx.enable = true;
     http3-ytproxy.enable = true;
     sig-helper.enable = true;
-    sig-helper.package = pkgs.inv-sig-helper.overrideAttrs (old: {
-      src = pkgs.fetchFromGitHub {
-        inherit (old.src) owner repo;
-        rev = "63a8d8166f046c75f05786ebfa7f114cabf0f9a6";
-        hash = "sha256-VK+a+1HfESIxH5kj9FfXEuTf6m8kweHgMNJcst2xGzE=";
-      };
-    });
     port = 8723;
     settings = {
       registration_enabled = false;

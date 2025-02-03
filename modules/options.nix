@@ -35,9 +35,15 @@ in
       type = types.listOf types.str;
       default = [ ];
     };
+
+    allowInsecure = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+    };
   };
 
   config = {
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.fugi.allowUnfree;
+    nixpkgs.config.permittedInsecurePackages = config.fugi.allowInsecure;
   };
 }

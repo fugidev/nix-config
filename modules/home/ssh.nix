@@ -30,11 +30,6 @@
         hostname = "shepherd.fugi.dev";
         user = "root";
       };
-      "oldcleric" = {
-        hostname = "oldcleric.fugi.dev";
-        port = 2122;
-        user = "root";
-      };
       # ifsr
       "quitte" = {
         hostname = "quitte.ifsr.de";

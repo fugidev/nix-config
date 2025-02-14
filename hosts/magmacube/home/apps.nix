@@ -14,6 +14,6 @@
     vdhcoapp
 
     freecad
-    (bambu-studio.override { boost = pkgs.boost186; })
+    bambu-studio
   ];
 }

@@ -49,6 +49,7 @@
       "wheel"
       "video"
       "networkmanager"
+      "dialout"
     ];
   };
 

@@ -7,6 +7,7 @@
   # enable edge config and beta gpu driver
   hardware.asahi.useExperimentalGPUDriver = true;
   hardware.asahi.experimentalGPUInstallMode = "replace";
+  hardware.asahi.peripheralFirmwareDirectory = /asahi;
 
   # enable backlight control
   hardware.acpilight.enable = true;

@@ -34,6 +34,12 @@
     };
   };
 
+  programs.zsh = {
+    shellAliases = {
+      rebuild = "nixos-rebuild --log-format multiline --use-remote-sudo";
+    };
+  };
+
   # system packages
   environment.systemPackages = with pkgs; [
     # neofetch # very essential

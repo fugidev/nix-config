@@ -38,6 +38,16 @@
     shellAliases = {
       rebuild = "nixos-rebuild --log-format multiline --use-remote-sudo";
     };
+    interactiveShellInit = ''
+      nom-rebuild() {
+        host="$(hostname)"
+        if (( $# > 0 )); then
+          host="$1"
+          shift
+        fi
+        nom build .\#nixosConfigurations.$host.config.system.build.toplevel "$@"
+      }
+    '';
   };
 
   # system packages

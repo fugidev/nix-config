@@ -31,4 +31,21 @@ in
   services.udev.extraRules = ''
     SUBSYSTEM=="drm", KERNEL=="card*", TAG+="systemd"
   '';
+
+  imports = [ ./gtklock.nix ];
+
+  programs.gtklock = {
+    enable = true;
+    style = ''
+      window {
+        background-color: black;
+        background-size: cover;
+      }
+    '';
+    config = {
+      start-hidden = true;
+      idle-hide = true;
+      idle-timeout = 10;
+    };
+  };
 }

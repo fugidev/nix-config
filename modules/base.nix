@@ -6,6 +6,7 @@
     ./tmux.nix
     ./upgrade-diff.nix
     ./locale.nix
+    ./gtklock.nix # tmp until upstreamed
   ];
 
   networking = {

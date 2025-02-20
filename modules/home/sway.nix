@@ -134,7 +134,7 @@ in
 
   services.swayidle =
     let
-      lockCmd = "${lib.getExe pkgs.swaylock-effects} -f -c 000000 --clock --indicator-idle-visible";
+      lockCmd = "${lib.getExe pkgs.gtklock} -d";
     in
     {
       enable = true;

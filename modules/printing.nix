@@ -25,7 +25,7 @@ in
     {
       name = "HP_Color_LaserJet";
       description = "HP Color LaserJet Pro MFP 3302";
-      deviceUri = "ipp://192.168.0.6/ipp";
+      deviceUri = "ipp://[fd00::6]/ipp";
       location = "3D-Drucker-Zimmer";
       model = "everywhere";
     }

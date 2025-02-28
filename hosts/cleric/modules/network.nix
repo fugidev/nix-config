@@ -16,7 +16,7 @@
       ];
 
       routes = [
-        { Gateway = "152.53.100.1"; }
+        { Gateway = "152.53.236.1"; }
         { Gateway = "fe80::1"; }
       ];
 
@@ -25,7 +25,7 @@
     };
     links."40-ens3" = {
       matchConfig = {
-        MACAddress = "f8:ca:b8:3c:3c:62";
+        MACAddress = "8a:c6:65:67:1a:f5";
       };
       linkConfig = {
         NamePolicy = "kernel database onboard slot path";

@@ -18,12 +18,12 @@ in
     enable = true;
 
     iconTheme = {
-      package = pkgs.breeze-icons;
+      package = pkgs.kdePackages.breeze-icons;
       name = "breeze-dark";
     };
 
     theme = {
-      package = pkgs.breeze-gtk;
+      package = pkgs.kdePackages.breeze-gtk;
       name = "Breeze-Dark";
     };
 

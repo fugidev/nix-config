@@ -38,7 +38,7 @@
     pavucontrol
     jellyfin-media-player
     # office
-    skanlite
+    kdePackages.skanlite
     # development
     vscodium
     meld

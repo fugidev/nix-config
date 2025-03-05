@@ -6,6 +6,7 @@
     libreoffice-fresh
     kdePackages.okular
     kdePackages.kdenlive
+    inkscape
     element-desktop
     discord
     tenacity

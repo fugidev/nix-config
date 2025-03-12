@@ -35,6 +35,14 @@
     };
   };
 
+  programs.bat = {
+    enable = true;
+    settings = {
+      theme = "TwoDark";
+      style = "plain";
+    };
+  };
+
   programs.zsh = {
     shellAliases = {
       rebuild = "nixos-rebuild --log-format multiline --use-remote-sudo";
@@ -59,7 +67,6 @@
     git
     htop
     btop
-    bat
     fd
     nixpkgs-fmt
     eza

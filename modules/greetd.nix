@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  sway = config.home-manager.users.fugi.wayland.windowManager.sway.package or pkgs.sway;
+  sway = config.home-manager.users.fugi.wayland.windowManager.sway.package;
   systemd-inhibit = "${pkgs.systemd}/bin/systemd-inhibit --what=handle-power-key --mode=block --who=sway";
   systemd-cat = "${pkgs.systemd}/bin/systemd-cat --identifier=sway";
 

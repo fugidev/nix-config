@@ -17,6 +17,13 @@ in
       matching = "multi-contains";
     };
 
-    style = builtins.readFile wofi-arc-dark;
+    style = (builtins.readFile wofi-arc-dark) + ''
+      #window {
+        background-color: rgba(45, 48, 59, 0.7);
+      }
+      #entry {
+        background-color: rgba(45, 48, 59, 0.5);
+      }
+    '';
   };
 }

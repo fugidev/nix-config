@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }:
 let
+  cfg = config.wayland.windowManager.sway;
+
   mod = "Mod4";
 
   mkScreenshotKeybindings = { baseKeybinds, commands }: builtins.listToAttrs (
@@ -35,6 +37,15 @@ in
   wayland.windowManager.sway = {
     enable = true;
 
+    package = pkgs.swayfx.override {
+      extraSessionCommands = cfg.extraSessionCommands;
+      extraOptions = cfg.extraOptions;
+      withBaseWrapper = cfg.wrapperFeatures.base;
+      withGtkWrapper = cfg.wrapperFeatures.gtk;
+    };
+
+    checkConfig = false;
+
     # enable sway-session.target
     systemd.enable = true;
     # autostart
@@ -55,6 +66,19 @@ in
       for_window [app_id="org.jellyfin.jellyfinmediaplayer"] inhibit_idle visible
       for_window [app_id="com.obsproject.Studio"] inhibit_idle visible
       for_window [app_id="pinentry-qt"] focus
+
+      layer_effects "swaync-notification-window" {
+        blur enable;
+        blur_ignore_transparent enable;
+      }
+      layer_effects "swaync-control-center" {
+        blur enable;
+        blur_ignore_transparent enable;
+      }
+      layer_effects "wofi" {
+        blur enable;
+        blur_ignore_transparent enable;
+      }
     '';
 
     config = {

@@ -7,7 +7,6 @@
     ./foot.nix
     ./direnv.nix
     ./helix.nix
-    ./dunst.nix
     ./sftpman.nix
     ./mail.nix
     ./ssh.nix

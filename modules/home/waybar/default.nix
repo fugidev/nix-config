@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
   programs.waybar = {
     enable = true;
@@ -20,7 +20,28 @@
         position = "top";
         modules-left = [ "sway/workspaces" "sway/mode" ];
         modules-center = [ "clock" ];
-        modules-right = [ "network" "disk" "memory" "cpu" "pulseaudio" "battery" "tray" ];
+        modules-right = [ "network" "disk" "memory" "cpu" "pulseaudio" "battery" "tray" "custom/notification" ];
+
+        "custom/notification" = let swaync-client = lib.getExe' config.services.swaync.package "swaync-client"; in
+        {
+          tooltip = false;
+          format = "{icon}";
+          format-icons = {
+            notification = "<span foreground='red'><sup></sup></span>";
+            none = "";
+            dnd-notification = "<span foreground='red'><sup></sup></span>";
+            dnd-none = "";
+            inhibited-notification = "<span foreground='red'><sup></sup></span>";
+            inhibited-none = "";
+            dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>";
+            dnd-inhibited-none = "";
+          };
+          return-type = "json";
+          exec = "${swaync-client} -swb";
+          on-click = "${swaync-client} -t -sw";
+          on-click-right = "${swaync-client} -d -sw";
+          escape = true;
+        };
 
         "sway/workspaces" = {
           disable-scroll = true;

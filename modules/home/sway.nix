@@ -29,6 +29,7 @@ in
     ./theme.nix
     ./waybar
     ./polkit-agent.nix
+    ./swaync.nix
   ];
 
   wayland.windowManager.sway = {

@@ -182,7 +182,6 @@ in
     sway-contrib.grimshot
     wl-clipboard
     (rofimoji.override {
-      rofi = pkgs.wofi;
       x11Support = false;
     })
   ];

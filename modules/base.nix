@@ -8,7 +8,9 @@
     ./locale.nix
     ./gtklock.nix # tmp until upstreamed
     (util.useFromUnstable {
-      modules = [ "programs/bat.nix" ];
+      modules = lib.optionals
+        (lib.versionOlder lib.version "25.05")
+        [ "programs/bat.nix" ];
     })
   ];
 

@@ -40,6 +40,7 @@
 
   # window manager
   programs.sway.enable = true;
+  programs.sway.extraPackages = [ ];
   xdg.portal.enable = true;
 
   # Define user account.

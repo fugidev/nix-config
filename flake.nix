@@ -19,7 +19,8 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     nixos-asahi = {
-      url = "github:tpwrules/nixos-apple-silicon";
+      url = "github:marcin-serwin/nixos-apple-silicon/push-nwvktpxoswts";
+      # url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nixos-generators = {

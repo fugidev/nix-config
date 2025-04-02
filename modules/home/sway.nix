@@ -63,7 +63,7 @@ in
 
     extraConfig = ''
       titlebar_padding 5 1
-      for_window [app_id="org.jellyfin.jellyfinmediaplayer"] inhibit_idle visible
+      for_window [app_id="com.github.iwalton3.jellyfin-media-player"] inhibit_idle visible
       for_window [app_id="com.obsproject.Studio"] inhibit_idle visible
       for_window [app_id="pinentry-qt"] focus
 

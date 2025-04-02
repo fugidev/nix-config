@@ -1,4 +1,4 @@
-{ lib, pkgs, machineConfig, ... }:
+{ lib, pkgs, machineConfig, util, ... }:
 {
   imports = [
     ./options.nix
@@ -7,6 +7,9 @@
     ./upgrade-diff.nix
     ./locale.nix
     ./gtklock.nix # tmp until upstreamed
+    (util.useFromUnstable {
+      modules = [ "programs/bat.nix" ];
+    })
   ];
 
   networking = {

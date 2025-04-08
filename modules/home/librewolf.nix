@@ -37,6 +37,7 @@ in
       "browser.places.speculativeConnect.enabled" = true;
       "browser.urlbar.speculativeConnect.enabled" = true;
       # other settings
+      "browser.fullscreen.autohide" = false;
       "browser.compactmode.show" = true;
       "browser.uidensity" = 1;
       "browser.startup.page" = 3; # restore previous session

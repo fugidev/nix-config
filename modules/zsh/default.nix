@@ -98,7 +98,7 @@
         zsh = super.zsh.overrideAttrs (old: {
           patches = old.patches ++ [
             # disable double escaping of remote paths for rsync/scp completion
-            ../misc/zsh_completion_remote_files.patch
+            ./zsh_completion_remote_files.patch
           ];
         });
       })

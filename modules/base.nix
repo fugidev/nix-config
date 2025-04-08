@@ -2,7 +2,7 @@
 {
   imports = [
     ./options.nix
-    ./zsh.nix
+    ./zsh
     ./tmux.nix
     ./upgrade-diff.nix
     ./locale.nix

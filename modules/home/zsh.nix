@@ -10,7 +10,7 @@ if (args ? "nixosConfig") then
 else
 # standalone home-manager, import the nixos module
   let
-    nixosZshConfig = import ../zsh.nix args;
+    nixosZshConfig = import ../zsh args;
     extraConfig = {
       shellAliases = {
         dco = "docker compose";

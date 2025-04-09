@@ -16,5 +16,7 @@
 
     freecad
     bambu-studio
+
+    lutris
   ];
 }

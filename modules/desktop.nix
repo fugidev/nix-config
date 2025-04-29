@@ -36,6 +36,7 @@
     pinentry-curses
     pinentry-qt
     sshfs
+    pulseaudio
   ];
 
   # window manager

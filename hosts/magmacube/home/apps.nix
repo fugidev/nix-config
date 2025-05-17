@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    komikku
     mkvtoolnix
     libreoffice-fresh
     kdePackages.okular
@@ -13,6 +12,7 @@
     spotify
     prismlauncher
     vdhcoapp
+    joplin-desktop
 
     freecad
     bambu-studio

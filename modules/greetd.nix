@@ -42,10 +42,12 @@ in
         background-size: cover;
       }
     '';
-    config = {
+
+    config.main = {
       start-hidden = true;
       idle-hide = true;
       idle-timeout = 10;
+      follow-focus = true;
     };
   };
 }

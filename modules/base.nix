@@ -6,7 +6,6 @@
     ./tmux.nix
     ./upgrade-diff.nix
     ./locale.nix
-    ./gtklock.nix # tmp until upstreamed
     (util.useFromUnstable {
       modules = lib.optionals
         (lib.versionOlder lib.version "25.05")

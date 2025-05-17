@@ -8,57 +8,63 @@
 }:
 let
   cfg = config.programs.gtklock;
+  configFormat = pkgs.formats.ini {
+    listToValue = builtins.concatStringsSep ";";
+  };
 
-  # finalPackage = pkgs.symlinkJoin {
-  #   inherit (cfg.package) version;
-  #   pname = "gtklock-wrapped";
-  #   paths = [ cfg.package ] ++ cfg.modules;
-  # };
+  inherit (lib)
+    types
+    mkOption
+    mkEnableOption
+    mkPackageOption
+    ;
 in
 {
-  options.programs.gtklock =
-    let
-      inherit (lib)
-        types
-        mkOption
-        mkEnableOption
-        mkPackageOption
-        ;
-    in
-    {
-      enable = mkEnableOption "gtklock";
+  options.programs.gtklock = {
+    enable = mkEnableOption "gtklock, a GTK-based lockscreen for Wayland";
 
-      package = mkPackageOption pkgs "gtklock" { };
+    package = mkPackageOption pkgs "gtklock" { };
 
-      config = mkOption {
-        type = types.submodule {
-          freeformType = with types; attrsOf (oneOf [str path bool int]);
-        };
-      };
-
-      style = mkOption {
-        type = with types; nullOr str;
-        default = null;
-      };
-
-      modules = mkOption {
-        type = with types; listOf package;
-        default = [ ];
-      };
+    config = mkOption {
+      type = configFormat.type;
+      description = ''
+        Configuration for gtklock.
+        See [`gtklock(1)`](https://github.com/jovanlanik/gtklock/blob/master/man/gtklock.1.scd) man page for details.
+      '';
     };
 
+    style = mkOption {
+      type = with types; nullOr str;
+      default = null;
+      description = ''
+        CSS Stylesheet for gtklock.
+        See [gtklock's wiki](https://github.com/jovanlanik/gtklock/wiki#Styling) for details.
+      '';
+    };
+
+    modules = mkOption {
+      type = with types; listOf package;
+      default = [ ];
+      example = lib.literalExpression ''
+        with pkgs; [
+          gtklock-playerctl-module
+          gtklock-powerbar-module
+          gtklock-userinfo-module
+        ]'';
+      description = "gtklock modules to load.";
+    };
+  };
+
   config = lib.mkIf cfg.enable {
-    programs.gtklock.config = {
-      style = lib.mkIf (cfg.style != null) (pkgs.writeText "style.css" cfg.style);
+    programs.gtklock.config.main = {
+      style = lib.mkIf (cfg.style != null) "${pkgs.writeText "style.css" cfg.style}";
 
       modules = lib.mkIf (cfg.modules != [ ]) (
-        lib.concatMapStringsSep ";" (
-          pkg: "${pkg}/lib/gtklock/${lib.removePrefix "gtklock-" pkg.pname}.so"
-        ) cfg.modules
+        map (pkg: "${pkg}/lib/gtklock/${lib.removePrefix "gtklock-" pkg.pname}.so") cfg.modules
       );
     };
 
-    environment.etc."xdg/gtklock/config.ini".text = lib.generators.toINI { } { main = cfg.config; };
+    environment.etc."xdg/gtklock/config.ini".source = configFormat.generate "config.ini" cfg.config;
 
     environment.systemPackages = [ cfg.package ];
 

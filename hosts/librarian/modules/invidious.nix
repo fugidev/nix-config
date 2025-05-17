@@ -18,7 +18,7 @@ in
   services.invidious = {
     enable = true;
     package = pkgs.invidious.overrideAttrs (old: {
-      patches = old.patches ++ [
+      patches = (old.patches or []) ++ [
         # support for private instances
         (pkgs.fetchpatch {
           url = "https://web.archive.org/web/20240103152302id_/https://patch-diff.githubusercontent.com/raw/iv-org/invidious/pull/4259.diff";

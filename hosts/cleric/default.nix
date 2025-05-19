@@ -6,6 +6,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # qemu integration
+  services.qemuGuest.enable = true;
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 

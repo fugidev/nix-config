@@ -77,6 +77,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    networking.wireguard.useNetworkd = false;
     # Create Wireguard interfaces
     networking.wireguard.interfaces = concatMapAttrs
       (nsName: nsCfg: {

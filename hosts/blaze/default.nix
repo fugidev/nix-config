@@ -1,4 +1,4 @@
-{ pkgs, util, ... }:
+{ lib, pkgs, util, ... }:
 {
   imports = [ ./hardware-configuration.nix ] ++ (util.dirPaths ./modules);
 
@@ -8,6 +8,7 @@
   hardware.asahi.useExperimentalGPUDriver = true;
   hardware.asahi.experimentalGPUInstallMode = "replace";
   hardware.asahi.peripheralFirmwareDirectory = /asahi;
+  hardware.graphics.package = lib.mkForce pkgs.mesa;
 
   # enable backlight control
   hardware.acpilight.enable = true;

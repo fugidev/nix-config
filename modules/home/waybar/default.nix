@@ -20,7 +20,7 @@
         position = "top";
         modules-left = [ "sway/workspaces" "sway/mode" ];
         modules-center = [ "clock" ];
-        modules-right = [ "network" "disk" "memory" "cpu" "pulseaudio" "battery" "tray" "custom/notification" ];
+        modules-right = [ "network" "disk" "memory" "cpu" "wireplumber" "battery" "tray" "custom/notification" ];
 
         "custom/notification" = let swaync-client = lib.getExe' config.services.swaync.package "swaync-client"; in
         {
@@ -77,11 +77,11 @@
           format = "{usage:3}%";
         };
 
-        "pulseaudio" = {
+        "wireplumber" = {
           format = " {volume}%";
           format-bluetooth = " {volume}%";
           format-muted = " Mute";
-          on-click = "pavucontrol";
+          on-click = lib.getExe pkgs.pwvucontrol;
         };
 
         "battery" = {
@@ -190,7 +190,6 @@
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     font-awesome
-    pavucontrol
   ];
 
   # otherwise it breaks for no reason

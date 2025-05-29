@@ -102,7 +102,7 @@ in
         # swaymsg -t get_tree
         criteria = [
           { app_id = "qalculate-gtk"; }
-          { app_id = "pavucontrol"; }
+          { app_id = "pwvucontrol"; }
           { app_id = "de.haeckerfelix.AudioSharing"; }
           { app_id = "blueman-manager"; }
           { app_id = "nm-connection-editor"; }
@@ -139,8 +139,10 @@ in
         "--locked Shift+XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10 -s sysfs/leds/kbd_backlight";
         "--locked Shift+XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10 -s sysfs/leds/kbd_backlight";
         # media control
-        "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-        "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioRaiseVolume" = "exec wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+";
+        "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        "XF86AudioMicMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
         "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
         "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
         "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";

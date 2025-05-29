@@ -34,7 +34,7 @@
     # media
     mpv
     feh
-    pavucontrol
+    pwvucontrol
     jellyfin-media-player
     # office
     kdePackages.skanlite

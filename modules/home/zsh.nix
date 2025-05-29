@@ -33,7 +33,7 @@ else
         dps = "docker ps --format 'table {{.ID}}\\t{{.Names}}\\t{{.Image}}\\t{{.RunningFor}}\\t{{.Status}}'";
         hms = "home-manager switch";
       };
-      initExtra = ''
+      initContent = ''
         source ${pkgs.fzf}/share/fzf/key-bindings.zsh
       '';
     };
@@ -41,8 +41,8 @@ else
   {
     imports = [
       # for whatever reason, some options are named differently, so we have to alias them
-      (lib.mkAliasOptionModule [ "programs" "zsh" "interactiveShellInit" ] [ "programs" "zsh" "initExtra" ])
-      (lib.mkAliasOptionModule [ "programs" "zsh" "promptInit" ] [ "programs" "zsh" "initExtra" ])
+      (lib.mkAliasOptionModule [ "programs" "zsh" "interactiveShellInit" ] [ "programs" "zsh" "initContent" ])
+      (lib.mkAliasOptionModule [ "programs" "zsh" "promptInit" ] [ "programs" "zsh" "initContent" ])
       (lib.mkAliasOptionModule [ "programs" "zsh" "shellInit" ] [ "programs" "zsh" "envExtra" ])
       (lib.mkAliasOptionModule [ "programs" "zsh" "autosuggestions" ] [ "programs" "zsh" "autosuggestion" ])
     ];

@@ -8,7 +8,7 @@
   };
 
   # ssh agent integration
-  programs.zsh.initExtra = ''
+  programs.zsh.initContent = ''
     unset SSH_AGENT_PID
     export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
     export GPG_TTY=$(tty)

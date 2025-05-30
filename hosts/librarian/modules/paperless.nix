@@ -1,12 +1,14 @@
 { config, lib, ... }:
 let
   consumptionDir = "/data/share/_paperless";
+  fqdn = "paperless.${config.networking.fqdn}";
 in
 {
   services.paperless = {
     enable = true;
     passwordFile = config.sops.secrets.paperless_password.path;
     settings = {
+      PAPERLESS_URL = "https://${fqdn}";
       PAPERLESS_DBHOST = "/run/postgresql";
       PAPERLESS_OCR_LANGUAGE = "deu+eng";
       PAPERLESS_ADMIN_USER = "fugi";
@@ -16,7 +18,7 @@ in
     inherit consumptionDir;
   };
 
-  services.nginx.virtualHosts."paperless.${config.networking.fqdn}" = {
+  services.nginx.virtualHosts.${fqdn} = {
     locations."/" = {
       proxyPass = "http://127.0.0.1:${builtins.toString config.services.paperless.port}";
       proxyWebsockets = true;

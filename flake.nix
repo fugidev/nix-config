@@ -18,8 +18,8 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
-    nixos-asahi = {
-      url = "github:tpwrules/nixos-apple-silicon";
+    nixos-apple-silicon = {
+      url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nixos-generators = {
@@ -125,7 +125,7 @@
         nixpkgs = nixpkgs-unstable;
         home-manager = home-manager;
         modules = [
-          nixos-asahi.nixosModules.default
+          nixos-apple-silicon.nixosModules.default
           ./modules/desktop.nix
         ];
       };

@@ -113,11 +113,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748391243,
-        "narHash": "sha256-7sCuihzsTRZemtbTXaFUoGJUfuQErhKEcL9v7HKIo1k=",
+        "lastModified": 1748668774,
+        "narHash": "sha256-fYk/vk4ClmvHIgnGv/5GNRiDLtNCwXo9aLq36L/x+P4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f5b12be834874f7661db4ced969a621ab2d57971",
+        "rev": "60e4624302d956fe94d3f7d96a560d14d70591b9",
         "type": "github"
       },
       "original": {
@@ -133,11 +133,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748226808,
-        "narHash": "sha256-GaBRgxjWO1bAQa8P2+FDxG4ANBVhjnSjBms096qQdxo=",
+        "lastModified": 1748665073,
+        "narHash": "sha256-RMhjnPKWtCoIIHiuR9QKD7xfsKb3agxzMfJY8V9MOew=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "83665c39fa688bd6a1f7c43cf7997a70f6a109f9",
+        "rev": "282e1e029cb6ab4811114fc85110613d72771dea",
         "type": "github"
       },
       "original": {
@@ -156,11 +156,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748225187,
-        "narHash": "sha256-gpNN43fNJQoHhnK1Z+nms4lo6i/t9t2rfZMAxc165vQ=",
+        "lastModified": 1748570485,
+        "narHash": "sha256-oDnEc/rxyDf+uUXO56Z2TJtrrQoBe0Z4MCIRaY6lVZ0=",
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "98c1bcaaa4dbd5980523a08a5b32e35d44e830e5",
+        "rev": "6c961ee42ff2301ee61c75aa42cbe8c8adecf3c8",
         "type": "github"
       },
       "original": {
@@ -184,7 +184,7 @@
         "type": "github"
       }
     },
-    "nixos-asahi": {
+    "nixos-apple-silicon": {
       "inputs": {
         "flake-compat": "flake-compat_2",
         "nixpkgs": [
@@ -192,15 +192,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1747514947,
-        "narHash": "sha256-irRDuerdVu495nBgkhCUjCi2mRpPig0F6cKMoIOfScA=",
-        "owner": "tpwrules",
+        "lastModified": 1748659443,
+        "narHash": "sha256-dav2hzyCmXZ3n6lEZrfZBG51+g6PUhkzRl3d6Ypd9x0=",
+        "owner": "nix-community",
         "repo": "nixos-apple-silicon",
-        "rev": "db46177593e24f68e802455875850cdeaf49eb1c",
+        "rev": "3ddc251d2acce5019b0fa770e224d068610a34e4",
         "type": "github"
       },
       "original": {
-        "owner": "tpwrules",
+        "owner": "nix-community",
         "repo": "nixos-apple-silicon",
         "type": "github"
       }
@@ -228,11 +228,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1747900541,
-        "narHash": "sha256-dn64Pg9xLETjblwZs9Euu/SsjW80pd6lr5qSiyLY1pg=",
+        "lastModified": 1748634340,
+        "narHash": "sha256-pZH4bqbOd8S+si6UcfjHovWDiWKiIGRNRMpmRWaDIms=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "11f2d9ea49c3e964315215d6baa73a8d42672f06",
+        "rev": "daa628a725ab4948e0e2b795e8fb6f4c3e289a7a",
         "type": "github"
       },
       "original": {
@@ -244,11 +244,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1748302896,
-        "narHash": "sha256-ixMT0a8mM091vSswlTORZj93WQAJsRNmEvqLL+qwTFM=",
+        "lastModified": 1748437600,
+        "narHash": "sha256-hYKMs3ilp09anGO7xzfGs3JqEgUqFMnZ8GMAqI6/k04=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7848cd8c982f7740edf76ddb3b43d234cb80fc4d",
+        "rev": "7282cb574e0607e65224d33be8241eae7cfe0979",
         "type": "github"
       },
       "original": {
@@ -260,11 +260,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1748370509,
-        "narHash": "sha256-QlL8slIgc16W5UaI3w7xHQEP+Qmv/6vSNTpoZrrSlbk=",
+        "lastModified": 1748460289,
+        "narHash": "sha256-7doLyJBzCllvqX4gszYtmZUToxKvMUrg45EUWaUYmBg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4faa5f5321320e49a78ae7848582f684d64783e9",
+        "rev": "96ec055edbe5ee227f28cdbc3f1ddf1df5965102",
         "type": "github"
       },
       "original": {
@@ -281,7 +281,7 @@
         "home-manager": "home-manager",
         "home-manager-stable": "home-manager-stable",
         "nix-minecraft": "nix-minecraft",
-        "nixos-asahi": "nixos-asahi",
+        "nixos-apple-silicon": "nixos-apple-silicon",
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs-stable": "nixpkgs-stable",

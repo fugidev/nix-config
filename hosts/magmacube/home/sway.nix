@@ -57,6 +57,14 @@ in
         { command = "blueman-applet"; }
       ];
     };
+
+    extraConfig = ''
+      # hack to fix initial orientation on vertical outputs
+      workspace "8"
+      workspace "7"
+      workspace "2"
+      workspace "1"
+    '';
   };
 
   services.swayidle = {

@@ -12,7 +12,7 @@ in
       PAPERLESS_DBHOST = "/run/postgresql";
       PAPERLESS_OCR_LANGUAGE = "deu+eng";
       PAPERLESS_ADMIN_USER = "fugi";
-      PAPERLESS_FILENAME_FORMAT = "{created_year}/{created_year}-{created_month}-{created_day} {title}";
+      PAPERLESS_FILENAME_FORMAT = "{{ created_year }}/{{ created_year }}-{{ created_month }}-{{ created_day }} {{ title }}";
       PAPERLESS_OCR_DESKEW = false; # deskew sometimes messes up, so I do it manually
     };
     inherit consumptionDir;

@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   imports = [
     ./zsh.nix
@@ -13,6 +13,19 @@
 
   home.username = "fugi";
   home.homeDirectory = "/Users/fugi";
+
+  home.packages = with pkgs; [
+    fd
+    ripgrep
+    curl
+    wget
+    git
+    eza
+    doggo
+    jq
+    ncdu
+    nmap
+  ];
 
   programs.zsh =
     let
@@ -36,4 +49,12 @@
         export PATH="${lib.makeBinPath binDirs}:$PATH"
       '';
     };
+
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "TwoDark";
+      style = "plain";
+    };
+  };
 }

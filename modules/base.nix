@@ -1,4 +1,4 @@
-{ lib, pkgs, machineConfig, util, ... }:
+{ lib, pkgs, machineConfig, ... }:
 {
   imports = [
     ./options.nix
@@ -6,11 +6,6 @@
     ./tmux.nix
     ./upgrade-diff.nix
     ./locale.nix
-    (util.useFromUnstable {
-      modules = lib.optionals
-        (lib.versionOlder lib.version "25.05")
-        [ "programs/bat.nix" ];
-    })
   ];
 
   networking = {

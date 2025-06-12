@@ -25,6 +25,7 @@
     jq
     ncdu
     nmap
+    nix-output-monitor
   ];
 
   programs.zsh =

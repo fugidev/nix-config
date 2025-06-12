@@ -87,6 +87,7 @@
     smartmontools
     duf
     nix-output-monitor
+    unzip
   ];
 
   nix = {

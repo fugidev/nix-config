@@ -104,9 +104,6 @@ in
         IPv4.cidr = "192.168.0.4/24";
         IPv6.cidr = "fd00::4/64";
       };
-      nitwit = {
-        IPv4.cidr = "178.254.28.214/22";
-      };
       cleric = {
         IPv4.cidr = "152.53.237.148/22";
         IPv6.cidr = "2a0a:4cc0:c0:601f::1/64";

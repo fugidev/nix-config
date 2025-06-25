@@ -34,6 +34,10 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/release-2.93.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = inputs:
@@ -62,6 +66,8 @@
               ({ config, ... }: {
                 _module.args.machineConfig = config.fugi.machines.${hostName};
               })
+              # use lesbiab nix
+              inputs.lix-module.nixosModules.default
             ]
             ++ nixpkgs.lib.optionals (home-manager != null) [
               home-manager.nixosModules.home-manager

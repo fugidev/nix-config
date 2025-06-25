@@ -91,8 +91,6 @@
   ];
 
   nix = {
-    # use lesbiab nix
-    package = pkgs.lix;
     # enable flake support
     extraOptions = ''
       experimental-features = nix-command flakes

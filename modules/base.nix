@@ -95,6 +95,15 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+
+    settings = {
+      substituters = lib.optionals (machineConfig.hostName != "cleric") [
+        "https://cache.fugi.dev"
+      ];
+      trusted-public-keys = lib.optionals (machineConfig.hostName != "cleric") [
+        "cache.fugi.dev:0zmYYGJ0D5p1TWe4FomYGb+tGEHQ7hpbbDudeKXt0rs="
+      ];
+    };
   };
 
   fugi.allowInsecure = [

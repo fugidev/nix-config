@@ -17,7 +17,6 @@
   home.homeDirectory = "/home/fugi";
 
   home.packages = with pkgs; [
-    ffsend
     ffmpeg
     yt-dlp
     mediainfo

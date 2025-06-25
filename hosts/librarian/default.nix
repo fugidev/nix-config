@@ -31,7 +31,6 @@
       ffmpeg
       yt-dlp
       mediainfo
-      ffsend
     ];
   };
 

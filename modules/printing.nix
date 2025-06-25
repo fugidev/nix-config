@@ -6,5 +6,10 @@
     openFirewall = true;
   };
 
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+
+    # actually *breaks* IPP Everywhere printers
+    browsed.enable = false;
+  };
 }

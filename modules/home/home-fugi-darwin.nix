@@ -26,6 +26,8 @@
     ncdu
     nmap
     nix-output-monitor
+    ffmpeg
+    yt-dlp
   ];
 
   programs.zsh =

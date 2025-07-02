@@ -4,7 +4,7 @@
     enable = true;
 
     settings = {
-      shell = lib.getExe config.programs.zsh.package;
+      terminal.shell = lib.getExe config.programs.zsh.package;
 
       font = {
         normal.family = "Fira Code";

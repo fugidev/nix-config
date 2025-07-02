@@ -11,6 +11,12 @@
     package = pkgs.waybar.overrideAttrs (_old: {
       patches = [
         ./0001-bandwidth-units.patch
+
+        (pkgs.fetchpatch {
+          name = "waybar-default-icon.patch";
+          url = "https://github.com/Alexays/Waybar/commit/c336bc5466c858ac41dc9afd84f04a5ffec9e292.patch";
+          hash = "sha256-RRGy/aeFX95fW0pT6mXhww2RdEtoOnaT3+dc7iB3bAY=";
+        })
       ];
     });
 

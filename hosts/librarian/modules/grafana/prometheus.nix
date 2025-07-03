@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, machineConfig, ... }:
 {
   services.prometheus = {
     enable = true;
@@ -12,29 +12,39 @@
       smartctl = {
         enable = true;
       };
+      postgres = {
+        enable = true;
+        listenAddress = "localhost";
+        runAsLocalSuperUser = true;
+      };
     };
 
     scrapeConfigs = [
       {
-        job_name = config.networking.hostName;
+        job_name = machineConfig.hostName;
         scrape_interval = "5m";
         static_configs = [{
           targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
         }];
       }
       {
-        job_name = "${config.networking.hostName}-smart";
+        job_name = "${machineConfig.hostName}-smart";
         scrape_interval = "5m";
         static_configs = [{
           targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.smartctl.port}" ];
         }];
       }
       {
+        job_name = "${machineConfig.hostName}-postgres";
+        scrape_interval = "5m";
+        static_configs = [{
+          targets = [ "localhost:${toString config.services.prometheus.exporters.postgres.port}" ];
+        }];
+      }
+      {
         job_name = "fugiweather";
         scrape_interval = "1m";
         scrape_timeout = "20s";
-        metrics_path = "/metrics";
-        scheme = "http";
         static_configs = [{
           targets = [ "192.168.0.8:80" ];
         }];

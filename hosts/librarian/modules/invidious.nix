@@ -16,7 +16,7 @@ in
   ];
 
   services.invidious = {
-    enable = true;
+    # enable = true;
     package = pkgs.invidious.overrideAttrs (old: {
       patches = (old.patches or []) ++ [
         # support for private instances

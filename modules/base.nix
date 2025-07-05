@@ -34,6 +34,11 @@
     };
   };
 
+  # keep LESS for e.g. `sudo -u postgres psql`
+  security.sudo.extraConfig = ''
+    Defaults:root,%wheel env_keep+=LESS
+  '';
+
   programs.bat = {
     enable = true;
     settings = {

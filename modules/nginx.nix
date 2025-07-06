@@ -57,12 +57,14 @@ in
         extraDomainNames = [ "*.${fqdn}" ];
         dnsProvider = "desec";
         dnsPropagationCheck = true;
+        dnsResolver = "ns1.desec.io:53";
         credentialFiles = {
           DESEC_TOKEN_FILE = config.sops.secrets.desec-token.path;
         };
         environmentFile = builtins.toFile "acme-envfile" ''
           DESEC_PROPAGATION_TIMEOUT=120
         '';
+        reloadServices = [ "nginx.service" ];
       };
     };
 

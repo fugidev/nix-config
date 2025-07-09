@@ -7,7 +7,15 @@
   # enable edge config and beta gpu driver
   hardware.asahi.useExperimentalGPUDriver = true;
   hardware.asahi.experimentalGPUInstallMode = "replace";
-  hardware.asahi.peripheralFirmwareDirectory = /asahi;
+  hardware.asahi.peripheralFirmwareDirectory = pkgs.requireFile {
+    name = "asahi";
+    hashMode = "recursive";
+    hash = "sha256-Z/0QdtVTYTY7P/LzAYF4lJY/u+f5h56hssxJcqPFz4M=";
+    message = ''
+      nix-store --add-fixed sha256 --recursive /boot/asahi
+      nix hash path /boot/asahi
+    '';
+  };
 
   # enable backlight control
   hardware.acpilight.enable = true;

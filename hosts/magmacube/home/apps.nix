@@ -18,5 +18,6 @@
     bambu-studio
 
     lutris
+    vintagestory
   ];
 }

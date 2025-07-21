@@ -23,6 +23,11 @@
   fugi.allowUnfree = [
     "discord"
     "spotify"
+    "vintagestory"
+  ];
+
+  fugi.allowInsecure = [
+    "dotnet-runtime-7.0.20"
   ];
 
   systemd.services.greetd.unitConfig = {

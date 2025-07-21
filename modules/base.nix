@@ -93,6 +93,7 @@
     duf
     nix-output-monitor
     unzip
+    xxd
   ];
 
   nix = {

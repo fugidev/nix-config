@@ -63,6 +63,11 @@
     '';
   };
 
+  programs.nh = {
+    enable = true;
+    flake = "/etc/nixos";
+  };
+
   # system packages
   environment.systemPackages = with pkgs; [
     # neofetch # very essential

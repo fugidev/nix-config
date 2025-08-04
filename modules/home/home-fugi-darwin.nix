@@ -60,4 +60,9 @@
       style = "plain";
     };
   };
+
+  programs.nh = {
+    enable = true;
+    flake = "/Users/fugi/.config/home-manager";
+  };
 }

@@ -120,8 +120,4 @@
       ];
     };
   };
-
-  fugi.allowInsecure = [
-    "dotnet-sdk-6.0.428" # for naps2
-  ];
 }

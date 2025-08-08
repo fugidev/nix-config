@@ -70,14 +70,13 @@
 
   # system packages
   environment.systemPackages = with pkgs; [
-    # neofetch # very essential
+    # very essential
     fastfetch
     hyfetch
-    git
+    # basic utilities
     htop
     btop
     fd
-    nixpkgs-fmt
     eza
     ripgrep
     wget
@@ -89,7 +88,6 @@
     pciutils
     usbutils
     ncdu
-    helix
     traceroute
     gptfdisk
     nmap
@@ -99,6 +97,12 @@
     nix-output-monitor
     unzip
     xxd
+    # vcs / code
+    git
+    tig
+    helix
+    nixfmt
+    nixpkgs-fmt
   ];
 
   nix = {

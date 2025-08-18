@@ -198,7 +198,9 @@
       "inputs": {
         "flake-utils": "flake-utils_3",
         "flakey-profile": "flakey-profile",
-        "lix": "lix",
+        "lix": [
+          "lix"
+        ],
         "nixpkgs": [
           "nixpkgs-unstable"
         ]
@@ -349,6 +351,7 @@
         "flake-utils": "flake-utils_2",
         "home-manager": "home-manager",
         "home-manager-stable": "home-manager-stable",
+        "lix": "lix",
         "lix-module": "lix-module",
         "nix-minecraft": "nix-minecraft",
         "nixos-apple-silicon": "nixos-apple-silicon",

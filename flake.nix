@@ -37,7 +37,11 @@
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/release-2.93.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.lix.url = "https://git.lix.systems/lix-project/lix/archive/release-2.93.tar.gz";
+      inputs.lix.follows = "lix";
+    };
+    lix = {
+      url = "https://git.lix.systems/lix-project/lix/archive/release-2.93.tar.gz";
+      flake = false;
     };
   };
 

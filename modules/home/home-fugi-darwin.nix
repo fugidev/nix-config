@@ -52,6 +52,10 @@
 
         export PATH="${lib.makeBinPath binDirs}:$PATH"
       '';
+      initContent = lib.mkAfter ''
+        # Disable git integration in ~/.cache/sshfs
+        zstyle ':vcs_info:*' disable-patterns "~/.cache/sshfs(|/*)"
+      '';
     };
 
   programs.bat = {

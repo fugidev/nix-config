@@ -24,10 +24,12 @@ in
   config = {
     services.nginx = {
       enable = true;
+      enableReload = true;
       recommendedOptimisation = true;
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
       recommendedGzipSettings = true;
+      recommendedBrotliSettings = true;
 
       virtualHosts = {
         _ = {

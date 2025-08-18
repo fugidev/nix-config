@@ -34,6 +34,9 @@ in
       certificate_path = "${certDir}/fullchain.pem";
       private_key_path = "${certDir}/key.pem";
     };
+
+    # also listen over wireguard
+    dns.bind_hosts = [ "10.13.13.1" ];
   };
 
   security.acme.certs.${domain} = {

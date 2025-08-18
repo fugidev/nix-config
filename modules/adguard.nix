@@ -40,6 +40,8 @@ in
         upstream_dns = [ "::1" ];
         bootstrap_dns = [ "::1" ];
         anonymize_client_ip = true;
+        # ignore /etc/hosts
+        hostsfile_enabled = false;
       };
 
       querylog.interval = "6h";

@@ -18,7 +18,7 @@ in
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.greetd}/bin/agreety --cmd ${run-sway}";
+        command = "${pkgs.greetd}/bin/agreety --cmd ${run-sway}";
         user = "greeter";
       };
       initial_session = {

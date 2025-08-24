@@ -4,9 +4,6 @@
 
   home-manager.users.fugi.imports = util.dirPaths ./home;
 
-  # enable edge config and beta gpu driver
-  hardware.asahi.useExperimentalGPUDriver = true;
-  hardware.asahi.experimentalGPUInstallMode = "replace";
   hardware.asahi.peripheralFirmwareDirectory = pkgs.requireFile {
     name = "asahi";
     hashMode = "recursive";

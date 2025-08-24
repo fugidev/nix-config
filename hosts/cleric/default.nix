@@ -15,5 +15,11 @@
   # user configuration
   users.users.root.openssh.authorizedKeys.keys = config.fugi.authorizedKeys;
 
+  users.users.fugi = {
+    isNormalUser = true;
+    home = "/home/fugi";
+    openssh.authorizedKeys.keys = config.fugi.authorizedKeys;
+  };
+
   system.stateVersion = "24.05";
 }

@@ -42,7 +42,7 @@
   ];
 
   # Increase tmpfs size
-  services.logind.extraConfig = "RuntimeDirectorySize=6G";
+  services.logind.settings.Login.RuntimeDirectorySize = "6G";
 
   # Network Manager
   networking.networkmanager.enable = true;

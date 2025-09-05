@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.direnv = {
     enable = true;
@@ -18,5 +18,6 @@
       global.hide_env_diff = true;
     };
     nix-direnv.enable = true;
+    nix-direnv.package = pkgs.lixPackageSets.stable.nix-direnv;
   };
 }

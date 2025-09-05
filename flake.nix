@@ -34,15 +34,6 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/release-2.93.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.lix.follows = "lix";
-    };
-    lix = {
-      url = "https://git.lix.systems/lix-project/lix/archive/release-2.93.tar.gz";
-      flake = false;
-    };
   };
 
   outputs = inputs:
@@ -65,14 +56,13 @@
           inherit system specialArgs;
           modules =
             [
+              ./modules/lix.nix # use lesbiab nix
               ./hosts/${hostName}
               ./modules/base.nix
               ./modules/machines.nix
               ({ config, ... }: {
                 _module.args.machineConfig = config.fugi.machines.${hostName};
               })
-              # use lesbiab nix
-              inputs.lix-module.nixosModules.default
             ]
             ++ nixpkgs.lib.optionals (home-manager != null) [
               home-manager.nixosModules.home-manager

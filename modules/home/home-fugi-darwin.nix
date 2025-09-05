@@ -29,6 +29,8 @@
     nix-output-monitor
     ffmpeg
     yt-dlp
+    htop
+    btop
   ];
 
   programs.zsh =

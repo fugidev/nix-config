@@ -28,6 +28,7 @@
 
   fugi.allowInsecure = [
     "dotnet-runtime-7.0.20"
+    "qtwebengine-5.15.19" # jellyfin-media-player
   ];
 
   systemd.services.greetd.unitConfig = {

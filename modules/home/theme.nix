@@ -30,7 +30,10 @@ in
     };
 
     gtk3.extraCss = gtkExtraCss;
+
     gtk4.extraCss = gtkExtraCss;
+    # disable janky stylesheet override
+    gtk4.theme = null;
   };
 
   qt = {

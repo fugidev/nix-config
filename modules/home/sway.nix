@@ -50,6 +50,7 @@ in
     systemd.enable = true;
     # autostart
     systemd.xdgAutostart = true;
+    systemd.variables = lib.mkOptionDefault [ "PATH" ];
 
     extraSessionCommands = ''
       export NIXOS_OZONE_WL=1

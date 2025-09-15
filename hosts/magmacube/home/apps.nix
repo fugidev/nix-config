@@ -6,18 +6,23 @@
     kdePackages.okular
     kdePackages.kdenlive
     inkscape
-    element-desktop
-    discord
     tenacity
     spotify
-    prismlauncher
     vdhcoapp
     joplin-desktop
 
     freecad
-    bambu-studio
+    # bambu-studio
 
+    # games
+    prismlauncher
     lutris
     vintagestory
+
+    # social
+    element-desktop
+    discord
+    signal-desktop
+    tuba
   ];
 }

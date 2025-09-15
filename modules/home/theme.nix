@@ -14,10 +14,10 @@ in
     gtk.enable = true;
   };
 
-  dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-
   gtk = {
     enable = true;
+
+    colorScheme = "dark";
 
     iconTheme = {
       package = pkgs.kdePackages.breeze-icons;

@@ -1,10 +1,13 @@
 {
   programs.ssh = {
     enable = true;
-    serverAliveInterval = 240;
+    enableDefaultConfig = false;
     includes = [ "config.local" ]; # stateful extra config
 
     matchBlocks = {
+      "*" = {
+        serverAliveInterval = 240;
+      };
       "cleric" = {
         hostname = "cleric.fugi.dev";
         user = "root";

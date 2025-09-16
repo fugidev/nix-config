@@ -13,6 +13,8 @@
     extraConfig = {
       init.defaultBranch = "main";
 
+      push.default = "current";
+
       tag.gpgSign = false;
 
       color = {

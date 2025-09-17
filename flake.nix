@@ -176,8 +176,8 @@
 
     homeConfigurations = {
       "fugi@blaze" = mkHome {
-        home-manager = home-manager-stable;
-        pkgs = nixpkgs-stable.legacyPackages."aarch64-darwin";
+        home-manager = home-manager;
+        pkgs = nixpkgs-unstable.legacyPackages."aarch64-darwin";
 
         modules = [
           ./modules/home/home-fugi-darwin.nix

@@ -3,7 +3,7 @@
   programs.less = {
     enable = true;
     # horizontal scrolling in smaller steps instead of half page
-    keys = ''
+    config = ''
       \\eOD noaction 20\\e(
       \\eOC noaction 20\\e)
     '';

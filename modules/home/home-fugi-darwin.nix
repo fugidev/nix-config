@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, flakeRoot, ... }:
 {
   imports = [
     ./zsh.nix
@@ -73,13 +73,7 @@
     flake = "/Users/fugi/.config/home-manager";
   };
 
-  programs.sftpman.package = pkgs.sftpman.overrideAttrs {
-    postPatch = ''
-      substituteInPlace sftpman/model.py \
-        --replace-fail '/mnt/sshfs/' '/Users/fugi/.cache/sshfs/' \
-        --replace-fail 'fusermount -u' 'umount' \
-        --replace-fail 'mount -l' 'mount' \
-        --replace-fail 'type fuse\.sshfs' '.*macfuse'
-    '';
+  programs.sftpman.package = pkgs.callPackage (flakeRoot + /pkgs/sftpman-python.nix) {
+    mountPath = "/Users/fugi/.cache/sshfs/";
   };
 }

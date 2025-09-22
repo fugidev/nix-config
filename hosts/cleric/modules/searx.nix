@@ -26,9 +26,6 @@ in
       };
       use_default_settings.engines.keep_only = [
         "arch linux wiki"
-        "bing"
-        "bing images"
-        "bing news"
         "ccc-tv"
         "currency"
         "duckduckgo"
@@ -36,29 +33,17 @@ in
         "google images"
         "google news"
         "google videos"
-        "lemmy communities"
-        "lemmy users"
-        "lemmy posts"
-        "lemmy comments"
         "mdn"
-        "qwant"
-        "qwant images"
-        "qwant news"
         "wikidata"
         "wikipedia"
         "wiktionary"
-        "yahoo news"
       ];
       engines = enginesToList {
         "arch linux wiki".shortcut = "aw";
-        wikipedia.shortcut = "w";
-        bing = {
-          shortcut = "b";
-          disabled = false;
-        };
+        "wikipedia".shortcut = "w";
         "bing images".shortcut = "bi";
         "ccc-tv".disabled = false;
-        google.shortcut = "g";
+        "google".shortcut = "g";
         "google images".shortcut = "gi";
         "google news".shortcut = "gn";
         "google videos".shortcut = "gv";

@@ -2,6 +2,7 @@
 {
   imports = [
     ./greetd.nix
+    ./uwsm.nix
     ./fonts.nix
     ./printing.nix
     ./ios-support.nix
@@ -43,6 +44,8 @@
   programs.sway.enable = true;
   programs.sway.extraPackages = [ ];
   xdg.portal.enable = true;
+  # power key is handled by window manager
+  services.logind.settings.Login.HandlePowerKey = "ignore";
 
   # Define user account.
   users.users.fugi = {

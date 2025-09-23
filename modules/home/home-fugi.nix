@@ -13,6 +13,12 @@
     ./gpg.nix
   ];
 
+  programs.zsh.profileExtra = ''
+    if uwsm check may-start; then
+      exec uwsm start -- sway-uwsm.desktop
+    fi
+  '';
+
   home.username = "fugi";
   home.homeDirectory = "/home/fugi";
 

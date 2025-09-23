@@ -46,12 +46,6 @@ in
 
     checkConfig = false;
 
-    # enable sway-session.target
-    systemd.enable = true;
-    # autostart
-    systemd.xdgAutostart = true;
-    systemd.variables = lib.mkOptionDefault [ "PATH" ];
-
     extraSessionCommands = ''
       export NIXOS_OZONE_WL=1
       export XDG_SCREENSHOTS_DIR=~/Pictures/screenshots
@@ -119,7 +113,7 @@ in
       modes = lib.mkOptionDefault {
         "$mode_power" = {
           l = "exec loginctl lock-session, mode default";
-          e = "exec swaymsg exit";
+          e = "exec uwsm stop";
           s = "exec systemctl suspend, mode default";
           p = "exec systemctl poweroff";
           r = "exec systemctl reboot";

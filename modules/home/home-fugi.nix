@@ -33,25 +33,24 @@
       ln -s ${lib.getExe app2unit} $out/bin/xdg-open
     '')
   ] ++ lib.optionals config.fugi.guiApps [
+    ## utils
     firefox
     xed-editor
     file-roller
-    # utils
     qalculate-gtk
     remmina
     filezilla
-    # media
+    mission-center
+    ## media
     mpv
     feh
     pwvucontrol
     jellyfin-media-player
-    # office
-    kdePackages.skanlite
-    # development
+    ## office
+    naps2
+    ## development
     vscodium
     meld
-  ] ++ lib.optionals (config.fugi.guiApps && !pkgs.naps2.meta.broken) [
-    naps2
   ];
 
   # Allow jellyfin-media-player to get controlled via mpris

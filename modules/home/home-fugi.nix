@@ -28,6 +28,10 @@
     mediainfo
     sops
     trash-cli
+    (runCommand "app2unit_xdg-open" { } ''
+      mkdir -p $out/bin
+      ln -s ${lib.getExe app2unit} $out/bin/xdg-open
+    '')
   ] ++ lib.optionals config.fugi.guiApps [
     firefox
     xed-editor

@@ -24,6 +24,12 @@ let
       { modifier = "+Control"; target = "output"; }
     ];
   };
+
+  wofi = pkgs.writeScript "wofi-app2unit" ''
+    set -e
+    desktop_file="$(wofi --show drun --define=drun-print_desktop_file=true --no-actions)"
+    exec app2unit -- "$(basename $desktop_file)"
+  '';
 in
 {
   imports = [
@@ -78,7 +84,7 @@ in
 
     config = {
       modifier = mod;
-      terminal = "foot";
+      terminal = "app2unit -T";
 
       focus = {
         followMouse = false;
@@ -122,11 +128,12 @@ in
       };
 
       keybindings = lib.mkOptionDefault ({
-        "${mod}+d" = "exec wofi --show drun --no-actions";
-        "${mod}+b" = "exec firefox";
+        "${mod}+d" = "exec ${wofi}";
         "${mod}+period" = "exec rofimoji --selector wofi";
         "${mod}+l" = "exec loginctl lock-session";
-        "${mod}+t" = "exec thunar";
+        # app shortcuts
+        "${mod}+b" = "exec app2unit -- firefox.desktop";
+        "${mod}+t" = "exec app2unit -- thunar.desktop";
         # display brightness
         "--locked XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
         "--locked XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";

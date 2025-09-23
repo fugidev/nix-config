@@ -52,10 +52,6 @@ in
           xkb_numlock = "enabled";
         };
       };
-
-      startup = [
-        { command = "blueman-applet"; }
-      ];
     };
 
     extraConfig = ''

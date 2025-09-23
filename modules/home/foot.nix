@@ -32,19 +32,22 @@
     };
   };
 
-  xdg.desktopEntries."foot-bash" = {
-    name = "Foot (bash)";
-    genericName = "Terminal";
-    exec = "foot bash";
-    icon = "foot";
-    categories = [ "System" "TerminalEmulator" ];
+  xdg.desktopEntries."bash" = {
+    name = "bash";
+    exec = "bash";
+    icon = "utilities-terminal";
+    categories = [ "System" ];
+    terminal = true;
     settings = {
       Keywords = "shell;prompt;command;commandline;";
-      StartupWMClass = "foot";
     };
   };
 
   home.file.".config/xfce4/helpers.rc".text = ''
     TerminalEmulator=foot
+  '';
+
+  home.file.".config/xdg-terminals.list".text = ''
+    foot.desktop
   '';
 }

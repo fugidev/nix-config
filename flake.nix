@@ -62,6 +62,7 @@
               ./modules/machines.nix
               ({ config, ... }: {
                 _module.args.machineConfig = config.fugi.machines.${hostName};
+                nixpkgs.overlays = [ inputs.self.overlays.default ];
               })
             ]
             ++ nixpkgs.lib.optionals (home-manager != null) [
@@ -89,6 +90,7 @@
           extraSpecialArgs = specialArgs;
           modules =
             [{
+              nixpkgs.overlays = [ inputs.self.overlays.default ];
               nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
               programs.home-manager.enable = true;
               programs.zsh.sessionVariables = {
@@ -219,5 +221,7 @@
         };
       };
     };
+
+    overlays.default = import ./overlay.nix;
   };
 }

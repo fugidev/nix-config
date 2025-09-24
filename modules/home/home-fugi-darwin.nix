@@ -73,7 +73,7 @@
     flake = "/Users/fugi/.config/home-manager";
   };
 
-  programs.sftpman.package = pkgs.callPackage (flakeRoot + /pkgs/sftpman-python.nix) {
+  programs.sftpman.package = pkgs.sftpman-python.override {
     mountPath = "/Users/fugi/.cache/sshfs/";
   };
 }

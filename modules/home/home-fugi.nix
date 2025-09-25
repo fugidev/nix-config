@@ -45,6 +45,7 @@
     mpv
     feh
     pwvucontrol
+    (jellyfin-chromium.override { jellyfinUrl = "https://jellyfin.librarian.fugi.dev/"; })
     ## office
     naps2
     ## development

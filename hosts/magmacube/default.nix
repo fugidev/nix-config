@@ -26,11 +26,6 @@
     "vintagestory"
   ];
 
-  fugi.allowInsecure = [
-    "dotnet-runtime-7.0.20"
-    "qtwebengine-5.15.19" # jellyfin-media-player
-  ];
-
   systemd.services.greetd.unitConfig = {
     After = [ "sys-devices-pci0000:00-0000:00:03.1-0000:07:00.0-0000:08:00.0-0000:09:00.0-drm-card1.device" ];
     Wants = [ "sys-devices-pci0000:00-0000:00:03.1-0000:07:00.0-0000:08:00.0-0000:09:00.0-drm-card1.device" ];

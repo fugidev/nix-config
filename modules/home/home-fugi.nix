@@ -45,7 +45,6 @@
     mpv
     feh
     pwvucontrol
-    jellyfin-media-player
     ## office
     naps2
     ## development
@@ -54,5 +53,5 @@
   ];
 
   # Allow jellyfin-media-player to get controlled via mpris
-  xdg.dataFile."jellyfinmediaplayer/scripts/mpris.so".source = "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
+  # xdg.dataFile."jellyfinmediaplayer/scripts/mpris.so".source = "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
 }

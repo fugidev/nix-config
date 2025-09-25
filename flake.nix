@@ -191,10 +191,6 @@
       };
     };
 
-    formatter = flake-utils.lib.eachDefaultSystemMap (
-      system: nixpkgs-unstable.legacyPackages.${system}.nixpkgs-fmt
-    );
-
     packages = {
       x86_64-linux = {
         iso = nixos-generators.nixosGenerate {

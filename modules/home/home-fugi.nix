@@ -14,8 +14,12 @@
   ];
 
   programs.zsh.profileExtra = ''
-    if uwsm check may-start; then
-      exec uwsm start -- sway-uwsm.desktop
+    # start uwsm if not connected via ssh
+    if ! pstree -s -p $$ | grep -q '\-sshd('; then
+      if uwsm check may-start; then
+        export UWSM_SILENT_START=1
+        exec uwsm start -- sway-uwsm.desktop
+      fi
     fi
   '';
 

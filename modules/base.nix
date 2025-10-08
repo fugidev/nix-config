@@ -64,6 +64,9 @@
         nom build .\#nixosConfigurations.$host.config.system.build.toplevel "$@"
       }
 
+      # allow running nh as root
+      export NH_BYPASS_ROOT_CHECK=true
+
       # use nix-daemon even when root
       export NIX_REMOTE=daemon
     '';

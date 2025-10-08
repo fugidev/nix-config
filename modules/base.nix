@@ -100,6 +100,7 @@
     nix-output-monitor
     unzip
     xxd
+    psmisc
     # vcs / code
     git
     tig

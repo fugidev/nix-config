@@ -24,6 +24,8 @@
           bg = "${config.fugi.wallpaper} fill";
         };
       };
+
+      defaultWorkspace = "workspace number 1";
     };
   };
 

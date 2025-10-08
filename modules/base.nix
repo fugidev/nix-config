@@ -63,6 +63,9 @@
         fi
         nom build .\#nixosConfigurations.$host.config.system.build.toplevel "$@"
       }
+
+      # use nix-daemon even when root
+      export NIX_REMOTE=daemon
     '';
   };
 

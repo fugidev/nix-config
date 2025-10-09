@@ -26,10 +26,6 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    exam-poll = {
-      url = "git+https://codeberg.org/fugi/exam-poll.git";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs-unstable";

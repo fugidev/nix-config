@@ -1,0 +1,25 @@
+diff --git a/source.c b/source.c
+index fd3f071..663ce5f 100644
+--- a/source.c
++++ b/source.c
+@@ -188,9 +188,9 @@ void on_activation(struct GtkLock *gtklock, int id) {
+ void on_focus_change(struct GtkLock *gtklock, struct Window *win, struct Window *old) {
+ 	setup_runshell(win);
+ 	if(gtklock->hidden)
+-		gtk_revealer_set_reveal_child(GTK_REVEALER(RUNSHELL(win)->runshell_revealer), FALSE);
++		gtk_revealer_set_reveal_child(GTK_REVEALER(RUNSHELL(win)->runshell_revealer), TRUE);
+ 	if(old != NULL && win != old)
+-		gtk_revealer_set_reveal_child(GTK_REVEALER(RUNSHELL(old)->runshell_revealer), FALSE);
++		gtk_revealer_set_reveal_child(GTK_REVEALER(RUNSHELL(old)->runshell_revealer), TRUE);
+ }
+ 
+ void on_window_destroy(struct GtkLock *gtklock, struct Window *ctx) {
+@@ -203,7 +203,7 @@ void on_window_destroy(struct GtkLock *gtklock, struct Window *ctx) {
+ void on_idle_hide(struct GtkLock *gtklock) {
+ 	if(gtklock->focused_window) {
+ 		GtkRevealer *revealer = GTK_REVEALER(RUNSHELL(gtklock->focused_window)->runshell_revealer);	
+-		gtk_revealer_set_reveal_child(revealer, FALSE);
++		gtk_revealer_set_reveal_child(revealer, TRUE);
+ 	}
+ }
+ 

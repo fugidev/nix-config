@@ -13,4 +13,8 @@
       group = "nginx";
     };
   };
+
+  services.borgmatic.settings.source_directories = [
+    "/srv"
+  ];
 }

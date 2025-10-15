@@ -55,5 +55,6 @@ in
   networking.firewall = {
     allowedUDPPorts = [ DoTPort ];
     allowedTCPPorts = [ DoTPort ];
+    interfaces."wg0".allowedUDPPorts = [ 53 ];
   };
 }

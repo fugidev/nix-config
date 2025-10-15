@@ -85,9 +85,6 @@ in
     serviceConfig.User = adguardUser;
   };
 
-  # open firewall
-  networking.firewall.allowedUDPPorts = [ 53 ];
-
   # nginx proxy
   services.nginx.virtualHosts."dns.${machineConfig.baseDomain}" = {
     locations."/".proxyPass = "http://${config.services.adguardhome.settings.http.address}";

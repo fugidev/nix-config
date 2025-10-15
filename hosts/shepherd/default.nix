@@ -15,6 +15,9 @@
     raspberrypi-eeprom
   ];
 
+  # Open dns port
+  networking.firewall.allowedUDPPorts = [ 53 ];
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 

@@ -6,7 +6,12 @@
 
   boot = {
     kernelModules = [ "kvm-amd" ];
-    extraModulePackages = [ ];
+    kernelParams = [
+      # force kms modes
+      "video=DP-1:2560x1440@144"
+      "video=DP-2:2560x1440@144"
+      "video=HDMI-A-1:2560x1440@144"
+    ];
 
     initrd = {
       systemd.enable = true;

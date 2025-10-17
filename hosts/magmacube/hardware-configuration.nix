@@ -18,7 +18,10 @@
         "usb_storage"
         "sd_mod"
       ];
-      kernelModules = [ "dm-snapshot" ];
+      kernelModules = [
+        "dm-snapshot"
+        "amdgpu" # early kms
+      ];
 
       luks.devices."crypt".device = "/dev/disk/by-uuid/854ea552-cac9-485e-86c2-bd601833fdd8";
     };

@@ -47,8 +47,11 @@
   '';
 
   # window manager
-  programs.sway.enable = true;
-  programs.sway.extraPackages = [ ];
+  programs.sway = {
+    enable = true;
+    package = null;
+    extraPackages = [ ];
+  };
   xdg.portal.enable = true;
   # power key is handled by window manager
   services.logind.settings.Login.HandlePowerKey = "ignore";

@@ -41,6 +41,11 @@
     sshfs
   ];
 
+  # wait for gpu
+  services.udev.extraRules = ''
+    SUBSYSTEM=="drm", KERNEL=="card*", TAG+="systemd"
+  '';
+
   # window manager
   programs.sway.enable = true;
   programs.sway.extraPackages = [ ];

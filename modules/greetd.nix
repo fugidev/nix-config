@@ -18,8 +18,4 @@ in
       };
     };
   };
-
-  services.udev.extraRules = ''
-    SUBSYSTEM=="drm", KERNEL=="card*", TAG+="systemd"
-  '';
 }

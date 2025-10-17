@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./plymouth.nix
     ./greetd.nix
     ./uwsm.nix
     ./fonts.nix

@@ -76,6 +76,15 @@
         function mediainfo {
           command mediainfo $@ | less
         }
+
+        function gpull {
+          previous_head="$(git rev-parse HEAD)"
+          git pull
+          if [[ $? -eq 0 && "$(git rev-parse HEAD)" != "$previous_head" ]]; then
+            echo "Pulled commits:"
+            git --no-pager log --pretty=' %h - %s %Cgreen(%cr) %C(blue)<%an>%Creset' --abbrev-commit --reverse ''${previous_head}..HEAD
+          fi
+        }
       '';
 
       shellAliases =

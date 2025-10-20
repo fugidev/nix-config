@@ -2,15 +2,18 @@
 {
   programs.git = {
     enable = true;
-    userName = "Fugi";
-    userEmail = "me@fugi.dev";
 
     signing = {
       key = "BF37903AE6FD294C4C674EE24472A20091BFA792";
       signByDefault = true;
     };
 
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Fugi";
+        email = "me@fugi.dev";
+      };
+
       init.defaultBranch = "main";
 
       push.default = "current";
@@ -26,13 +29,15 @@
         };
       };
     };
+  };
 
-    diff-so-fancy = {
-      enable = true;
+  programs.diff-so-fancy = {
+    enable = true;
+    pagerOpts = [ ];
+    settings = {
       changeHunkIndicators = false;
       stripLeadingSymbols = false;
       markEmptyLines = false;
-      pagerOpts = [ ];
       rulerWidth = 80;
     };
   };

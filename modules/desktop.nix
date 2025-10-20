@@ -74,17 +74,4 @@
   };
 
   fugi.allowUnfree = [ "apple_cursor" ];
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      wlroots_0_19 = prev.wlroots_0_19.overrideAttrs (old: {
-        patches = old.patches ++ [
-          (prev.fetchpatch {
-            url = "https://gitlab.freedesktop.org/wlroots/wlroots/-/commit/7392b3313a7b483c61f4fea648ba8f2aa4ce8798.patch";
-            hash = "sha256-SK463pnIX2qjwRblCJRbvJeZTL6wAXho6wBIJ10OuNk=";
-          })
-        ];
-      });
-    })
-  ];
 }

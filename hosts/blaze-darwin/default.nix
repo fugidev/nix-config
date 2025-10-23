@@ -11,6 +11,10 @@
       paths = config.users.users.fugi.packages;
       pathsToLink = "/Applications";
     })
+
+    (writeScriptBin "reboot-nixos" ''
+      echo fakepassword | sudo bless --mount /Volumes/NixOS --setBoot --nextonly --stdinpass && su>
+    '')
   ];
 
   # set by lix installer

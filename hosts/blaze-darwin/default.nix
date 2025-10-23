@@ -13,7 +13,7 @@
     })
 
     (writeScriptBin "reboot-nixos" ''
-      echo fakepassword | sudo bless --mount /Volumes/NixOS --setBoot --nextonly --stdinpass && su>
+      echo fakepassword | sudo bless --mount /Volumes/NixOS --setBoot --nextonly --stdinpass && sudo shutdown -r now
     '')
   ];
 

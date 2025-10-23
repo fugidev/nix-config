@@ -32,6 +32,10 @@ let
       ip = "10.13.13.9";
       pubkey = "E6PSt6wehfrx3MbwXdOa64194epQ0UDFxjm7YNAygyU=";
     };
+    hl-handy = {
+      ip = "10.13.13.10";
+      pubkey = "XjKjBN/9vXISIfdT98GT0XFngy8Tyg85SvqTxQXeWGQ=";
+    };
   };
 in
 {

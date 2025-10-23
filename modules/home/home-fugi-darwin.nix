@@ -68,11 +68,6 @@
     };
   };
 
-  programs.nh = {
-    enable = true;
-    flake = "/Users/fugi/.config/home-manager";
-  };
-
   programs.sftpman.package = pkgs.sftpman-python.override {
     mountPath = "/Users/fugi/.cache/sshfs/";
   };

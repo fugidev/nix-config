@@ -10,6 +10,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -172,17 +176,23 @@
       };
     };
 
-    homeConfigurations = {
-      "fugi@blaze" = mkHome {
-        home-manager = home-manager;
-        pkgs = nixpkgs-unstable.legacyPackages."aarch64-darwin";
-
+    darwinConfigurations = {
+      blaze = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        inherit specialArgs;
         modules = [
-          ./modules/home/home-fugi-darwin.nix
+          home-manager.darwinModules.home-manager
           {
-            fugi.promptColor = "#f7ce46"; # yellow
-            home.stateVersion = "24.05";
+            nixpkgs.overlays = [ inputs.self.overlays.default ];
+
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = specialArgs;
+            };
           }
+          ./modules/darwin.nix
+          ./hosts/blaze-darwin
         ];
       };
     };

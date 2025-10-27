@@ -11,6 +11,7 @@
     ./mail.nix
     ./ssh.nix
     ./gpg.nix
+    ./librewolf.nix
   ];
 
   programs.zsh.profileExtra = ''
@@ -38,7 +39,6 @@
     '')
   ] ++ lib.optionals config.fugi.guiApps [
     ## utils
-    firefox
     xed-editor
     file-roller
     qalculate-gtk

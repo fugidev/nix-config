@@ -132,7 +132,7 @@ in
         "${mod}+period" = "exec rofimoji --selector wofi";
         "${mod}+l" = "exec loginctl lock-session";
         # app shortcuts
-        "${mod}+b" = "exec app2unit -- firefox.desktop";
+        "${mod}+b" = "exec app2unit -- librewolf.desktop";
         "${mod}+t" = "exec app2unit -- thunar.desktop";
         # display brightness
         "--locked XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";

@@ -9,6 +9,8 @@
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
 
+    resumeDevice = "/dev/volume/swap";
+
     initrd = {
       availableKernelModules = [
         "xhci_pci"

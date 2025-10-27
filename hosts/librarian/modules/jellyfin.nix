@@ -1,13 +1,8 @@
-{ config, pkgs, util, ... }:
+{ config, util, ... }:
 {
   imports = [
     (util.useFromUnstable {
       pkgs = [ "jellyfin" "jellyfin-web" ];
-      src = pkgs.fetchzip {
-        # https://github.com/NixOS/nixpkgs/pull/453777
-        url = "https://github.com/minijackson/nixpkgs/archive/4957a9976f96ff95e4adad5c693433cefb361d3e.tar.gz";
-        hash = "sha256-AsDDXmEy6OCk6dz0L1971UBGk/QGzWaNEAr5cG6nL8s=";
-      };
     })
   ];
 

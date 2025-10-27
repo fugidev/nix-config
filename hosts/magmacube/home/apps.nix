@@ -24,5 +24,10 @@
     discord
     signal-desktop
     tuba
+    (makeAutostartItem {
+      name = "signal";
+      package = signal-desktop;
+      appendExtraArgs = [ "--start-in-tray" ];
+    })
   ];
 }

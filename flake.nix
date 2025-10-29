@@ -197,6 +197,16 @@
       };
     };
 
+    homeConfigurations = {
+      "fugi@quitte" = mkHome {
+        inherit home-manager;
+        pkgs = nixpkgs-unstable.legacyPackages."x86_64-linux";
+        modules = [
+          ./modules/home/home-fugi-quitte.nix
+        ];
+      };
+    };
+
     packages = {
       x86_64-linux = {
         iso = nixos-generators.nixosGenerate {

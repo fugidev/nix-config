@@ -202,6 +202,7 @@
         inherit home-manager;
         pkgs = nixpkgs-unstable.legacyPackages."x86_64-linux";
         modules = [
+          ./modules/options.nix
           ./modules/home/home-fugi-quitte.nix
         ];
       };

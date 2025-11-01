@@ -7,7 +7,6 @@
     ./helix.nix
     ./ssh.nix
     ./alacritty.nix
-    ./gpg-darwin.nix
     ./direnv.nix
     ./sftpman.nix
     ./librewolf.nix

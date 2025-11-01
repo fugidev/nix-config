@@ -5,10 +5,6 @@
     onActivation.cleanup = "uninstall";
     onActivation.upgrade = true;
 
-    brews = [
-      "pinentry-mac"
-    ];
-
     casks = [
       "bambu-studio"
       "inkscape"

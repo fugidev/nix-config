@@ -17,21 +17,9 @@
   home.stateVersion = "24.05";
 
   home.packages = with pkgs; [
-    fd
-    ripgrep
-    curl
-    wget
-    git
-    eza
-    doggo
-    jq
-    ncdu
-    nmap
-    nix-output-monitor
     ffmpeg
     yt-dlp
-    htop
-    btop
+    mediainfo
   ];
 
   programs.nh = {

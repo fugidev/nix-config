@@ -192,6 +192,7 @@
             };
           }
           ./modules/lix.nix # use lesbiab nix
+          ./modules/base-packages.nix
           ./hosts/blaze-darwin
         ];
       };

@@ -1,7 +1,8 @@
-{ lib, pkgs, machineConfig, util, ... }:
+{ lib, machineConfig, util, ... }:
 {
   imports = [
     ./options.nix
+    ./base-packages.nix
     ./zsh
     ./tmux.nix
     ./upgrade-diff.nix
@@ -70,44 +71,6 @@
     enable = true;
     flake = "/etc/nixos";
   };
-
-  # system packages
-  environment.systemPackages = with pkgs; [
-    # very essential
-    fastfetch
-    hyfetch
-    # basic utilities
-    htop
-    btop
-    fd
-    eza
-    ripgrep
-    wget
-    dig
-    doggo
-    xdg-utils
-    jq
-    file
-    pciutils
-    usbutils
-    ncdu
-    traceroute
-    gptfdisk
-    nmap
-    pv
-    smartmontools
-    duf
-    nix-output-monitor
-    unzip
-    xxd
-    psmisc
-    # vcs / code
-    git
-    tig
-    helix
-    nixfmt
-    nixpkgs-fmt
-  ];
 
   nix = {
     # enable flake support

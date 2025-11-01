@@ -1,4 +1,4 @@
-{ lib, pkgs, flakeRoot, ... }:
+{ lib, pkgs, ... }:
 {
   imports = [
     ./zsh.nix
@@ -10,6 +10,7 @@
     ./gpg-darwin.nix
     ./direnv.nix
     ./sftpman.nix
+    ./librewolf.nix
   ];
 
   home.username = "fugi";
@@ -71,4 +72,8 @@
   programs.sftpman.package = pkgs.sftpman-python.override {
     mountPath = "/Users/fugi/.cache/sshfs/";
   };
+
+
+  # librewolf crashes, installed using brew instead
+  programs.librewolf.package = null;
 }

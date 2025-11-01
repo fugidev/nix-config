@@ -21,6 +21,10 @@
       "stats"
       "stolendata-mpv"
       "vscodium"
+      {
+        name = "librewolf";
+        args.no_quarantine = true;
+      }
     ];
   };
 }

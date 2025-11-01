@@ -24,5 +24,10 @@
   # set by lix installer
   ids.gids.nixbld = 30000;
 
+  nix.settings = {
+    sandbox = true;
+    experimental-features = "nix-command flakes";
+  };
+
   system.stateVersion = 6;
 }

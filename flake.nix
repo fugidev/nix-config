@@ -191,7 +191,7 @@
               extraSpecialArgs = specialArgs;
             };
           }
-          ./modules/darwin.nix
+          ./modules/lix.nix # use lesbiab nix
           ./hosts/blaze-darwin
         ];
       };

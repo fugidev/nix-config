@@ -54,9 +54,13 @@ in
         "m.homeserver".base_url = baseUrl;
       };
     };
-    ${fqdn}.locations = {
+    ${fqdn}.locations."/" = {
       # Forward to synapse
-      "/".proxyPass = "http://[::1]:8008";
+      proxyPass = "http://[::1]:8008";
+      # allow upload of large media
+      extraConfig = ''
+        client_max_body_size 100M;
+      '';
     };
   };
 

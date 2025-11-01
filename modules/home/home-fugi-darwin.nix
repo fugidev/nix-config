@@ -36,12 +36,6 @@
   programs.zsh =
     let
       homebrew = "/opt/homebrew";
-      binDirs = [
-        "/Users/fugi/fvm/default"
-        "${homebrew}/opt/openjdk"
-        "${homebrew}/opt/node@20"
-        # "${homebrew}/opt/node@18"
-      ];
     in
     {
       completionInit = ''
@@ -51,8 +45,6 @@
         export PATH="/usr/local/bin:$PATH"
 
         eval "$(${homebrew}/bin/brew shellenv)"
-
-        export PATH="${lib.makeBinPath binDirs}:$PATH"
       '';
       initContent = lib.mkAfter ''
         # Disable git integration in ~/.cache/sshfs
@@ -71,7 +63,6 @@
   programs.sftpman.package = pkgs.sftpman-python.override {
     mountPath = "/Users/fugi/.cache/sshfs/";
   };
-
 
   # librewolf crashes, installed using brew instead
   programs.librewolf.package = null;

@@ -1,8 +1,12 @@
 { config, pkgs, util, ... }:
 {
+  imports = util.dirPaths ./modules;
+
   home-manager.users.fugi.imports = util.dirPaths ./home;
 
   users.users.fugi.home = "/Users/fugi";
+
+  system.primaryUser = "fugi";
 
   environment.systemPackages = with pkgs; [
     # install user applications to `/Applications/Nix Apps`

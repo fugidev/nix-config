@@ -4,6 +4,8 @@
 
   home-manager.users.fugi.imports = util.dirPaths ./home;
 
+  fugi.promptColor = "#f7ce46"; # yellow
+
   hardware.asahi.peripheralFirmwareDirectory = pkgs.requireFile {
     name = "asahi";
     hashMode = "recursive";

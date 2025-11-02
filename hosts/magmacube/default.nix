@@ -4,6 +4,8 @@
 
   home-manager.users.fugi.imports = util.dirPaths ./home;
 
+  fugi.promptColor = "#ff8700"; # orange
+
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     systemd-boot = {

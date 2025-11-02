@@ -63,6 +63,7 @@
           shift
         fi
         nom build .\#nixosConfigurations.$host.config.system.build.toplevel "$@"
+        nix copy -v --to ssh://$host .\#nixosConfigurations.$host.config.system.build.toplevel
       }
     '';
   };

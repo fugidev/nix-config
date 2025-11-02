@@ -35,9 +35,6 @@
 
   # packages installed in system profile
   environment.systemPackages = with pkgs; [
-    pinentry
-    pinentry-curses
-    pinentry-qt
     sshfs
   ];
 

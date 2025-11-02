@@ -3,8 +3,9 @@
 let
   srcOrDefault = if src != null then src else inputs.nixpkgs-unstable;
   srcPkgs = import srcOrDefault {
-    inherit (config.nixpkgs) config crossSystem;
-    localSystem = config.nixpkgs.localSystem.system;
+    inherit (config.nixpkgs) config;
+    crossSystem = config.nixpkgs.crossSystem or null;
+    localSystem = config.nixpkgs.localSystem.system or config.nixpkgs.system;
   };
 in
 {

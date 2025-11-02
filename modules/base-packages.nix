@@ -1,5 +1,11 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, util, ... }:
 {
+  imports = [
+    (util.useFromUnstable {
+      pkgs = [ "nixfmt" ];
+    })
+  ];
+
   environment.systemPackages =
     with pkgs;
     [

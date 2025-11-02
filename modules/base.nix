@@ -1,4 +1,4 @@
-{ lib, machineConfig, util, ... }:
+{ lib, machineConfig, ... }:
 {
   imports = [
     ./options.nix
@@ -7,9 +7,6 @@
     ./tmux.nix
     ./upgrade-diff.nix
     ./locale.nix
-    (util.useFromUnstable {
-      pkgs = [ "nixfmt" ];
-    })
   ];
 
   networking = {

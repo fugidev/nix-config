@@ -36,7 +36,8 @@
     };
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
     let
       specialArgs = {
         inherit inputs;
@@ -50,32 +51,31 @@
           system,
           nixpkgs,
           home-manager ? null,
-          modules ? [],
+          modules ? [ ],
         }:
         nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
-          modules =
-            [
-              ./modules/lix.nix # use lesbiab nix
-              ./hosts/${hostName}
-              ./modules/base.nix
-              ./modules/machines.nix
-              ({ config, ... }: {
-                _module.args.machineConfig = config.fugi.machines.${hostName};
-                nixpkgs.overlays = [ inputs.self.overlays.default ];
-              })
-            ]
-            ++ nixpkgs.lib.optionals (home-manager != null) [
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = specialArgs;
-                };
-              }
-            ]
-            ++ modules;
+          modules = [
+            ./modules/lix.nix # use lesbiab nix
+            ./hosts/${hostName}
+            ./modules/base.nix
+            ./modules/machines.nix
+            ({ config, ... }: {
+              _module.args.machineConfig = config.fugi.machines.${hostName};
+              nixpkgs.overlays = [ inputs.self.overlays.default ];
+            })
+          ]
+          ++ nixpkgs.lib.optionals (home-manager != null) [
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = specialArgs;
+              };
+            }
+          ]
+          ++ modules;
         }
       );
 
@@ -83,21 +83,22 @@
         {
           home-manager,
           pkgs,
-          modules ? [],
+          modules ? [ ],
         }:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = specialArgs;
-          modules =
-            [{
+          modules = [
+            {
               nixpkgs.overlays = [ inputs.self.overlays.default ];
               nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
               programs.home-manager.enable = true;
               programs.zsh.sessionVariables = {
                 NIX_PATH = "nixpkgs=${inputs.nixpkgs-unstable}";
               };
-            }]
-            ++ modules;
+            }
+          ]
+          ++ modules;
         }
       );
 
@@ -108,72 +109,72 @@
         };
       };
     in
-  with inputs;
-  {
-    nixosConfigurations = {
-      magmacube = mkNixosSystem {
-        hostName = "magmacube";
-        system = "x86_64-linux";
-        nixpkgs = nixpkgs-unstable;
-        home-manager = home-manager;
-        modules = [
-          ./modules/desktop.nix
-          ./modules/sops.nix
-        ];
-      };
+    with inputs;
+    {
+      nixosConfigurations = {
+        magmacube = mkNixosSystem {
+          hostName = "magmacube";
+          system = "x86_64-linux";
+          nixpkgs = nixpkgs-unstable;
+          home-manager = home-manager;
+          modules = [
+            ./modules/desktop.nix
+            ./modules/sops.nix
+          ];
+        };
 
-      blaze = mkNixosSystem {
-        hostName = "blaze";
-        system = "aarch64-linux";
-        nixpkgs = nixpkgs-unstable;
-        home-manager = home-manager;
-        modules = [
-          nixos-apple-silicon.nixosModules.default
-          ./modules/desktop.nix
-        ];
-      };
+        blaze = mkNixosSystem {
+          hostName = "blaze";
+          system = "aarch64-linux";
+          nixpkgs = nixpkgs-unstable;
+          home-manager = home-manager;
+          modules = [
+            nixos-apple-silicon.nixosModules.default
+            ./modules/desktop.nix
+          ];
+        };
 
-      librarian = mkNixosSystem {
-        hostName = "librarian";
-        system = "x86_64-linux";
-        nixpkgs = nixpkgs-stable;
-        home-manager = home-manager-stable;
-        modules = [
-          ./modules/sops.nix
-          ./modules/nginx.nix
-          ./modules/unbound
-          ./modules/adguard.nix
-          (home-root "23.05")
-        ];
-      };
+        librarian = mkNixosSystem {
+          hostName = "librarian";
+          system = "x86_64-linux";
+          nixpkgs = nixpkgs-stable;
+          home-manager = home-manager-stable;
+          modules = [
+            ./modules/sops.nix
+            ./modules/nginx.nix
+            ./modules/unbound
+            ./modules/adguard.nix
+            (home-root "23.05")
+          ];
+        };
 
-      shepherd = mkNixosSystem {
-        hostName = "shepherd";
-        system = "aarch64-linux";
-        nixpkgs = nixpkgs-stable;
-        home-manager = home-manager-stable;
-        modules = [
-          nixos-hardware.nixosModules.raspberry-pi-4
-          ./modules/sops.nix
-          ./modules/nginx.nix
-          ./modules/unbound
-          ./modules/adguard.nix
-          (home-root "24.05")
-        ];
-      };
+        shepherd = mkNixosSystem {
+          hostName = "shepherd";
+          system = "aarch64-linux";
+          nixpkgs = nixpkgs-stable;
+          home-manager = home-manager-stable;
+          modules = [
+            nixos-hardware.nixosModules.raspberry-pi-4
+            ./modules/sops.nix
+            ./modules/nginx.nix
+            ./modules/unbound
+            ./modules/adguard.nix
+            (home-root "24.05")
+          ];
+        };
 
-      cleric = mkNixosSystem {
-        hostName = "cleric";
-        system = "x86_64-linux";
-        nixpkgs = nixpkgs-stable;
-        home-manager = home-manager-stable;
-        modules = [
-          ./modules/sops.nix
-          ./modules/nginx.nix
-          ./modules/unbound
-          (home-root "24.05")
-        ];
-      };
+        cleric = mkNixosSystem {
+          hostName = "cleric";
+          system = "x86_64-linux";
+          nixpkgs = nixpkgs-stable;
+          home-manager = home-manager-stable;
+          modules = [
+            ./modules/sops.nix
+            ./modules/nginx.nix
+            ./modules/unbound
+            (home-root "24.05")
+          ];
+        };
     };
 
     darwinConfigurations = {

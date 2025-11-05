@@ -45,6 +45,7 @@
     remmina
     filezilla
     mission-center
+    intiface-engine
     ## media
     mpv
     feh

@@ -197,7 +197,7 @@
             ./hosts/blaze-darwin
           ];
         };
-    };
+      };
 
     homeConfigurations = {
       "fugi@quitte" = mkHome {
@@ -211,16 +211,16 @@
     };
 
       packages = {
-      x86_64-linux = {
-        iso = nixos-generators.nixosGenerate {
-          system = "x86_64-linux";
-          format = "install-iso";
-          modules = [
-            ./hosts/iso
-            ./modules/options.nix
-            ./modules/zsh
-          ];
-        };
+        x86_64-linux = {
+          iso = nixos-generators.nixosGenerate {
+            system = "x86_64-linux";
+            format = "install-iso";
+            modules = [
+              ./hosts/iso
+              ./modules/options.nix
+              ./modules/zsh
+            ];
+          };
       };
       aarch64-linux = {
         raspi-installer = nixos-generators.nixosGenerate {
@@ -238,5 +238,5 @@
       };
 
       overlays.default = import ./overlay.nix;
-  };
+    };
 }

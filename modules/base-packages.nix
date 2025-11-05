@@ -36,6 +36,7 @@
       helix
       nixfmt
       nix-output-monitor
+      nix-tree
       tig
     ]
     ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [

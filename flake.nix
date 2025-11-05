@@ -199,15 +199,15 @@
         };
       };
 
-    homeConfigurations = {
-      "fugi@quitte" = mkHome {
-        inherit home-manager;
-        pkgs = nixpkgs-unstable.legacyPackages."x86_64-linux";
-        modules = [
-          ./modules/options.nix
-          ./modules/home/home-fugi-quitte.nix
-        ];
-      };
+      homeConfigurations = {
+        "fugi@quitte" = mkHome {
+          inherit home-manager;
+          pkgs = nixpkgs-unstable.legacyPackages."x86_64-linux";
+          modules = [
+            ./modules/options.nix
+            ./modules/home/home-fugi-quitte.nix
+          ];
+        };
     };
 
       packages = {
@@ -221,18 +221,18 @@
               ./modules/zsh
             ];
           };
-      };
-      aarch64-linux = {
-        raspi-installer = nixos-generators.nixosGenerate {
-          system = "aarch64-linux";
-          format = "sd-aarch64-installer";
-          modules = [
-            nixos-hardware.nixosModules.raspberry-pi-4
-            ./hosts/iso
-            ./hosts/iso/pi4.nix
-            ./modules/options.nix
-            ./modules/zsh
-          ];
+        };
+        aarch64-linux = {
+          raspi-installer = nixos-generators.nixosGenerate {
+            system = "aarch64-linux";
+            format = "sd-aarch64-installer";
+            modules = [
+              nixos-hardware.nixosModules.raspberry-pi-4
+              ./hosts/iso
+              ./hosts/iso/pi4.nix
+              ./modules/options.nix
+              ./modules/zsh
+            ];
         };
       };
       };

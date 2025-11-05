@@ -208,7 +208,7 @@
             ./modules/home/home-fugi-quitte.nix
           ];
         };
-    };
+      };
 
       packages = {
         x86_64-linux = {
@@ -233,8 +233,8 @@
               ./modules/options.nix
               ./modules/zsh
             ];
+          };
         };
-      };
       };
 
       overlays.default = import ./overlay.nix;

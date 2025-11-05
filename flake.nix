@@ -39,6 +39,16 @@
   outputs =
     inputs:
     let
+      forAllSystems = inputs.nixpkgs-unstable.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+
+      pkgsForSystem =
+        system: import ./overlay.nix null (import inputs.nixpkgs-unstable { inherit system; });
+
       specialArgs = {
         inherit inputs;
         flakeRoot = inputs.self;
@@ -210,32 +220,35 @@
         };
       };
 
-      packages = {
-        x86_64-linux = {
-          iso = nixos-generators.nixosGenerate {
-            system = "x86_64-linux";
-            format = "install-iso";
-            modules = [
-              ./hosts/iso
-              ./modules/options.nix
-              ./modules/zsh
-            ];
+      packages =
+        nixpkgs-unstable.lib.recursiveUpdate
+          (forAllSystems pkgsForSystem)
+          {
+            x86_64-linux = {
+              iso = nixos-generators.nixosGenerate {
+                system = "x86_64-linux";
+                format = "install-iso";
+                modules = [
+                  ./hosts/iso
+                  ./modules/options.nix
+                  ./modules/zsh
+                ];
+              };
+            };
+            aarch64-linux = {
+              raspi-installer = nixos-generators.nixosGenerate {
+                system = "aarch64-linux";
+                format = "sd-aarch64-installer";
+                modules = [
+                  nixos-hardware.nixosModules.raspberry-pi-4
+                  ./hosts/iso
+                  ./hosts/iso/pi4.nix
+                  ./modules/options.nix
+                  ./modules/zsh
+                ];
+              };
+            };
           };
-        };
-        aarch64-linux = {
-          raspi-installer = nixos-generators.nixosGenerate {
-            system = "aarch64-linux";
-            format = "sd-aarch64-installer";
-            modules = [
-              nixos-hardware.nixosModules.raspberry-pi-4
-              ./hosts/iso
-              ./hosts/iso/pi4.nix
-              ./modules/options.nix
-              ./modules/zsh
-            ];
-          };
-        };
-      };
 
       overlays.default = import ./overlay.nix;
     };

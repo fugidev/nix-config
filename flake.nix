@@ -175,28 +175,28 @@
             (home-root "24.05")
           ];
         };
-    };
-
-    darwinConfigurations = {
-      blaze = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        inherit specialArgs;
-        modules = [
-          home-manager.darwinModules.home-manager
-          {
-            nixpkgs.overlays = [ inputs.self.overlays.default ];
-
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = specialArgs;
-            };
-          }
-          ./modules/lix.nix # use lesbiab nix
-          ./modules/base-packages.nix
-          ./hosts/blaze-darwin
-        ];
       };
+
+      darwinConfigurations = {
+        blaze = nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          inherit specialArgs;
+          modules = [
+            home-manager.darwinModules.home-manager
+            {
+              nixpkgs.overlays = [ inputs.self.overlays.default ];
+
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = specialArgs;
+              };
+            }
+            ./modules/lix.nix # use lesbiab nix
+            ./modules/base-packages.nix
+            ./hosts/blaze-darwin
+          ];
+        };
     };
 
     homeConfigurations = {
@@ -210,7 +210,7 @@
       };
     };
 
-    packages = {
+      packages = {
       x86_64-linux = {
         iso = nixos-generators.nixosGenerate {
           system = "x86_64-linux";
@@ -235,8 +235,8 @@
           ];
         };
       };
-    };
+      };
 
-    overlays.default = import ./overlay.nix;
+      overlays.default = import ./overlay.nix;
   };
 }

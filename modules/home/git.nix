@@ -33,6 +33,7 @@
 
   programs.diff-so-fancy = {
     enable = true;
+    enableGitIntegration = true;
     pagerOpts = [ ];
     settings = {
       changeHunkIndicators = false;

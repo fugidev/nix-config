@@ -76,6 +76,7 @@
 
   systemd.timers.borgmatic.timerConfig = {
     RandomizedDelaySec = "2h";
+    FixedRandomDelay = true;
     OnCalendar = [
       ""
       "*-*-* 3:00:00"

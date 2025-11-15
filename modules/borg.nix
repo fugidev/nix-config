@@ -2,14 +2,16 @@
 {
   imports = [
     # shorter alias for borg repositories setting
-    (lib.mkAliasOptionModule [ "fugi" "borgRepositories" ] [ "services" "borgmatic" "settings" "repositories" ])
+    (lib.mkAliasOptionModule
+      [ "fugi" "borgRepositories" ]
+      [ "services" "borgmatic" "settings" "repositories" ]
+    )
   ];
 
   sops.secrets = {
-    borg_key = { };
-    borg_sshkey = { };
-    pushover_token = { };
-    pushover_user = { };
+    "backup/borg_key" = { };
+    "backup/sshkey" = { };
+    "backup/monitor_token" = { };
   };
 
   services.borgmatic = {
@@ -33,11 +35,11 @@
       ];
       exclude_caches = true;
 
-      encryption_passcommand = "${pkgs.coreutils}/bin/cat ${config.sops.secrets.borg_key.path}";
+      encryption_passcommand = "${pkgs.coreutils}/bin/cat ${config.sops.secrets."backup/borg_key".path}";
 
       compression = "zstd";
 
-      ssh_command = "ssh -i ${config.sops.secrets.borg_sshkey.path}";
+      ssh_command = "ssh -i ${config.sops.secrets."backup/sshkey".path}";
 
       keep_daily = 7;
       keep_weekly = 4;
@@ -48,15 +50,27 @@
         frequency = "2 weeks";
       }];
 
-      on_error = [
-        ''
-          ${pkgs.curl}/bin/curl -s \
-            -F "token=<${config.sops.secrets.pushover_token.path}" \
-            -F "user=<${config.sops.secrets.pushover_user.path}" \
-            -F "message=${config.networking.hostName}: Backup failed!" \
-            https://api.pushover.net/1/messages.json
-        ''
-      ];
+      commands =
+        let
+          pushStatusScript =
+            status:
+            pkgs.writeScript "borgmatic-push-status-${status}" ''
+              token=$(cat ${config.sops.secrets."backup/monitor_token".path})
+              ${lib.getExe pkgs.curl} -sSLG \
+                -d "status=${status}" \
+                "https://status.shepherd.fugi.dev/api/push/$token"
+            '';
+        in
+        [
+          {
+            after = "everything";
+            run = [ (pushStatusScript "up") ];
+          }
+          {
+            after = "error";
+            run = [ (pushStatusScript "down") ];
+          }
+        ];
     };
   };
 

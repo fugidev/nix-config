@@ -74,6 +74,9 @@
     };
   };
 
+  # don't potentially kill and restart running backup on system activation
+  systemd.services.borgmatic.restartIfChanged = false;
+
   systemd.timers.borgmatic.timerConfig = {
     RandomizedDelaySec = "2h";
     FixedRandomDelay = true;

@@ -1,14 +1,26 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, osConfig, ... }:
 let
   mkPrefs = fn: lib.concatLines (
     lib.mapAttrsToList
       (name: value: "${fn}(\"${name}\", ${builtins.toJSON value});")
       config.programs.librewolf.settings
   );
+
+  nixos-unstable-small-src = pkgs.fetchzip {
+    url = "https://github.com/NixOS/nixpkgs/archive/6c16b7ce10e5ef1fee3aecfb327be61888818a7a.tar.gz";
+    hash = "sha256-udCSZoKawLiNJKFQgikkN96tvVJggs61ihRq8sRt8tM=";
+  };
+
+  nixos-unstable-small = import nixos-unstable-small-src {
+    inherit (osConfig.nixpkgs) config;
+    crossSystem = osConfig.nixpkgs.crossSystem or null;
+    localSystem = osConfig.nixpkgs.localSystem.system or osConfig.nixpkgs.system;
+  };
 in
 {
   programs.librewolf = {
     enable = true;
+    package = nixos-unstable-small.librewolf;
     settings = {
       # make it usable
       "webgl.disabled" = false;

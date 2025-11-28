@@ -56,6 +56,9 @@
     ## development
     vscodium
     meld
+    ## social
+    tuba
+    signal-desktop
   ];
 
   # Allow jellyfin-media-player to get controlled via mpris

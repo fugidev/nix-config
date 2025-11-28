@@ -22,8 +22,6 @@
     # social
     element-desktop
     discord
-    signal-desktop
-    tuba
     (makeAutostartItem {
       name = "signal";
       package = signal-desktop;

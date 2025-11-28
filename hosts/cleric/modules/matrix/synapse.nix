@@ -27,19 +27,35 @@ in
 
       signing_key_path = config.sops.secrets."synapse/signing-key".path;
 
-      listeners = [{
-        port = 8008;
-        bind_addresses = [ "::1" ];
-        type = "http";
-        tls = false;
-        x_forwarded = true;
-        resources = [{
-          names = [ "client" "federation" ];
-          compress = false;
-        }];
-      }];
+      enable_metrics = true;
+
+      listeners = [
+        {
+          port = 8008;
+          bind_addresses = [ "::1" ];
+          type = "http";
+          tls = false;
+          x_forwarded = true;
+          resources = [{
+            names = [ "client" "federation" ];
+            compress = false;
+          }];
+        }
+        {
+          port = 8009;
+          type = "metrics";
+          bind_addresses = [ "::1" "10.13.13.1" ];
+          resources = [{
+            names = [ "metrics" ];
+          }];
+          tls = false;
+        }
+      ];
     };
   };
+
+  # metrics over wireguard
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [ 8009 ];
 
   services.nginx.virtualHosts = {
     ${baseDomain}.locations = {

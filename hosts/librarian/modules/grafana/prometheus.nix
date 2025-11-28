@@ -49,6 +49,13 @@
           targets = [ "192.168.0.8:80" ];
         }];
       }
+      {
+        job_name = "cleric-synapse";
+        scrape_interval = "5m";
+        static_configs = [{
+          targets = [ "10.13.13.1:8009" ];
+        }];
+      }
     ];
   };
 

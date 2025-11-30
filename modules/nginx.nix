@@ -1,7 +1,8 @@
 { config, lib, machineConfig, ... }:
 let
-  inherit (machineConfig) domain;
-  fqdn = machineConfig.baseDomain;
+  inherit (machineConfig) domain baseDomain;
+
+  isOnBaseDomain = lib.hasSuffix baseDomain;
 in
 {
   # set default options for virtualHosts
@@ -10,7 +11,8 @@ in
       type = types.attrsOf (types.submodule
         ({ name, ... }: {
           forceSSL = mkDefault true;
-          useACMEHost = mkDefault fqdn;
+          useACMEHost = mkIf (isOnBaseDomain name) (mkDefault baseDomain);
+          enableACME = mkDefault (! isOnBaseDomain name);
           # split up nginx access logs per vhost
           extraConfig = ''
             access_log /var/log/nginx/${name}_access.log;
@@ -34,6 +36,7 @@ in
       virtualHosts = {
         _ = {
           default = true;
+          useACMEHost = baseDomain;
           locations."/".extraConfig = ''
             add_header Content-Type text/plain;
             return 200 'it works!';
@@ -54,9 +57,9 @@ in
       defaults.email = "admin@${domain}";
 
       # wildcard cert
-      certs.${fqdn} = {
-        domain = fqdn;
-        extraDomainNames = [ "*.${fqdn}" ];
+      certs.${baseDomain} = {
+        domain = baseDomain;
+        extraDomainNames = [ "*.${baseDomain}" ];
         dnsProvider = "desec";
         dnsPropagationCheck = true;
         dnsResolver = "ns1.desec.io:53";

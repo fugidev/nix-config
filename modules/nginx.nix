@@ -36,6 +36,7 @@ in
       virtualHosts = {
         _ = {
           default = true;
+          enableACME = false;
           useACMEHost = baseDomain;
           locations."/".extraConfig = ''
             add_header Content-Type text/plain;

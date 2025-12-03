@@ -8,11 +8,11 @@ let
   hostsRewrites = builtins.concatMap
     (host:
       [
-        { domain = "*.${host.baseDomain}"; answer = host.baseDomain; }
+        { domain = "*.${host.baseDomain}"; answer = host.baseDomain; enabled = true; }
       ] ++ lib.optionals (host.IPv4 != null) [
-        { domain = host.baseDomain; answer = host.IPv4.address; }
+        { domain = host.baseDomain; answer = host.IPv4.address; enabled = true; }
       ] ++ lib.optionals (host.IPv6 != null) [
-        { domain = host.baseDomain; answer = host.IPv6.address; }
+        { domain = host.baseDomain; answer = host.IPv6.address; enabled = true; }
       ]
     )
     hosts;

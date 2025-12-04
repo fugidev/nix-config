@@ -10,7 +10,7 @@
 
     settings = {
       user = {
-        name = "Fugi";
+        name = "Lyn";
         email = "me@fugi.dev";
       };
 

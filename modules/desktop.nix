@@ -9,6 +9,7 @@
     ./ios-support.nix
     ./thunar.nix
     ./gtklock.nix
+    ./librepods.nix
   ];
 
   # Enable sound.
@@ -23,6 +24,7 @@
   # Enable bluetooth.
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
+  programs.librepods.enable = true;
 
   # Enable gvfs
   services.gvfs.enable = true;

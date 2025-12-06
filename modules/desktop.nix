@@ -26,6 +26,8 @@
   services.blueman.enable = true;
   programs.librepods.enable = true;
 
+  programs.kdeconnect.enable = true;
+
   # Enable gvfs
   services.gvfs.enable = true;
 

@@ -24,6 +24,11 @@
     fi
   '';
 
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
+  };
+
   home.username = "fugi";
   home.homeDirectory = "/home/fugi";
 

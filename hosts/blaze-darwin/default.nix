@@ -13,7 +13,7 @@
     (buildEnv {
       name = "user-applications";
       paths = config.users.users.fugi.packages;
-      pathsToLink = "/Applications";
+      pathsToLink = [ "/Applications" ];
     })
 
     (writeScriptBin "reboot-nixos" ''

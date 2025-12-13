@@ -20,6 +20,7 @@
     ffmpeg
     yt-dlp
     mediainfo
+    exiftool
   ];
 
   programs.nh = {

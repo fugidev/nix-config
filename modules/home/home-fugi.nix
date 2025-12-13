@@ -36,6 +36,7 @@
     ffmpeg
     yt-dlp
     mediainfo
+    exiftool
     sops
     trash-cli
     (runCommand "app2unit_xdg-open" { } ''

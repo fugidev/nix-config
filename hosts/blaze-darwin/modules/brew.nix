@@ -17,6 +17,7 @@
       "stats"
       "stolendata-mpv"
       "vscodium"
+      "signal"
       {
         name = "librewolf";
         args.no_quarantine = true;

@@ -56,7 +56,7 @@
     mpv
     feh
     pwvucontrol
-    (jellyfin-chromium.override { jellyfinUrl = "https://jellyfin.librarian.fugi.dev/"; })
+    jellyfin-media-player
     ## office
     naps2
     ## development
@@ -66,7 +66,4 @@
     tuba
     signal-desktop
   ];
-
-  # Allow jellyfin-media-player to get controlled via mpris
-  # xdg.dataFile."jellyfinmediaplayer/scripts/mpris.so".source = "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
 }

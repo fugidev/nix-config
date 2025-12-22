@@ -17,7 +17,6 @@
     # games
     prismlauncher
     lutris
-    vintagestory
 
     # social
     element-desktop

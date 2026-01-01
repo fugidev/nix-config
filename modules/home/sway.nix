@@ -161,23 +161,13 @@ in
     };
   };
 
-  services.swayidle =
-    let
-      lockCmd = "${lib.getExe pkgs.gtklock} -d";
-    in
-    {
-      enable = true;
-      events = [
-        {
-          event = "before-sleep";
-          command = lockCmd;
-        }
-        {
-          event = "lock";
-          command = lockCmd;
-        }
-      ];
+  services.swayidle = {
+    enable = true;
+    events = rec {
+      lock = "${lib.getExe pkgs.gtklock} -d";
+      before-sleep = lock;
     };
+  };
 
   services.playerctld.enable = true;
 

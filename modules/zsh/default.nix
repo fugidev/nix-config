@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
   options = with lib; {
     fugi.promptColor = mkOption {
@@ -104,12 +104,16 @@
 
     nixpkgs.overlays = [
       (_self: super: {
-        zsh = super.zsh.overrideAttrs (old: {
-          patches = old.patches ++ [
-            # disable double escaping of remote paths for rsync/scp completion
-            ./zsh_completion_remote_files.patch
-          ];
-        });
+        zsh =
+          let
+            unstable = inputs.nixpkgs-unstable.legacyPackages.${config.nixpkgs.localSystem.system};
+          in
+          unstable.zsh.overrideAttrs (old: {
+            patches = old.patches ++ [
+              # disable double escaping of remote paths for rsync/scp completion
+              ./zsh_completion_remote_files.patch
+            ];
+          });
       })
     ];
   };

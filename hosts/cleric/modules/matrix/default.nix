@@ -1,7 +1,7 @@
 {
   imports = [
     ./synapse.nix
-    # ./cinny.nix # disabled because marked as insecure
+    ./cinny.nix
     ./element.nix
     ./admin.nix
   ];

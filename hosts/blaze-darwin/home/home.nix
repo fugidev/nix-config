@@ -21,6 +21,7 @@
     yt-dlp
     mediainfo
     exiftool
+    rsync
   ];
 
   programs.nh = {

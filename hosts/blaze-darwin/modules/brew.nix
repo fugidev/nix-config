@@ -18,6 +18,7 @@
       "stolendata-mpv"
       "vscodium"
       "signal"
+      "localsend"
       {
         name = "librewolf";
         args.no_quarantine = true;

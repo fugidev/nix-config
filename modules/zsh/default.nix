@@ -97,6 +97,7 @@
           glost = "git log --graph --pretty='format:${log-format}%n' --abbrev-commit --compact-summary";
           glosta = "${glost} --all";
           gfetch = "git fetch --tags --force";
+          groot = "cd -P -- \"$(git rev-parse --show-toplevel)\"";
         };
 
       autosuggestions.enable = true;

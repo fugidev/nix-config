@@ -4,6 +4,11 @@ let
   hosts = with config.fugi.machines; [
     librarian
     shepherd
+    {
+      baseDomain = "fritz.box";
+      IPv4.address = "192.168.0.1";
+      IPv6.address = "fd00::4a5d:35ff:fe4c:d0fb";
+    }
   ];
   hostsRewrites = builtins.concatMap
     (host:

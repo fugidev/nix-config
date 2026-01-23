@@ -108,6 +108,20 @@
         "type": "github"
       }
     },
+    "iceshrimp-notifs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769166725,
+        "narHash": "sha256-xNjEQvKlfLnhVOytqwMkBVqcynXAosZhWR3OXR2p6XQ=",
+        "rev": "4cbbbcdd7a2ae13f6930ffa0986451d9fde4041d",
+        "type": "tarball",
+        "url": "https://codeberg.org/api/v1/repos/fugi/iceshrimp-notifs/archive/4cbbbcdd7a2ae13f6930ffa0986451d9fde4041d.tar.gz?rev=4cbbbcdd7a2ae13f6930ffa0986451d9fde4041d"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://codeberg.org/fugi/iceshrimp-notifs/archive/main.tar.gz"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -277,6 +291,7 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "home-manager-stable": "home-manager-stable",
+        "iceshrimp-notifs": "iceshrimp-notifs",
         "nix-darwin": "nix-darwin",
         "nix-minecraft": "nix-minecraft",
         "nixos-apple-silicon": "nixos-apple-silicon",

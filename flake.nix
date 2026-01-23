@@ -35,6 +35,10 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    iceshrimp-notifs = {
+      url = "https://codeberg.org/fugi/iceshrimp-notifs/archive/main.tar.gz";
+      flake = false;
+    };
   };
 
   outputs =

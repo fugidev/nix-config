@@ -31,6 +31,7 @@
       doggo
       nmap
       wget
+      wireguard-tools
       ## vcs / code
       git
       helix

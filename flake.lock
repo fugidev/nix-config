@@ -111,11 +111,11 @@
     "iceshrimp-notifs": {
       "flake": false,
       "locked": {
-        "lastModified": 1769166725,
-        "narHash": "sha256-xNjEQvKlfLnhVOytqwMkBVqcynXAosZhWR3OXR2p6XQ=",
-        "rev": "4cbbbcdd7a2ae13f6930ffa0986451d9fde4041d",
+        "lastModified": 1769264055,
+        "narHash": "sha256-VEnq4MOOEwVhTShpCthHw9VZV3RwFohsWq0ffosBQSo=",
+        "rev": "7af8640ae544fe74f642c6e3ee22ef6cba2253e8",
         "type": "tarball",
-        "url": "https://codeberg.org/api/v1/repos/fugi/iceshrimp-notifs/archive/4cbbbcdd7a2ae13f6930ffa0986451d9fde4041d.tar.gz?rev=4cbbbcdd7a2ae13f6930ffa0986451d9fde4041d"
+        "url": "https://codeberg.org/api/v1/repos/fugi/iceshrimp-notifs/archive/7af8640ae544fe74f642c6e3ee22ef6cba2253e8.tar.gz?rev=7af8640ae544fe74f642c6e3ee22ef6cba2253e8"
       },
       "original": {
         "type": "tarball",

@@ -1,4 +1,4 @@
-{ pkgs, lib, machineConfig, ... }:
+{ config, lib, pkgs, machineConfig, ... }:
 let
   user = "sekuriti";
 in
@@ -56,5 +56,23 @@ in
       SystemCallFilter = "@system-service";
       SystemCallArchitectures = "native";
     };
+  };
+
+  sops.secrets."sekuriti_sshkey".owner = user;
+
+  systemd.services."sekuriti-sync" = {
+    path = with pkgs; [
+      rsync
+      openssh
+    ];
+    script = ''
+      rsync -ahP -e "ssh -p23 -o StrictHostKeyChecking=no -i ${config.sops.secrets."sekuriti_sshkey".path}" /var/lib/sekuriti u329990-sub6@u329990-sub6.your-storagebox.de:
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = user;
+      Group = user;
+    };
+    startAt = "*-*-* 2:00:00";
   };
 }

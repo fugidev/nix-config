@@ -19,6 +19,7 @@
       "vscodium"
       "signal"
       "localsend"
+      "losslesscut"
       {
         name = "librewolf";
         args.no_quarantine = true;

@@ -36,6 +36,10 @@ let
       ip = "10.13.13.10";
       pubkey = "XjKjBN/9vXISIfdT98GT0XFngy8Tyg85SvqTxQXeWGQ=";
     };
+    hl-m2 = {
+      ip = "10.13.13.11";
+      pubkey = "7dCDV3IPLUDIZKIvJFpRSIC/F3DUP/5PuaT4vZNuAFk=";
+    };
   };
 in
 {

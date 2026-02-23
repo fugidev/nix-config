@@ -49,7 +49,7 @@
     };
 
     themes = {
-      onedark-fugi = lib.trivial.importTOML (pkgs.helix + /lib/runtime/themes/onedark.toml) // {
+      onedark-fugi = lib.trivial.importTOML (pkgs.helix.src + /runtime/themes/onedark.toml) // {
         "ui.background".bg = "#111111";
       };
     };

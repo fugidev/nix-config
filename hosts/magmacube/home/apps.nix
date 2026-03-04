@@ -9,6 +9,7 @@
     tenacity
     spotify
     joplin-desktop
+    audio-sharing
 
     freecad
     # bambu-studio

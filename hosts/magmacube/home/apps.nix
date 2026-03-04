@@ -8,7 +8,6 @@
     inkscape
     tenacity
     spotify
-    vdhcoapp
     joplin-desktop
 
     freecad

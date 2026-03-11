@@ -1,4 +1,4 @@
-{ pkgs, inputs, util, ... }:
+{ inputs, util, ... }:
 {
   imports = [
     (util.useFromUnstable {
@@ -45,11 +45,6 @@
 
   # Enable polkit
   security.polkit.enable = true;
-
-  # packages installed in system profile
-  environment.systemPackages = with pkgs; [
-    sshfs
-  ];
 
   # wait for gpu
   services.udev.extraRules = ''

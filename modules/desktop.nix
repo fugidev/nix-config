@@ -32,6 +32,11 @@
 
   programs.kdeconnect.enable = true;
 
+  services.languagetool = {
+    enable = true;
+    allowOrigin = "*";
+  };
+
   # Enable gvfs
   services.gvfs.enable = true;
 

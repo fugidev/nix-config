@@ -39,6 +39,11 @@
       url = "https://codeberg.org/fugi/iceshrimp-notifs/archive/main.tar.gz";
       flake = false;
     };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.noctalia-qs.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs =

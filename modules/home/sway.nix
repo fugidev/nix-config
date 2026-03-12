@@ -35,9 +35,8 @@ in
   imports = [
     ./wofi.nix
     ./theme.nix
-    ./waybar
     ./polkit-agent.nix
-    ./swaync.nix
+    ./noctalia.nix
   ];
 
   wayland.windowManager.sway = {

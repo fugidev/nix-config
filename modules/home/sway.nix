@@ -30,6 +30,8 @@ let
     desktop_file="$(wofi --show drun --define=drun-print_desktop_file=true --no-actions)"
     exec app2unit -- "$(basename $desktop_file)"
   '';
+
+  noctalia-ipc = cmd: "exec noctalia-shell ipc call ${cmd}";
 in
 {
   imports = [
@@ -134,19 +136,16 @@ in
         "${mod}+b" = "exec app2unit -- librewolf.desktop";
         "${mod}+t" = "exec app2unit -- thunar.desktop";
         # display brightness
-        "--locked XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
-        "--locked XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
-        # keyboard brightness
-        "--locked Shift+XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10 -s sysfs/leds/kbd_backlight";
-        "--locked Shift+XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10 -s sysfs/leds/kbd_backlight";
+        "--locked XF86MonBrightnessUp" = noctalia-ipc "brightness increase";
+        "--locked XF86MonBrightnessDown" = noctalia-ipc "brightness decrease";
         # media control
-        "XF86AudioRaiseVolume" = "exec wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+";
-        "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
-        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-        "XF86AudioMicMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-        "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-        "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
-        "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+        "XF86AudioRaiseVolume" = noctalia-ipc "volume increase";
+        "XF86AudioLowerVolume" = noctalia-ipc "volume decrease";
+        "XF86AudioMute" = noctalia-ipc "volume muteOutput";
+        "XF86AudioMicMute" = noctalia-ipc "volume muteInput";
+        "XF86AudioPlay" = noctalia-ipc "media playPause";
+        "XF86AudioNext" = noctalia-ipc "media next";
+        "XF86AudioPrev" = noctalia-ipc "media previous";
         # modes
         "${mod}+Pause" = "mode \"$mode_power\"";
         "XF86PowerOff" = "mode \"$mode_power\""; # systemd-inhibit required for this
@@ -171,7 +170,6 @@ in
   services.playerctld.enable = true;
 
   home.packages = with pkgs; [
-    light
     sway-contrib.grimshot
     wl-clipboard
     (rofimoji.override {

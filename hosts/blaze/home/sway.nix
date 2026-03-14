@@ -1,4 +1,4 @@
-{ config, pkgs, flakeRoot, ... }:
+{ config, lib, pkgs, flakeRoot, ... }:
 {
   imports = [
     (flakeRoot + /modules/home/sway.nix)
@@ -26,6 +26,12 @@
       };
 
       defaultWorkspace = "workspace number 1";
+
+      keybindings = lib.mkOptionDefault ({
+        # keyboard brightness
+        "--locked Shift+XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.brightnessctl} --device=kbd_backlight set +34%";
+        "--locked Shift+XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.brightnessctl} --device=kbd_backlight set 34%-";
+      });
     };
   };
 
@@ -39,8 +45,8 @@
       {
         # dim display after 4 minutes
         timeout = 240;
-        command = "${pkgs.light}/bin/light -T 0.25";
-        resumeCommand = "${pkgs.light}/bin/light -T 4";
+        command = "${lib.getExe pkgs.brightnessctl} --save set 10%";
+        resumeCommand = "${lib.getExe pkgs.brightnessctl} --restore";
       }
     ];
   };

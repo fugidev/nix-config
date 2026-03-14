@@ -46,6 +46,9 @@
   # Enable polkit
   security.polkit.enable = true;
 
+  # Battery management for noctalia-shell
+  services.upower.enable = true;
+
   # wait for gpu
   services.udev.extraRules = ''
     SUBSYSTEM=="drm", KERNEL=="card*", TAG+="systemd"

@@ -48,7 +48,6 @@
 
   # Network Manager
   networking.networkmanager.enable = true;
-  programs.nm-applet.enable = true;
 
   # Environment variables
   environment.variables = {

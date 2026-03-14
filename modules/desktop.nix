@@ -27,7 +27,6 @@
 
   # Enable bluetooth.
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
   programs.librepods.enable = true;
 
   programs.kdeconnect.enable = true;

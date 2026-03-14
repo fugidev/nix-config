@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 {
   imports = [
     inputs.noctalia.homeModules.default
@@ -145,4 +145,21 @@
       defaultWallpaper = config.fugi.wallpaper;
     };
   };
+
+  home.packages = [
+    (pkgs.writeShellApplication {
+      name = "noctalia-config-diff";
+      runtimeInputs = with pkgs; [
+        json-diff
+        jq
+        config.programs.noctalia-shell.package
+      ];
+      text = ''
+        json-diff -fC \
+          <(jq -Ss '.[0] * .[1]' ${config.programs.noctalia-shell.package.src}/Assets/settings-default.json ~/.config/noctalia/settings.json) \
+          <(noctalia-shell ipc call state all | jq -S .settings) \
+          | less
+      '';
+    })
+  ];
 }

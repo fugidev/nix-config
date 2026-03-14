@@ -95,6 +95,38 @@
           ];
         };
       };
+
+      sessionMenu = {
+        enableCountdown = false;
+        powerOptions = [
+          {
+            action = "lock";
+            keybind = "L";
+            enabled = true;
+          }
+          {
+            action = "logout";
+            command = "uwsm stop";
+            keybind = "E";
+            enabled = true;
+          }
+          {
+            action = "suspend";
+            keybind = "S";
+            enabled = true;
+          }
+          {
+            action = "reboot";
+            keybind = "R";
+            enabled = true;
+          }
+          {
+            action = "shutdown";
+            keybind = "P";
+            enabled = true;
+          }
+        ];
+      };
     };
   };
 }

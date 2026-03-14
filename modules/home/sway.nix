@@ -59,10 +59,6 @@ in
       unset __HM_ZSH_SESS_VARS_SOURCED
     '';
 
-    extraConfigEarly = ''
-      set $mode_power (l)ock, (e)xit, (s)uspend, (p)oweroff, (r)eboot
-    '';
-
     extraConfig = ''
       titlebar_padding 5 1
       for_window [app_id="com.github.iwalton3.jellyfin-media-player"] inhibit_idle visible
@@ -117,17 +113,6 @@ in
         ];
       };
 
-      modes = lib.mkOptionDefault {
-        "$mode_power" = {
-          l = "exec loginctl lock-session, mode default";
-          e = "exec uwsm stop";
-          s = "exec systemctl suspend, mode default";
-          p = "exec systemctl poweroff";
-          r = "exec systemctl reboot";
-          Escape = "mode default";
-        };
-      };
-
       keybindings = lib.mkOptionDefault ({
         "${mod}+d" = "exec ${wofi}";
         "${mod}+period" = "exec rofimoji --selector wofi";
@@ -146,9 +131,9 @@ in
         "XF86AudioPlay" = noctalia-ipc "media playPause";
         "XF86AudioNext" = noctalia-ipc "media next";
         "XF86AudioPrev" = noctalia-ipc "media previous";
-        # modes
-        "${mod}+Pause" = "mode \"$mode_power\"";
-        "XF86PowerOff" = "mode \"$mode_power\""; # systemd-inhibit required for this
+        # session menu
+        "${mod}+Pause" = noctalia-ipc "sessionMenu toggle";
+        "XF86PowerOff" = noctalia-ipc "sessionMenu toggle"; # systemd-inhibit required for this
       } // screenshotKeybindings);
 
       seat."*" = let cursor = config.home.pointerCursor; in {

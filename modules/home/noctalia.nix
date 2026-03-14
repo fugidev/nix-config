@@ -38,6 +38,9 @@
         radiusRatio = 0.5;
         screenRadiusRatio = 0.5;
         dimmerOpacity = 0;
+
+        compactLockScreen = true;
+        showSessionButtonsOnLockScreen = false;
       };
 
       bar = {
@@ -81,16 +84,24 @@
               id = "Tray";
               hidePassive = true;
             }
-            { id = "NotificationHistory"; }
-            { id = "Battery"; }
+            {
+              id = "Battery";
+              displayMode = "icon-always";
+            }
             {
               id = "Volume";
               displayMode = "alwaysShow";
             }
-            { id = "Brightness"; }
+            {
+              id = "Network";
+              displayMode = "alwaysShow";
+            }
             { id = "Bluetooth"; }
-            { id = "Network"; }
-            { id = "ControlCenter"; }
+            { id = "NotificationHistory"; }
+            {
+              id = "ControlCenter";
+              icon = "adjustments-horizontal";
+            }
           ];
         };
       };

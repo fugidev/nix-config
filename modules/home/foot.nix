@@ -4,7 +4,7 @@
     settings = {
       main.font = "monospace:size=10.5";
 
-      colors = {
+      colors-dark = {
         foreground = "dddddd";
         background = "111111";
 

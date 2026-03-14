@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ config, inputs, ... }:
 {
   imports = [
     inputs.noctalia.homeModules.default
@@ -29,7 +29,6 @@
     };
 
     settings = {
-      wallpaper.enabled = false;
       dock.enabled = false;
       location.name = "Dresden";
 
@@ -127,6 +126,12 @@
           }
         ];
       };
+    };
+  };
+
+  home.file.".cache/noctalia/wallpapers.json" = {
+    text = builtins.toJSON {
+      defaultWallpaper = config.fugi.wallpaper;
     };
   };
 }

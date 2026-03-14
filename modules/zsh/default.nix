@@ -98,6 +98,7 @@
           glosta = "${glost} --all";
           gfetch = "git fetch --tags --force";
           groot = "cd -P -- \"$(git rev-parse --show-toplevel)\"";
+          dps = "docker ps --format 'table {{.ID}}\\t{{.Names}}\\t{{.Image}}\\t{{.RunningFor}}\\t{{.Status}}'";
         };
 
       autosuggestions.enable = true;

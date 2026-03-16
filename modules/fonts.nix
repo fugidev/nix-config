@@ -6,6 +6,8 @@
       twitter-color-emoji # emoji
       fira-code # mono
       nerd-fonts.fira-code
+      source-sans
+      source-sans-pro
     ];
 
     # Bitstream Vera (base) -> Twemoji -> DejaVu (rest)

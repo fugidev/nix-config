@@ -89,7 +89,7 @@
 
       shellAliases =
         let
-          log-format = "%Cred%h%Creset -%C(auto)%(decorate:tag=)%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset";
+          log-format = "%Cred%h%Creset -%C(auto)%(decorate:tag=)%Creset %s %Cgreen(%ah) %C(bold blue)<%an>%Creset";
         in rec {
           glol = "git log --graph --pretty='${log-format}' --abbrev-commit";
           glola = "${glol} --all";

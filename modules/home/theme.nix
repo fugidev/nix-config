@@ -40,4 +40,7 @@ in
     enable = lib.mkDefault true;
     platformTheme.name = "gtk";
   };
+
+  # fix for GTK Warning `Unable to locate theme engine in module_path: "adwaita"`
+  home.packages = [ pkgs.gnome-themes-extra ];
 }

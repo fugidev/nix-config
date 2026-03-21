@@ -39,6 +39,11 @@
       };
 
       recorder.db_url = "postgresql://@/hass";
+
+      # configured via web ui
+      "automation ui" = "!include automations.yaml";
+      "scene ui" = "!include scenes.yaml";
+      "script ui" = "!include scripts.yaml";
     };
   };
 

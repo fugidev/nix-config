@@ -23,6 +23,8 @@
       "shopping_list"
       ## Recommended for fast zlib compression
       "isal"
+      ## FRITZ!SmartHome
+      "fritzbox"
     ];
 
     config = {

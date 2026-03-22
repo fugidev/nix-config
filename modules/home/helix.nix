@@ -1,7 +1,7 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, ... }:
 {
   home.sessionVariables = {
-    EDITOR = lib.getExe config.programs.helix.package;
+    EDITOR = "/etc/profiles/per-user/fugi/bin/hx";
   };
 
   programs.helix = {

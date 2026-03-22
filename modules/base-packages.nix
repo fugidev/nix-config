@@ -2,7 +2,11 @@
 {
   imports = [
     (util.useFromUnstable {
-      pkgs = [ "nixfmt" ];
+      pkgs = [
+        "nixfmt"
+        "helix"
+        "helix-unwrapped"
+      ];
     })
   ];
 

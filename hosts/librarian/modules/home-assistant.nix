@@ -25,6 +25,8 @@
       "isal"
       ## FRITZ!SmartHome
       "fritzbox"
+
+      "mqtt"
     ];
 
     config = {

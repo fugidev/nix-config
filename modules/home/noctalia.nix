@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, osConfig, ... }:
 {
   imports = [
     inputs.noctalia.homeModules.default
@@ -94,7 +94,7 @@
             }
             {
               id = "Network";
-              displayMode = "alwaysShow";
+              displayMode = if osConfig.networking.hostName == "magmacube" then "alwaysHide" else "alwaysShow";
             }
             { id = "Bluetooth"; }
             { id = "NotificationHistory"; }

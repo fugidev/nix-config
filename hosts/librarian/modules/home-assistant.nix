@@ -1,4 +1,4 @@
-{ util, machineConfig, ... }:
+{ pkgs, util, machineConfig, ... }:
 {
   imports = [
     (util.useFromUnstable {
@@ -12,6 +12,10 @@
 
     extraPackages = ps: with ps; [
       psycopg2
+    ];
+
+    customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
+      valetudo-map-card
     ];
 
     extraComponents = [

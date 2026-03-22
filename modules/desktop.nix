@@ -1,10 +1,6 @@
-{ inputs, util, ... }:
+{ ... }:
 {
   imports = [
-    (util.useFromUnstable {
-      pkgs = [ "thunderbird" ];
-      src = inputs.nixos-unstable-small;
-    })
     ./plymouth.nix
     ./greetd.nix
     ./uwsm.nix

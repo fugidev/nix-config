@@ -147,7 +147,7 @@ in
   services.swayidle = {
     enable = true;
     events = rec {
-      lock = "${lib.getExe pkgs.gtklock} -d";
+      lock = "${lib.getExe config.programs.noctalia-shell.package} ipc call lockScreen lock";
       before-sleep = lock;
     };
   };

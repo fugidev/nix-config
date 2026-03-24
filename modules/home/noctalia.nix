@@ -96,7 +96,10 @@
               id = "Network";
               displayMode = if osConfig.networking.hostName == "magmacube" then "alwaysHide" else "alwaysShow";
             }
-            { id = "Bluetooth"; }
+            {
+              id = "Bluetooth";
+              displayMode = "alwaysShow";
+            }
             { id = "NotificationHistory"; }
             {
               id = "ControlCenter";

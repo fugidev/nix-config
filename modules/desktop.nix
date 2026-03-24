@@ -8,7 +8,6 @@
     ./printing.nix
     ./ios-support.nix
     ./thunar.nix
-    ./gtklock.nix
     ./librepods.nix
   ];
 

@@ -59,6 +59,11 @@
                 hw-address = "70:C9:32:0B:1F:5E";
                 ip-address = "192.168.0.7";
               }
+              {
+                # dishwasher
+                hw-address = "C8:D7:78:FC:CC:77";
+                ip-address = "192.168.0.8";
+              }
             ];
           }];
         };

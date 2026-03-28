@@ -18,6 +18,10 @@
       valetudo-map-card
     ];
 
+    customComponents = [
+      (pkgs.home-assistant.python.pkgs.callPackage ./homeconnect-local.nix { })
+    ];
+
     extraComponents = [
       ## Components required to complete the onboarding
       # "analytics"

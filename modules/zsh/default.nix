@@ -85,6 +85,11 @@
             git --no-pager log --pretty=' %h - %s %Cgreen(%cr) %C(blue)<%an>%Creset' --abbrev-commit --reverse ''${previous_head}..HEAD
           fi
         }
+
+        function gtagforce {
+          git tag -f "$1"
+          git push -f origin refs/tags/"$1"
+        }
       '';
 
       shellAliases =

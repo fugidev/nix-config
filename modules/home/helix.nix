@@ -1,9 +1,5 @@
 { lib, pkgs, ... }:
 {
-  home.sessionVariables = {
-    EDITOR = "/etc/profiles/per-user/fugi/bin/hx";
-  };
-
   programs.helix = {
     enable = true;
 

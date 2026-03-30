@@ -3,6 +3,7 @@
     ./user-options.nix
     ./zsh.nix
     ./helix.nix
+    ./git.nix
   ];
 
   programs.zsh.sessionVariables = {

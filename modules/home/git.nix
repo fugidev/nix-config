@@ -3,22 +3,10 @@
   programs.git = {
     enable = true;
 
-    signing = {
-      format = "ssh";
-      key = "~/.ssh/id_ed25519.pub";
-    };
-
     settings = {
-      user = {
-        name = "Lyn";
-        email = "me@fugi.dev";
-      };
-
       init.defaultBranch = "main";
 
       push.default = "current";
-
-      commit.gpgSign = true;
 
       gpg.ssh.allowedSignersFile = "~/.config/git/allowed_signers";
 

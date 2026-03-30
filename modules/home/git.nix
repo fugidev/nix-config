@@ -1,11 +1,11 @@
-{ ... }:
+{ lib, osConfig, ... }:
 {
   programs.git = {
     enable = true;
 
     signing = {
-      key = "BF37903AE6FD294C4C674EE24472A20091BFA792";
-      signByDefault = true;
+      format = "ssh";
+      key = "~/.ssh/id_ed25519.pub";
     };
 
     settings = {
@@ -18,18 +18,24 @@
 
       push.default = "current";
 
-      tag.gpgSign = false;
+      commit.gpgSign = true;
+
+      gpg.ssh.allowedSignersFile = "~/.config/git/allowed_signers";
 
       color = {
         diff-highlight = {
           oldNormal = "red";
           oldHighlight = "normal 88";
           newNormal = "green";
-          newHighlight= "normal 22";
+          newHighlight = "normal 22";
         };
       };
     };
   };
+
+  home.file.".config/git/allowed_signers".text = (
+    lib.concatMapStringsSep "\n" (s: "*@fugi.dev ${s}") osConfig.fugi.authorizedKeys
+  );
 
   programs.diff-so-fancy = {
     enable = true;

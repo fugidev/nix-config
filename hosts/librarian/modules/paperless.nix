@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  consumptionDir = "/data/share/_paperless";
+  consumptionDir = "/data/lynna/_paperless";
   fqdn = "paperless.${config.networking.fqdn}";
 in
 {
@@ -11,9 +11,9 @@ in
       PAPERLESS_URL = "https://${fqdn}";
       PAPERLESS_DBHOST = "/run/postgresql";
       PAPERLESS_OCR_LANGUAGE = "deu+eng";
-      PAPERLESS_ADMIN_USER = "fugi";
-      PAPERLESS_FILENAME_FORMAT = "{{ created_year }}/{{ created_year }}-{{ created_month }}-{{ created_day }} {{ title }}";
       PAPERLESS_OCR_DESKEW = false; # deskew sometimes messes up, so I do it manually
+      PAPERLESS_FILENAME_FORMAT = "{{ owner_username }}/{{ created_year }}/{{ created_year }}-{{ created_month }}-{{ created_day }} {{ title }}";
+      PAPERLESS_CONSUMER_RECURSIVE = true;
     };
     inherit consumptionDir;
   };
@@ -40,17 +40,13 @@ in
 
   sops.secrets.paperless_password = { };
 
-  # ensure consumption directory is created, set permissions
-  systemd.tmpfiles.settings."10-paperless" = {
-    ${consumptionDir} = lib.mkForce {
-      d = {
-        mode = "2775";
-        user = "fugi";
-        group = "paperless";
-      };
-      a = {
-        argument = "d:g::rwx";
-      };
-    };
+  systemd.tmpfiles.settings."10-paperless".${consumptionDir} = lib.mkForce { };
+
+  # make the services not spam restart on failure...
+  systemd.services = {
+    paperless-consumer.serviceConfig.RestartSec = 2;
+    paperless-scheduler.serviceConfig.RestartSec = 2;
+    paperless-task-queue.serviceConfig.RestartSec = 2;
+    paperless-web.serviceConfig.RestartSec = 2;
   };
 }

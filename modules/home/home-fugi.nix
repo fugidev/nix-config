@@ -4,6 +4,7 @@
     ./user-options.nix
     ./zsh.nix
     ./git.nix
+    ./git-fugi.nix
     ./foot.nix
     ./direnv.nix
     ./helix.nix
@@ -23,20 +24,6 @@
       fi
     fi
   '';
-
-  programs.git = {
-    signing = {
-      format = "ssh";
-      key = "~/.ssh/id_ed25519.pub";
-    };
-    settings = {
-      user = {
-        name = "Lyn";
-        email = "me@fugi.dev";
-      };
-      commit.gpgSign = true;
-    };
-  };
 
   services.kdeconnect = {
     enable = true;

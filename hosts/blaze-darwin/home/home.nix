@@ -4,6 +4,7 @@
     "zsh.nix"
     "less.nix"
     "git.nix"
+    "git-fugi.nix"
     "helix.nix"
     "ssh.nix"
     "alacritty.nix"

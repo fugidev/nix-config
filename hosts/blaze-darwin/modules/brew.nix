@@ -20,6 +20,7 @@
       "signal"
       "localsend"
       "losslesscut"
+      "linearmouse"
       {
         name = "librewolf";
         args.no_quarantine = true;

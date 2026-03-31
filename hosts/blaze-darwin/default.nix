@@ -21,6 +21,8 @@
     '')
   ];
 
+  security.pam.services.sudo_local.touchIdAuth = true;
+
   # set by lix installer
   ids.gids.nixbld = 30000;
 

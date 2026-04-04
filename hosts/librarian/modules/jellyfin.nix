@@ -1,5 +1,14 @@
-{ config, ... }:
+{ config, util, ... }:
 {
+  imports = [
+    (util.useFromUnstable {
+      pkgs = [
+        "jellyfin"
+        "jellyfin-web"
+      ];
+    })
+  ];
+
   services.jellyfin.enable = true;
 
   users.groups."media".members = [ "jellyfin" ];

@@ -24,6 +24,7 @@
     EDITOR = "hx";
     LESS = "-FSR";
     SYSTEMD_LESS = LESS;
+    NH_SHOW_ACTIVATION_LOGS = "true";
   };
 
   programs.less = {

@@ -2,10 +2,6 @@
   system.activationScripts.diff = {
     supportsDryActivation = true;
     text = ''
-      if [[ -e /run/current-system && -e "$systemConfig" ]]; then
-        ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin --color=always diff /run/current-system "$systemConfig"
-      fi
-
       NO_FORMAT="\033[0m"
       F_BOLD="\033[1m"
       C_RED="\033[38;5;9m"

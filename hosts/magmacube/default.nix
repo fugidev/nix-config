@@ -22,7 +22,7 @@
   networking.nftables.enable = true;
 
   services.openssh.enable = true;
-  users.users.root.openssh.authorizedKeys.keys = config.fugi.authorizedKeys;
+  users.users.fugi.openssh.authorizedKeys.keys = config.fugi.authorizedKeys;
 
   fugi.allowUnfree = [
     "discord"

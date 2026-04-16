@@ -19,6 +19,8 @@
   # use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  networking.nftables.enable = true;
+
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = config.fugi.authorizedKeys;
 

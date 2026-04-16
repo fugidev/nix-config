@@ -8,7 +8,6 @@
     ./printing.nix
     ./ios-support.nix
     ./thunar.nix
-    ./librepods.nix
   ];
 
   # Enable sound.

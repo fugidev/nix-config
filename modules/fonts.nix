@@ -8,6 +8,8 @@
       nerd-fonts.fira-code
       source-sans
       source-sans-pro
+      atkinson-hyperlegible-next
+      atkinson-hyperlegible-mono
     ];
 
     # Bitstream Vera (base) -> Twemoji -> DejaVu (rest)

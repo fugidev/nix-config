@@ -10,6 +10,7 @@ in
   services.nginx.virtualHosts."cinny.${machineConfig.baseDomain}" = {
     root = pkgs.cinny.override {
       conf = cinnyConfig;
+      cinny-unwrapped = pkgs.sable-unwrapped;
     };
 
     extraConfig = ''

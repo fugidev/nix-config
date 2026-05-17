@@ -20,8 +20,8 @@ in
       rewrite ^/sw.js$ /sw.js break;
       rewrite ^/pdf.worker.min.js$ /pdf.worker.min.js break;
 
-      rewrite ^/public/(.*)$ /public/$1 break;
-      rewrite ^/assets/(.*)$ /assets/$1 break;
+      rewrite ^/public/(?<path>.*)$ /public/$path break;
+      rewrite ^/assets/(?<path>.*)$ /assets/$path break;
 
       rewrite ^(.+)$ /index.html break;
     '';

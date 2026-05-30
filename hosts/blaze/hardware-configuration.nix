@@ -4,65 +4,63 @@
 { lib, modulesPath, ... }:
 
 {
-  imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
-  boot.initrd.systemd.enable = true;
   boot.initrd.availableKernelModules = [ "usb_storage" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/c93a8bdb-66ab-4c39-a0f3-e880ee274c52";
-      fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" "noatime" "x-systemd.device-timeout=0" ];
-    };
+  fileSystems."/" = {
+    device = "/dev/mapper/nixenc";
+    fsType = "btrfs";
+    options = [
+      "subvol=@"
+      "compress=zstd"
+    ];
+  };
 
-  boot.initrd.luks.devices."nixenc".device = "/dev/disk/by-uuid/6d32354c-7b7b-4ea4-8af6-7f41efa69fbc";
+  boot.initrd.luks.devices."nixenc".device = "/dev/disk/by-uuid/66106c1f-ee88-4761-8234-e544756ea779";
 
-  fileSystems."/home" =
-    {
-      device = "/dev/disk/by-uuid/c93a8bdb-66ab-4c39-a0f3-e880ee274c52";
-      fsType = "btrfs";
-      options = [ "subvol=home" "compress=zstd" "noatime" ];
-    };
+  fileSystems."/home" = {
+    device = "/dev/mapper/nixenc";
+    fsType = "btrfs";
+    options = [
+      "subvol=@home"
+      "compress=zstd"
+    ];
+  };
 
-  fileSystems."/nix" =
-    {
-      device = "/dev/disk/by-uuid/c93a8bdb-66ab-4c39-a0f3-e880ee274c52";
-      fsType = "btrfs";
-      options = [ "subvol=nix" "compress=zstd" "noatime" ];
-    };
+  fileSystems."/nix" = {
+    device = "/dev/mapper/nixenc";
+    fsType = "btrfs";
+    options = [
+      "subvol=@nix"
+      "compress=zstd"
+    ];
+  };
 
-  fileSystems."/var/log" =
-    {
-      device = "/dev/disk/by-uuid/c93a8bdb-66ab-4c39-a0f3-e880ee274c52";
-      fsType = "btrfs";
-      options = [ "subvol=log" "compress=zstd" "noatime" ];
-    };
+  fileSystems."/var/log" = {
+    device = "/dev/mapper/nixenc";
+    fsType = "btrfs";
+    options = [
+      "subvol=@log"
+      "compress=zstd"
+    ];
+  };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/BFA1-07F2";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/C0EF-160D";
+    fsType = "vfat";
+    options = [
+      "fmask=0077"
+      "dmask=0077"
+    ];
+  };
 
-  swapDevices = [
-    { device = "/var/swapfile"; }
-  ];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp1s0f0.useDHCP = lib.mkDefault true;
+  swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 }

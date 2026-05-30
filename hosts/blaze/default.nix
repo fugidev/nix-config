@@ -9,7 +9,7 @@
   hardware.asahi.peripheralFirmwareDirectory = pkgs.requireFile {
     name = "asahi";
     hashMode = "recursive";
-    hash = "sha256-Z/0QdtVTYTY7P/LzAYF4lJY/u+f5h56hssxJcqPFz4M=";
+    hash = "sha256-cD7R7FqQdEamh2NQefByAmnUJEVWcGd5uSHBcaprVKo=";
     message = ''
       nix-store --add-fixed sha256 --recursive /boot/asahi
       nix hash path /boot/asahi

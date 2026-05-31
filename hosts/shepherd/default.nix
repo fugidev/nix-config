@@ -9,7 +9,7 @@
       filter = "*rpi-4-*.dtb";
     };
   };
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
   console.enable = false;
   environment.systemPackages = with pkgs; [
     libraspberrypi

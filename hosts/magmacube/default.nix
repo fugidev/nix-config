@@ -38,4 +38,15 @@
   programs.gtklock.config.main.monitor-priority = "DP-1";
 
   system.stateVersion = "24.05";
+
+  # fix lutris
+  nixpkgs.overlays = [
+    # Skipping tests while upstream sorts it out, revert once
+    # Hydra consistently builds openldap green.
+    (_: prev: {
+      openldap = prev.openldap.overrideAttrs {
+        doCheck = !prev.stdenv.hostPlatform.isi686;
+      };
+    })
+  ];
 }

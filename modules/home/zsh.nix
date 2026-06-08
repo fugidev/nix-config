@@ -10,7 +10,7 @@ if (args ? "nixosConfig") then
 else
 # standalone home-manager, import the nixos module
   let
-    nixosZshConfig = import ../zsh args;
+    nixosZshConfig = import ../zsh.nix args;
     extraConfig = {
       initContent = ''
         source ${pkgs.fzf}/share/fzf/key-bindings.zsh

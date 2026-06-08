@@ -242,7 +242,7 @@
                 modules = [
                   ./hosts/iso
                   ./modules/options.nix
-                  ./modules/zsh
+                  ./modules/zsh.nix
                 ];
               };
             };
@@ -255,7 +255,7 @@
                   ./hosts/iso
                   ./hosts/iso/pi4.nix
                   ./modules/options.nix
-                  ./modules/zsh
+                  ./modules/zsh.nix
                 ];
               };
             };

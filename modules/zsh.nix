@@ -1,5 +1,11 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, util, ... }:
 {
+  imports = [
+    (util.useFromUnstable {
+      pkgs = [ "zsh" ];
+    })
+  ];
+
   options = with lib; {
     fugi.promptColor = mkOption {
       type = types.str;
@@ -108,20 +114,5 @@
 
       autosuggestions.enable = true;
     };
-
-    nixpkgs.overlays = [
-      (_self: super: {
-        zsh =
-          let
-            unstable = inputs.nixpkgs-unstable.legacyPackages.${config.nixpkgs.localSystem.system};
-          in
-          unstable.zsh.overrideAttrs (old: {
-            patches = old.patches ++ [
-              # disable double escaping of remote paths for rsync/scp completion
-              ./zsh_completion_remote_files.patch
-            ];
-          });
-      })
-    ];
   };
 }

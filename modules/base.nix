@@ -3,7 +3,7 @@
   imports = [
     ./options.nix
     ./base-packages.nix
-    ./zsh
+    ./zsh.nix
     ./tmux.nix
     ./upgrade-diff.nix
     ./locale.nix

@@ -68,19 +68,18 @@
     flake = "/etc/nixos";
   };
 
-  nix = {
-    # enable flake support
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
+  nix.settings = {
+    substituters = lib.optionals (machineConfig.hostName != "cleric") [
+      "https://cache.fugi.dev"
+    ];
+    trusted-public-keys = lib.optionals (machineConfig.hostName != "cleric") [
+      "cache.fugi.dev:0zmYYGJ0D5p1TWe4FomYGb+tGEHQ7hpbbDudeKXt0rs="
+    ];
 
-    settings = {
-      substituters = lib.optionals (machineConfig.hostName != "cleric") [
-        "https://cache.fugi.dev"
-      ];
-      trusted-public-keys = lib.optionals (machineConfig.hostName != "cleric") [
-        "cache.fugi.dev:0zmYYGJ0D5p1TWe4FomYGb+tGEHQ7hpbbDudeKXt0rs="
-      ];
-    };
+    # enable flake support
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 }

@@ -18,7 +18,7 @@
     };
   };
 
-  home-manager.users.fugi.home.file.".gnupg/gpg-agent.conf".text = ''
+  home-manager.users.lyn.home.file.".gnupg/gpg-agent.conf".text = ''
     pinentry-program /run/current-system/sw/bin/pinentry-mac
   '';
 }

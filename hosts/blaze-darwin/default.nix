@@ -2,17 +2,17 @@
 {
   imports = util.dirPaths ./modules;
 
-  home-manager.users.fugi.imports = util.dirPaths ./home;
+  home-manager.users.lyn.imports = util.dirPaths ./home;
 
-  users.users.fugi.home = "/Users/fugi";
+  users.users.lyn.home = "/Users/lyn";
 
-  system.primaryUser = "fugi";
+  system.primaryUser = "lyn";
 
   environment.systemPackages = with pkgs; [
     # install user applications to `/Applications/Nix Apps`
     (buildEnv {
       name = "user-applications";
-      paths = config.users.users.fugi.packages;
+      paths = config.users.users.lyn.packages;
       pathsToLink = [ "/Applications" ];
     })
 
@@ -22,9 +22,6 @@
   ];
 
   security.pam.services.sudo_local.touchIdAuth = true;
-
-  # set by lix installer
-  ids.gids.nixbld = 30000;
 
   nix.settings = {
     sandbox = true;

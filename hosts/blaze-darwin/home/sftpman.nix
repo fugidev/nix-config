@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 {
   programs.sftpman.package = pkgs.sftpman-python.override {
-    mountPath = "/Users/fugi/.cache/sshfs/";
+    mountPath = "/Users/lyn/.cache/sshfs/";
   };
 
   programs.zsh.initContent = lib.mkAfter ''

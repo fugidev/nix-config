@@ -27,7 +27,7 @@ in
     settings = {
       mode.main.binding = {
         "${mod}-f" = "fullscreen";
-        "${mod}-enter" = "exec-and-forget /etc/profiles/per-user/fugi/bin/alacritty";
+        "${mod}-enter" = "exec-and-forget /etc/profiles/per-user/lyn/bin/alacritty";
         "${mod}-e" = "layout tiles horizontal vertical";
         "${mod}-w" = "layout v_accordion";
         "${mod}-shift-space" = "layout floating tiling";

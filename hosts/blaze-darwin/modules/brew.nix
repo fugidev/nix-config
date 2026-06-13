@@ -4,27 +4,40 @@
     enable = true;
     onActivation.cleanup = "uninstall";
     onActivation.upgrade = true;
+    global.brewfile = true;
+    enableZshIntegration = true;
 
     casks = [
+      "adobe-acrobat-reader"
+      "affinity"
+      "ausweisapp"
       "bambu-studio"
+      "blender"
+      "coconutbattery"
+      "hex-fiend"
       "inkscape"
-      "jellyfin-media-player"
-      "kdenlive"
+      "karabiner-elements"
+      "keka"
       "linearmouse"
+      "localsend"
       "naps2"
       "prismlauncher"
-      "rectangle"
-      "stats"
-      "stolendata-mpv"
-      "vscodium"
       "signal"
-      "localsend"
-      "losslesscut"
-      "linearmouse"
+      "stats"
+      "steam"
+      "stolendata-mpv"
+      "textmate"
+      "thunderbird"
+      "vscodium"
       {
         name = "librewolf";
-        args.no_quarantine = true;
+        postinstall = "sudo xattr -r -d com.apple.quarantine /Applications/LibreWolf.app";
       }
     ];
+
+    masApps = {
+      WireGuard = 1451685025;
+      Xcode = 497799835;
+    };
   };
 }

@@ -23,7 +23,6 @@
     mediainfo
     exiftool
     rsync
-    pipx
   ];
 
   programs.nh = {

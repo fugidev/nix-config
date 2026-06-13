@@ -19,7 +19,7 @@
     ];
 
     customComponents = [
-      (pkgs.home-assistant.python.pkgs.callPackage ./homeconnect-local.nix { })
+      (pkgs.home-assistant.python3Packages.callPackage ./homeconnect-local.nix { })
     ];
 
     extraComponents = [

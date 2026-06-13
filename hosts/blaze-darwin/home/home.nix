@@ -25,6 +25,10 @@
     rsync
   ];
 
+  home.sessionVariables = {
+    NH_SHOW_ACTIVATION_LOGS = "true";
+  };
+
   programs.nh = {
     enable = true;
     flake = "/etc/nix-darwin";

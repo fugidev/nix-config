@@ -37,6 +37,14 @@
           "idmap=user"
         ];
       };
+      polynormal = {
+        host = "server.polynormal.games";
+        mountPoint = "/etc/nixos";
+        user = "root";
+        mountOptions = [
+          "idmap=user"
+        ];
+      };
     };
   };
 

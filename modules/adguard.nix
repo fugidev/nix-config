@@ -85,7 +85,7 @@ in
   systemd.services.adguardhome = {
     preStart = lib.mkAfter /* sh */ ''
       HASH=$(cat ${config.sops.secrets.adguard_pass.path} | ${pkgs.apacheHttpd}/bin/htpasswd -niB "" | cut -c 2-)
-      ${pkgs.gnused}/bin/sed -i "s,ADGUARDPASS,$HASH," "$STATE_DIRECTORY/AdGuardHome.yaml"
+      ${lib.getExe pkgs.sd} -F "ADGUARDPASS" "$HASH" "$STATE_DIRECTORY/AdGuardHome.yaml"
     '';
     serviceConfig.User = adguardUser;
   };

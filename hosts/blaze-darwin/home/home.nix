@@ -1,4 +1,4 @@
-{ pkgs, flakeRoot, ... }:
+{ lib, pkgs, flakeRoot, ... }:
 {
   imports = map (x: flakeRoot + "/modules/home/${x}") [
     "zsh.nix"
@@ -41,4 +41,8 @@
 
   # librewolf crashes, installed using brew instead
   programs.librewolf.package = null;
+
+  home.activation.setDefaultBrowser = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    run ${lib.getExe pkgs.defaultbrowser} librewolf
+  '';
 }

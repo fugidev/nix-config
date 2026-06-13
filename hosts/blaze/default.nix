@@ -16,6 +16,8 @@
     '';
   };
 
+  fugi.allowUnfree = [ "asahi" ];
+
   # enable backlight control
   hardware.acpilight.enable = true;
   services.udev.extraRules = ''

@@ -18,6 +18,10 @@
       # ];
     });
 
+    extraPackages = with pkgs; [
+      nixd
+    ];
+
     settings = {
       theme = "onedark-fugi";
 
@@ -54,8 +58,4 @@
       };
     };
   };
-
-  home.packages = with pkgs; [
-    nil
-  ];
 }

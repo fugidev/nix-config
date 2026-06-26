@@ -4,30 +4,30 @@
     enableDefaultConfig = false;
     includes = [ "config.local" ]; # stateful extra config
 
-    matchBlocks = {
+    settings = {
       "*" = {
-        serverAliveInterval = 240;
+        ServerAliveInterval = 240;
       };
       "cleric" = {
-        hostname = "cleric.fugi.dev";
-        user = "root";
+        HostName = "cleric.fugi.dev";
+        User = "root";
       };
       "librarian" = {
-        hostname = "librarian.fugi.dev";
-        user = "root";
+        HostName = "librarian.fugi.dev";
+        User = "root";
       };
       "magmacube" = {
-        hostname = "192.168.0.2";
-        user = "fugi";
+        HostName = "192.168.0.2";
+        User = "fugi";
       };
       "shepherd" = {
-        hostname = "shepherd.fugi.dev";
-        user = "root";
+        HostName = "shepherd.fugi.dev";
+        User = "root";
       };
       # ifsr
       "quitte" = {
-        hostname = "quitte.ifsr.de";
-        user = "root";
+        HostName = "quitte.ifsr.de";
+        User = "root";
       };
     };
   };

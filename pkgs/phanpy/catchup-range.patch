@@ -1,0 +1,74 @@
+diff --git a/src/pages/catchup.jsx b/src/pages/catchup.jsx
+index 1d43941d..696f45a9 100644
+--- a/src/pages/catchup.jsx
++++ b/src/pages/catchup.jsx
+@@ -66,7 +66,11 @@ const RANGES = [
+   { label: msg`last 10 hours`, value: 10 },
+   { label: msg`last 11 hours`, value: 11 },
+   { label: msg`last 12 hours`, value: 12 },
+-  { label: msg`beyond 12 hours`, value: 13, beyond: true },
++  { label: msg`last 1 day`, value: 24 },
++  { label: msg`last 2 days`, value: 2*24 },
++  { label: msg`last 3 days`, value: 3*24 },
++  { label: msg`last week`, value: 7*24 },
++  { label: msg`beyond last week`, value: 999, beyond: true },
+ ];
+ 
+ const FILTER_KEYS = {
+@@ -449,7 +453,7 @@ function Catchup() {
+   const [selectedFilterCategory, setSelectedFilterCategory] = useState('all');
+   const [selectedAuthor, setSelectedAuthor] = useState(null);
+ 
+-  const [range, setRange] = useState(1);
++  const [range, setRange] = useState(0);
+ 
+   const [sortBy, setSortBy] = useState('createdAt');
+   const [sortOrder, setSortOrder] = useState('asc');
+@@ -1100,8 +1104,8 @@ function Catchup() {
+                   ref={catchupRangeRef}
+                   type="range"
+                   value={range}
+-                  min={RANGES[0].value}
+-                  max={RANGES[RANGES.length - 1].value}
++                  min={0}
++                  max={RANGES.length - 1}
+                   step="1"
+                   list="catchup-ranges"
+                   onChange={(e) => setRange(+e.target.value)}
+@@ -1111,29 +1115,28 @@ function Catchup() {
+                     width: '8em',
+                   }}
+                 >
+-                  {_(RANGES[range - 1].label)}
++                  {_(RANGES[range].label)}
+                   <br />
+                   <small class="insignificant">
+-                    {range == RANGES[RANGES.length - 1].value
++                    {RANGES[range].beyond
+                       ? t`until the max`
+                       : niceDateTime(
+-                          new Date(Date.now() - range * 60 * 60 * 1000),
++                          new Date(Date.now() - RANGES[range].value * 60 * 60 * 1000),
+                         )}
+                   </small>
+                 </span>
+                 <datalist id="catchup-ranges">
+-                  {RANGES.map(({ label, value }) => (
+-                    <option value={value} label={_(label)} />
++                  {RANGES.map(({ label, value }, i) => (
++                    <option value={i} label={_(label)} />
+                   ))}
+                 </datalist>{' '}
+                 <button
+                   type="button"
+                   onClick={() => {
+                     let duration;
+-                    const beyondRange = RANGES.find((r) => r.beyond);
+-                    if (range < beyondRange.value) {
++                    if (!RANGES[range].beyond) {
+                       // Within range
+-                      duration = range * 60 * 60 * 1000;
++                      duration = RANGES[range].value * 60 * 60 * 1000;
+                     } else {
+                       // Beyond range
+                       const untilLastCatchup = catchupLastRef.current?.checked;

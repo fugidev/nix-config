@@ -1,0 +1,17 @@
+diff --git a/src/pages/welcome.jsx b/src/pages/welcome.jsx
+index 2385d004..ce7f6970 100644
+--- a/src/pages/welcome.jsx
++++ b/src/pages/welcome.jsx
+@@ -49,7 +49,11 @@ function Welcome() {
+             <img src={logoText} alt="Phanpy" width="180" height="52" />
+           </h1>
+           <p class="desc">
+-            <Trans>A minimalistic opinionated Mastodon web client.</Trans>
++            Phanpy with some{' '}
++            <a href="https://codeberg.org/fugi/nix-config/src/branch/main/pkgs/phanpy" target="_blank">
++              patches
++            </a>
++            {' '}applied.
+           </p>
+           <p>
+             <Link

@@ -11,6 +11,7 @@
     casks = [
       "adobe-acrobat-reader"
       "affinity"
+      "android-platform-tools"
       "ausweisapp"
       "bambu-studio"
       "blender"
@@ -22,6 +23,7 @@
       "linearmouse"
       "localsend"
       "naps2"
+      "musicbrainz-picard"
       "prismlauncher"
       "signal"
       "stats"

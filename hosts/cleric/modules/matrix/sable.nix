@@ -1,4 +1,4 @@
-{ pkgs, machineConfig, ... }:
+{ pkgs, machineConfig, util, ... }:
 let
   cinnyConfig = {
     allowCustomHomeservers = false;
@@ -7,10 +7,15 @@ let
   };
 in
 {
+  imports = [
+    (util.useFromUnstable {
+      pkgs = [ "sable" ];
+    })
+  ];
+
   services.nginx.virtualHosts."cinny.${machineConfig.baseDomain}" = {
-    root = pkgs.cinny.override {
+    root = pkgs.sable.override {
       conf = cinnyConfig;
-      cinny-unwrapped = pkgs.sable-unwrapped;
     };
 
     extraConfig = ''

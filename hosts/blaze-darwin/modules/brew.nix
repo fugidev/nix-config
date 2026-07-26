@@ -4,6 +4,7 @@
     enable = true;
     onActivation.cleanup = "uninstall";
     onActivation.upgrade = true;
+    onActivation.autoUpdate = true;
     global.brewfile = true;
     enableZshIntegration = true;
 

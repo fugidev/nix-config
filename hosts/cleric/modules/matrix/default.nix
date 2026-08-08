@@ -1,7 +1,7 @@
 {
   imports = [
     ./synapse.nix
-    ./cinny.nix
+    ./sable.nix
     ./element.nix
     ./admin.nix
   ];

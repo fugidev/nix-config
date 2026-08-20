@@ -1,0 +1,28 @@
+diff --git a/backend/services/native/download_orchestrator.py b/backend/services/native/download_orchestrator.py
+index 80e8077..ba2c163 100644
+--- a/backend/services/native/download_orchestrator.py
++++ b/backend/services/native/download_orchestrator.py
+@@ -398,10 +398,22 @@ class DownloadOrchestrator:
+             search_query=f"{task.artist_name} - {task.album_title}",
+         )
+ 
++        source_priority = ["usenet", "soulseek"]
++        if task.track_count == 1:
++            source_priority.reverse()
++
+         remembered: list[list] = []
+-        for source in self._source_priority:
++        for source in source_priority:
+             if not self._source_enabled(source):
+                 continue
++            logger.info(
++                f"download.search.start {source}",
++                extra={
++                    "task_id": task.id,
++                    "source": source,
++                    "search_query": job.search_query,
++                }
++            )
+             candidates = await self._search_and_score(task, source)
+             remembered.append(candidates)
+             logger.info(

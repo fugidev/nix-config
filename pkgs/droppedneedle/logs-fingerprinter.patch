@@ -1,0 +1,24 @@
+diff --git a/backend/infrastructure/audio/fingerprinter.py b/backend/infrastructure/audio/fingerprinter.py
+index ff61f6e..7ebb70f 100644
+--- a/backend/infrastructure/audio/fingerprinter.py
++++ b/backend/infrastructure/audio/fingerprinter.py
+@@ -98,7 +98,8 @@ class AudioFingerprinter:
+ 
+         await self._rate_limiter.acquire()
+         try:
+-            response = await self._http.post(
++            request = httpx.Request(
++                "POST",
+                 self.ACOUSTID_API,
+                 data={
+                     "client": api_key,
+@@ -107,6 +108,9 @@ class AudioFingerprinter:
+                     "meta": "recordings releasegroups",
+                 },
+             )
++            print(request.content)
++            response = await self._http.send(request)
++            print(response.content)
+             response.raise_for_status()
+             payload = response.json()
+         except (httpx.HTTPError, ValueError) as exc:

@@ -1,0 +1,37 @@
+diff --git a/backend/infrastructure/audio/fingerprinter.py b/backend/infrastructure/audio/fingerprinter.py
+index ff61f6e..24b51e3 100644
+--- a/backend/infrastructure/audio/fingerprinter.py
++++ b/backend/infrastructure/audio/fingerprinter.py
+@@ -16,6 +16,7 @@ import asyncio
+ import logging
+ import os
+ import subprocess
++import shutil
+ from collections.abc import Callable
+ from pathlib import Path
+ from typing import Any
+@@ -116,6 +117,9 @@ class AudioFingerprinter:
+         return self._parse_response(payload)
+ 
+     async def _run_fpcalc(self, path: Path) -> tuple[str, int]:
++        ff = shutil.which("fpcalc") is not None
++        logger.warning("fpcalc available: " + str(ff))
++
+         async with self._fpcalc_semaphore:
+             # NOT ``-raw``: AcoustID's /v2/lookup expects the COMPRESSED (base64) Chromaprint
+             # fingerprint that plain fpcalc emits. ``-raw`` emits comma-separated integers,
+diff --git a/backend/services/compat/transcode_service.py b/backend/services/compat/transcode_service.py
+index ff9b148..86f27b4 100644
+--- a/backend/services/compat/transcode_service.py
++++ b/backend/services/compat/transcode_service.py
+@@ -34,7 +34,9 @@ _HUGE = 10**9  # "no cap" sentinel (Subsonic maxBitRate=0, Finamp 999999999)
+ @lru_cache(maxsize=1)
+ def ffmpeg_available() -> bool:
+     """Absent => direct play."""
+-    return shutil.which("ffmpeg") is not None
++    ff = shutil.which("ffmpeg") is not None
++    logger.warning("ffmpeg available: " + str(ff))
++    return ff
+ 
+ 
+ class StreamPlan(AppStruct):

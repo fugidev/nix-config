@@ -35,6 +35,12 @@
       "fritzbox"
 
       "mqtt"
+
+      "ollama"
+      "wyoming"
+      "piper"
+      "whisper"
+      "bring"
     ];
 
     config = {

@@ -44,9 +44,9 @@
       {
         job_name = "fugiweather";
         scrape_interval = "1m";
-        scrape_timeout = "20s";
+        scrape_timeout = "45s";
         static_configs = [{
-          targets = [ "192.168.0.8:80" ];
+          targets = [ "192.168.0.204:80" ];
         }];
       }
       {

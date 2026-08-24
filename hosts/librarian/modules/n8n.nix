@@ -1,6 +1,14 @@
 { config, ... }:
 {
-  services.n8n.enable = true;
+  services.n8n = {
+    enable = true;
+
+    environment = {
+      N8N_RUNNERS_AUTH_TOKEN_FILE = config.sops.secrets."n8n_runners_auth_token".path;
+    };
+
+    taskRunners.enable = true;
+  };
 
   services.nginx.virtualHosts."n8n.${config.networking.fqdn}" = {
     locations."/" = {
@@ -9,5 +17,10 @@
     };
   };
 
-  fugi.allowUnfree = [ "n8n" ];
+  fugi.allowUnfree = [
+    "n8n"
+    "n8n-task-runner-launcher"
+  ];
+
+  sops.secrets."n8n_runners_auth_token" = { };
 }

@@ -9,7 +9,7 @@
     ];
   };
 
-  fugi.allowUnfree = [
+  nixpkgs.config.allowUnfreePackages = [
     "steam"
     "steam-unwrapped"
   ];

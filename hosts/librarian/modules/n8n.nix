@@ -17,7 +17,7 @@
     };
   };
 
-  fugi.allowUnfree = [
+  nixpkgs.config.allowUnfreePackages = [
     "n8n"
     "n8n-task-runner-launcher"
   ];

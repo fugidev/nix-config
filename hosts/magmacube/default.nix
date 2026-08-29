@@ -24,7 +24,7 @@
   services.openssh.enable = true;
   users.users.fugi.openssh.authorizedKeys.keys = config.fugi.authorizedKeys;
 
-  fugi.allowUnfree = [
+  nixpkgs.config.allowUnfreePackages = [
     "discord"
     "spotify"
     "vintagestory"

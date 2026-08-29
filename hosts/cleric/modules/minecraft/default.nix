@@ -17,5 +17,5 @@
       (util.dirPathsNamed ./servers);
   };
 
-  fugi.allowUnfree = [ "minecraft-server" ];
+  nixpkgs.config.allowUnfreePackages = [ "minecraft-server" ];
 }

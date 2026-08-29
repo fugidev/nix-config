@@ -74,5 +74,5 @@
     fugi.guiApps = true;
   };
 
-  fugi.allowUnfree = [ "apple_cursor" ];
+  nixpkgs.config.allowUnfreePackages = [ "apple_cursor" ];
 }

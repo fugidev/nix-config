@@ -16,7 +16,7 @@
     '';
   };
 
-  fugi.allowUnfree = [ "asahi" ];
+  nixpkgs.config.allowUnfreePackages = [ "asahi" ];
 
   # enable backlight control
   hardware.acpilight.enable = true;

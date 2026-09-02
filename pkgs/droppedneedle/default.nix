@@ -12,13 +12,13 @@
   nodejs,
 }:
 let
-  version = "2.3.0";
+  version = "2.8.0";
 
   src = fetchFromGitHub {
     owner = "HabiRabbu";
     repo = "DroppedNeedle";
     tag = "v${version}";
-    hash = "sha256-Naj9ET9ui2qlv8cShIn1Zgm5GZyguOm4KVVFVwhNHeA=";
+    hash = "sha256-ZMHxsGZeToPWmO+o2fck/nuGzH8+abe4tozcrQmmv+Y=";
   };
 
   frontend = stdenvNoCC.mkDerivation (finalAttrs: {
@@ -38,7 +38,7 @@ let
       sourceRoot = "${finalAttrs.src.name}/frontend";
       pnpm = pnpm_10;
       fetcherVersion = 3;
-      hash = "sha256-0Os0oXP9aFi/STih2IDXKOThqEPdKlvdEshYZmbP0ps=";
+      hash = "sha256-CV4JRx/k6Y9qrHR3271QkiWE8MgW2QhfnAnIvNnZj5s=";
     };
 
     buildPhase = ''
@@ -72,6 +72,7 @@ let
       msgspec
       mutagen
       packaging
+      pillow
       pydantic
       pydantic-core
       pydantic-settings
@@ -102,7 +103,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     # ./logs.patch
     ./ignore_nzb_password.patch
     # ./logs-fingerprinter.patch
-    ./source_priority.patch
+    # ./source_priority.patch
     ./album_manual_pick.patch
   ];
 
@@ -122,12 +123,14 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
     mkdir -p $out/bin
 
-    makeWrapper ${lib.getExe' python "uvicorn"} $out/bin/droppedneedle \
+    makeWrapper ${lib.getExe python} $out/bin/python \
       --prefix PYTHONPATH : "$out/lib/droppedneedle" \
       --prefix PATH : ${ffmpeg}/bin \
       --prefix PATH : ${chromaprint}/bin \
-      --set COMMIT_TAG ${finalAttrs.src.tag or "dev"} \
-      --add-flags "main:app"
+      --set COMMIT_TAG ${finalAttrs.src.tag or "dev"}
+
+    makeWrapper $out/bin/python $out/bin/droppedneedle \
+      --add-flags "-m uvicorn target_main:app"
 
     runHook postInstall
   '';

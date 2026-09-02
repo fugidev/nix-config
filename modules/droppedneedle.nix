@@ -71,6 +71,7 @@ in
         SupplementaryGroups = cfg.extraGroups;
         RuntimeDirectory = "droppedneedle";
         StateDirectory = "droppedneedle";
+        ExecStartPre = "${lib.getExe' cfg.package "python"} -m maintenance.automatic_upgrade";
         ExecStart = "${lib.getExe cfg.package} --uds \${RUNTIME_DIRECTORY}/droppedneedle.sock";
         Restart = "on-failure";
         ReadWritePaths = [

@@ -1,16 +1,15 @@
 diff --git a/backend/services/native/download_orchestrator.py b/backend/services/native/download_orchestrator.py
-index 387f36b..3f72073 100644
+index 2a8e485..719b008 100644
 --- a/backend/services/native/download_orchestrator.py
 +++ b/backend/services/native/download_orchestrator.py
-@@ -425,6 +425,11 @@ class DownloadOrchestrator:
+@@ -533,6 +533,10 @@ class DownloadOrchestrator:
                      "top_score": candidates[0].final_score if candidates else 0.0,
                  },
              )
-+
 +            # always manually pick albums
 +            if task.track_count != 1:
 +                continue
 +
-             top = candidates[0] if candidates else None
-             if top and top.tier == "auto":
-                 pooled = [c for group in remembered for c in group]
+             auto_match = next(
+                 (
+                     (candidate_index, candidate)

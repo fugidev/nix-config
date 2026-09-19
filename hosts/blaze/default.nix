@@ -6,17 +6,18 @@
 
   fugi.promptColor = "#f7ce46"; # yellow
 
+  hardware.asahi.enable = true;
   hardware.asahi.peripheralFirmwareDirectory = pkgs.requireFile {
-    name = "asahi";
+    name = "vendorfw";
     hashMode = "recursive";
-    hash = "sha256-cD7R7FqQdEamh2NQefByAmnUJEVWcGd5uSHBcaprVKo=";
+    hash = "sha256-bWACkY0KzcMUp5pfAjvkDitrwXf2Gvggsbl1QzM35+A=";
     message = ''
-      nix-store --add-fixed sha256 --recursive /boot/asahi
-      nix hash path /boot/asahi
+      nix-store --add-fixed sha256 --recursive /boot/vendorfw
+      nix hash path /boot/vendorfw
     '';
   };
 
-  nixpkgs.config.allowUnfreePackages = [ "asahi" ];
+  nixpkgs.config.allowUnfreePackages = [ "vendorfw" ];
 
   # enable backlight control
   hardware.acpilight.enable = true;

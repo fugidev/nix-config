@@ -1,9 +1,20 @@
 {
   config,
   machineConfig,
+  util,
   ...
 }:
 {
+  imports = [
+    (util.useFromUnstable {
+      pkgs = [
+        "immich"
+        "immich-cli"
+      ];
+      modules = [ "services/web-apps/immich.nix" ];
+    })
+  ];
+
   services.immich = {
     enable = true;
   };

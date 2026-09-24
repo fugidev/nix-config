@@ -38,4 +38,8 @@
       };
     };
   };
+
+  nixpkgs.config.allowUnfreePackages = [
+    "ttf-bitstream-vera"
+  ];
 }

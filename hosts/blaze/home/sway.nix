@@ -18,7 +18,7 @@
 
       output = {
         "eDP-1" = {
-          scale = "1.5";
+          scale = "1.75";
           subpixel = "vbgr";
           scale_filter = "linear";
           bg = "${config.fugi.wallpaper} fill";

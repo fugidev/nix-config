@@ -7,6 +7,7 @@ let
 in
 {
   home.pointerCursor = {
+    enable = true;
     package = pkgs.apple-cursor;
     name = "macOS";
 
@@ -38,7 +39,7 @@ in
 
   qt = {
     enable = lib.mkDefault true;
-    platformTheme.name = "gtk";
+    platformTheme.name = "gtk3";
   };
 
   # fix for GTK Warning `Unable to locate theme engine in module_path: "adwaita"`

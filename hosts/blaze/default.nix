@@ -44,6 +44,8 @@
     "hid_apple.fnmode=2"
     # swap fn and ctrl
     "hid_apple.swap_fn_leftctrl=1"
+    # use full screen space
+    "appledrm.show_notch=1"
   ];
 
   # Increase tmpfs size

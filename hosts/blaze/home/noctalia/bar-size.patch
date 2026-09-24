@@ -1,0 +1,13 @@
+diff --git a/Commons/Style.qml b/Commons/Style.qml
+index d8182ceac..13a5dfdee 100644
+--- a/Commons/Style.qml
++++ b/Commons/Style.qml
+@@ -192,7 +192,7 @@ Singleton {
+       break;
+     default:
+     case "default":
+-      h = isVertical ? 33 : 31;
++      h = isVertical ? 33 : 32;
+     }
+     return toOdd(h);
+   }

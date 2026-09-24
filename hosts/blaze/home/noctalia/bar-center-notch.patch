@@ -1,0 +1,14 @@
+diff --git a/Modules/Bar/Bar.qml b/Modules/Bar/Bar.qml
+index 7d5df0861..e897342ba 100644
+--- a/Modules/Bar/Bar.qml
++++ b/Modules/Bar/Bar.qml
+@@ -705,7 +705,8 @@ Item {
+       RowLayout {
+         id: centerSection
+         objectName: "centerSection"
+-        anchors.horizontalCenter: parent.horizontalCenter
++        anchors.left: parent.horizontalCenter
++        anchors.leftMargin: 100
+         y: Style.pixelAlignCenter(parent.height, height)
+         spacing: Settings.data.bar.widgetSpacing
+ 

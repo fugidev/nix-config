@@ -26,6 +26,7 @@
 
   nixpkgs.config.allowUnfreePackages = [
     "discord"
+    "discord-unwrapped"
     "spotify"
     "vintagestory"
   ];

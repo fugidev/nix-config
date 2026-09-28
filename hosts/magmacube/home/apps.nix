@@ -6,7 +6,7 @@
     kdePackages.okular
     kdePackages.kdenlive
     inkscape
-    tenacity
+    audacity
     spotify
     joplin-desktop
     audio-sharing

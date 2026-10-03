@@ -2,6 +2,10 @@
 {
   imports = (util.dirPaths ./modules) ++ [ ./hardware-configuration.nix ];
 
+  fugi.machines.cleric.extraWildcardDomains = [
+    "cowdoll.pet"
+  ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

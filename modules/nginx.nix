@@ -1,24 +1,37 @@
-{ config, lib, machineConfig, ... }:
+{
+  config,
+  lib,
+  machineConfig,
+  ...
+}:
 let
-  inherit (machineConfig) domain baseDomain;
+  inherit (machineConfig) domain baseDomain extraWildcardDomains;
 
-  isOnBaseDomain = lib.hasSuffix baseDomain;
+  wildcardDomains = [ baseDomain ] ++ extraWildcardDomains;
+
+  matchACMEHost = hostname: lib.findFirst (base: lib.hasSuffix base hostname) null wildcardDomains;
 in
 {
   # set default options for virtualHosts
   options = with lib; {
     services.nginx.virtualHosts = mkOption {
-      type = types.attrsOf (types.submodule
-        ({ name, ... }: {
-          forceSSL = mkDefault true;
-          useACMEHost = mkIf (isOnBaseDomain name) (mkDefault baseDomain);
-          enableACME = mkDefault (! isOnBaseDomain name);
-          # split up nginx access logs per vhost
-          extraConfig = ''
-            access_log /var/log/nginx/${name}_access.log;
-            error_log /var/log/nginx/${name}_error.log;
-          '';
-        })
+      type = types.attrsOf (
+        types.submodule (
+          { name, ... }:
+          let
+            ACMEHost = matchACMEHost name;
+          in
+          {
+            forceSSL = mkDefault true;
+            useACMEHost = mkDefault ACMEHost;
+            enableACME = mkDefault (ACMEHost == null);
+            # split up nginx access logs per vhost
+            extraConfig = ''
+              access_log /var/log/nginx/${name}_access.log;
+              error_log /var/log/nginx/${name}_error.log;
+            '';
+          }
+        )
       );
     };
   };
@@ -50,7 +63,10 @@ in
     users.users.nginx.extraGroups = [ "acme" ];
 
     # Open firewall for nginx
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
 
     # Setup acme
     security.acme = {
@@ -58,9 +74,10 @@ in
       defaults.email = "admin@${domain}";
 
       # wildcard cert
-      certs.${baseDomain} = {
-        domain = baseDomain;
-        extraDomainNames = [ "*.${baseDomain}" ];
+      certs = lib.genAttrs wildcardDomains (d: {
+        domain = d;
+        extraDomainNames = [ "*.${d}" ];
+        email = if lib.hasSuffix domain d then "admin@${domain}" else "admin@${d}";
         dnsProvider = "desec";
         dnsPropagationCheck = true;
         dnsResolver = "ns1.desec.io:53";
@@ -68,10 +85,10 @@ in
           DESEC_TOKEN_FILE = config.sops.secrets.desec-token.path;
         };
         environmentFile = builtins.toFile "acme-envfile" ''
-          DESEC_PROPAGATION_TIMEOUT=120
+          DESEC_PROPAGATION_TIMEOUT=300
         '';
         reloadServices = [ "nginx.service" ];
-      };
+      });
     };
 
     sops.secrets.desec-token = { };

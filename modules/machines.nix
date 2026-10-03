@@ -67,6 +67,11 @@ let
         default = config.fqdn;
         description = "Base domain for web services";
       };
+
+      extraWildcardDomains = mkOption {
+        type = with types; listOf str;
+        default = [ ];
+      };
     };
   });
 in

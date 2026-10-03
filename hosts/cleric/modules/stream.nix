@@ -7,6 +7,8 @@
     };
   };
 
+  networking.firewall.allowedTCPPorts = [ 1936 ];
+
   containers.stream = {
     autoStart = true;
     config = {
@@ -16,7 +18,6 @@
 
       services.owncast = {
         enable = true;
-        openFirewall = true;
         port = 8090;
         rtmp-port = 1936;
       };

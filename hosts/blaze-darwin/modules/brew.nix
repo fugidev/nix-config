@@ -16,31 +16,44 @@
       "bambu-studio"
       "blender"
       "coconutbattery"
+      "eclipse-dsl"
       "hex-fiend"
       "inkscape"
+      "instant-space-switcher"
       "karabiner-elements"
       "keka"
+      "librewolf"
       "linearmouse"
       "localsend"
       "naps2"
       "musicbrainz-picard"
       "prismlauncher"
       "signal"
+      "spotify"
       "stats"
       "steam"
       "stolendata-mpv"
       "textmate"
       "thunderbird"
       "vscodium"
+      "whichspace"
+
+      # fonts
+      "font-atkinson-hyperlegible-next"
+      "font-atkinson-hyperlegible-mono"
+    ];
+
+    taps = [
       {
-        name = "librewolf";
-        postinstall = "sudo xattr -r -d com.apple.quarantine /Applications/LibreWolf.app";
+        name = "jurplel/tap";
+        trusted = true;
       }
     ];
 
     masApps = {
       WireGuard = 1451685025;
       Xcode = 497799835;
+      Bitwarden = 1352778147;
     };
   };
 }

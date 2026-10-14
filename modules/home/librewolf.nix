@@ -47,6 +47,9 @@ in
       "middlemouse.paste" = false;
       "clipboard.autocopy" = false;
       "general.autoScroll" = true;
+      "browser.tabs.insertAfterCurrent" = true;
+      "browser.tabs.insertAfterCurrentExceptPinned" = true;
+      "browser.nova.enabled" = false;
     };
   };
 

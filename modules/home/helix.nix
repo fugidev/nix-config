@@ -57,5 +57,36 @@
         "ui.background".bg = "#111111";
       };
     };
+
+    languages = {
+      language =
+        let
+          prettierTS = {
+            command = "prettier";
+            args = [
+              "--parser"
+              "typescript"
+            ];
+          };
+        in
+        [
+          {
+            name = "javascript";
+            formatter = prettierTS;
+          }
+          {
+            name = "typescript";
+            formatter = prettierTS;
+          }
+          {
+            name = "tsx";
+            formatter = prettierTS;
+          }
+          {
+            name = "nix";
+            formatter.command = lib.getExe pkgs.nixfmt;
+          }
+        ];
+    };
   };
 }

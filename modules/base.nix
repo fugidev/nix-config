@@ -68,6 +68,9 @@
     flake = "/etc/nixos";
   };
 
+  # disable imperative nix-channel stuff
+  nix.channel.enable = false;
+
   nix.settings = {
     substituters = lib.optionals (machineConfig.hostName != "cleric") [
       "https://cache.fugi.dev"

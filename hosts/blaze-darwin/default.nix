@@ -23,6 +23,9 @@
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
+  # disable imperative nix-channel stuff
+  nix.channel.enable = false;
+
   nix.settings = {
     sandbox = true;
     experimental-features = "nix-command flakes";

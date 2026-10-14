@@ -24,7 +24,7 @@ let
 in
 {
   services.aerospace = {
-    enable = true;
+    # enable = true;
 
     settings = {
       mode.main.binding = {

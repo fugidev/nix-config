@@ -1,0 +1,19 @@
+--- a/vendor/github.com/extism/go-sdk/host.go
++++ b/vendor/github.com/extism/go-sdk/host.go
+@@ -498,3 +498,15 @@
+-func httpRequest(ctx context.Context, m api.Module, requestOffset uint64, bodyOffset uint64) uint64 {
++func httpRequest(ctx context.Context, m api.Module, requestOffset uint64, bodyOffset uint64) (ret uint64) {
++	defer func() {
++		if r := recover(); r != nil {
++			if p, ok := ctx.Value(PluginCtxKey("plugin")).(*Plugin); ok {
++				p.LastStatusCode = 0
++				if off, err := p.currentPlugin().WriteString(fmt.Sprintf("%v", r)); err == nil {
++					ret = off
++					return
++				}
++			}
++			ret = 0
++		}
++	}()
+ 	if plugin, ok := ctx.Value(PluginCtxKey("plugin")).(*Plugin); ok {
+ 		cp := plugin.currentPlugin()

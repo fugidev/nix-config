@@ -16,7 +16,12 @@ owncast.overrideAttrs (old: {
     hash = "sha256-8NZzfbdNOxrF+uWWonM0gpVdhyidx084g0tia11HP60=";
   };
 
-  vendorHash = "sha256-WUjsBNcL+AD+lHmPLRZWvlGBRvQ7YuuTOVloislp5/M=";
+  # make the http lib not panic and crash the plugin on any error lol
+  modPostBuild = (old.modPostBuild or "") + ''
+    patch -p1 < ${./httpRequest_no_panic.diff}
+  '';
+
+  vendorHash = "sha256-JaeO1/C4U8M70ILF38s5yPeTCqTEC2qnu9gN9pzgQbY=";
 
   passthru = old.passthru // {
     updateScript = nix-update-script {

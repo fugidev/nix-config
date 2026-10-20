@@ -16,6 +16,8 @@
       "bambu-studio"
       "blender"
       "coconutbattery"
+      "discord"
+      "dockdoor"
       "eclipse-dsl"
       "hex-fiend"
       "inkscape"
@@ -54,6 +56,7 @@
       WireGuard = 1451685025;
       Xcode = 497799835;
       Bitwarden = 1352778147;
+      eduVPN = 1317704208;
     };
   };
 }

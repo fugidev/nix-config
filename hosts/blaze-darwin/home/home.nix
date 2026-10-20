@@ -29,6 +29,13 @@
     NH_SHOW_ACTIVATION_LOGS = "true";
   };
 
+  programs.alacritty.package = pkgs.alacritty.overrideAttrs (old: {
+    patches = (old.patches or [ ]) ++ [
+      # https://github.com/nixpulvis/alacritty/tree/macos-menu-bar
+      ../alacritty-macos-menu-bar.patch
+    ];
+  });
+
   programs.nh = {
     enable = true;
     flake = "/etc/nix-darwin";

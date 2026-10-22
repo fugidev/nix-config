@@ -12,13 +12,15 @@
   nodejs,
 }:
 let
-  version = "2.8.0";
+  version = "2.15.0";
+
+  pnpm = pnpm_10;
 
   src = fetchFromGitHub {
     owner = "HabiRabbu";
     repo = "DroppedNeedle";
     tag = "v${version}";
-    hash = "sha256-ZMHxsGZeToPWmO+o2fck/nuGzH8+abe4tozcrQmmv+Y=";
+    hash = "sha256-qj7R8UnCVwsO5YkmsM3KiyS8gsaNrkmee3KypW72o2M=";
   };
 
   frontend = stdenvNoCC.mkDerivation (finalAttrs: {
@@ -30,15 +32,15 @@ let
     nativeBuildInputs = [
       nodejs
       pnpmConfigHook
-      pnpm_10
+      pnpm
     ];
 
     pnpmDeps = fetchPnpmDeps {
       inherit (finalAttrs) pname version src;
       sourceRoot = "${finalAttrs.src.name}/frontend";
-      pnpm = pnpm_10;
+      pnpm = pnpm;
       fetcherVersion = 3;
-      hash = "sha256-CV4JRx/k6Y9qrHR3271QkiWE8MgW2QhfnAnIvNnZj5s=";
+      hash = "sha256-JCOBjvv5LlBQyok+OLwj3d+2piX7FrU/sAmTBw5IDe0=";
     };
 
     buildPhase = ''

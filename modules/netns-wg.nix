@@ -7,7 +7,6 @@
 
 { config, lib, pkgs, ... }:
 let
-  inherit (builtins) map;
   inherit (lib) mkIf mkEnableOption mkOption types concatMapAttrs;
   inherit (lib.attrsets) mergeAttrsList;
 
@@ -19,10 +18,10 @@ let
         type = types.str;
         description = "Name of the wireguard interface.";
       };
-      ip = mkOption {
-        type = types.str;
-        description = "Wireguard-internal IP.";
-        example = "10.13.13.2/32";
+      ips = mkOption {
+        type = with types; listOf str;
+        description = "Wireguard-internal IPs.";
+        example = "[ 10.13.13.2/32 ]";
       };
       privateKeyFile = mkOption {
         type = types.str;
@@ -35,10 +34,20 @@ let
         publicKey = mkOption {
           type = types.str;
         };
+        presharedKeyFile = mkOption {
+          type = types.str;
+        };
         allowedIPs = mkOption {
           type = types.listOf types.str;
           description = "IP ranges that should be routed through the wireguard interface.";
-          default = [ "0.0.0.0/0" ];
+          default = [
+            "0.0.0.0/0"
+            "::/0"
+          ];
+        };
+        persistentKeepalive = mkOption {
+          type = with types; nullOr int;
+          default = null;
         };
       };
       ports = mkOption {
@@ -59,9 +68,9 @@ let
           { host = 8082; netns = 80; }
         ];
       };
-      nameserver = mkOption {
-        type = types.str;
-        example = "10.13.13.1";
+      nameservers = mkOption {
+        type = with types; listOf str;
+        example = "[ 10.13.13.1 ]";
       };
     };
   };
@@ -82,10 +91,8 @@ in
     networking.wireguard.interfaces = concatMapAttrs
       (nsName: nsCfg: {
         ${nsCfg.interfaceName} = {
-          inherit (nsCfg) privateKeyFile;
+          inherit (nsCfg) privateKeyFile ips;
           generatePrivateKeyFile = false;
-
-          ips = [ nsCfg.ip ];
           peers = [ nsCfg.server ];
 
           # Move interface to network namespace
@@ -140,9 +147,8 @@ in
 
     environment.etc = concatMapAttrs
       (nsName: nsCfg: {
-        "netns/${nsName}/resolv.conf".text = ''
-          nameserver ${nsCfg.nameserver}
-        '';
+        "netns/${nsName}/resolv.conf".text =
+          lib.concatMapStrings (s: "nameserver ${s}\n") nsCfg.nameservers;
       })
       cfg.namespaces;
   };
